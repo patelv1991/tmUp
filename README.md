@@ -19,7 +19,6 @@ tmUp is a clone of Asana built on Rails and Backbone. Users can:
 - [ ] Follow a task
 - [ ] Comment on a task
 - [ ] Sort tasks by due dates
-- [ ] View taks on a calendar
 - [ ] Receive a notification upon task completion by other team members.
 
 
@@ -29,16 +28,15 @@ tmUp is a clone of Asana built on Rails and Backbone. Users can:
   [Wireframe][views]
 * [DB schema][schema]
 
-<!-- [views]: ./docs/views.md -->
+[views]: ./docs/views.md
 [schema]: ./docs/schema.md
 
 ## Implementation Timeline
 
 ### Phase 1: User Authentication (~1 day)
 I will implement user authentication in Rails based on practices learned at App
-Academy. By the end of this phase user will be able to create new account, login,
-and receive welcome email (via sendgrid). The most important part
-of this phase will be pushing the app to Heroku and ensuring that everything works
+Academy. By the end of this phase user will be able to create new account and login.
+The most important part of this phase will be pushing the app to Heroku and ensuring that everything works
 before moving on to phase 2.
 
 [Details][phase-one]
@@ -86,10 +84,11 @@ for these features.
 ### Bonus Features (TBD)
 - [ ] Search for tasks by keywords in title
 - [ ] Search for tasks by tag
-- [ ] User profile picture
+- [ ] User profile picture (gravatars)
 - [ ] Calendar view + sync feature with personal calendar
 - [ ] OmniAuth with Google
 - [ ] Chat feature using third party plugin
+- [ ] Receive welcome email
 - [ ] "Like" button for a task
 
 

@@ -9,7 +9,6 @@ lname          | string    | not null
 email          | string    | not null, unique, index
 password_digest| string    | not null
 session_token  | string    | not null, unique, index
-img_filename   | string    | (optional bonus)
 
 ## workspaces
 column name    | data type | details
