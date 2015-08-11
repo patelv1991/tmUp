@@ -1,0 +1,12 @@
+
+<h1 class="main-title"><a href="#">tmUp</a><br></h1>
+<h3><%= "Hello " + current_user.fname %></h3>
+<%= button_to "Sign Out", session_url, :method => :delete, :class => "btn btn-primary" %>
+
+  <div id="content"></div>
+  <div id="sidebar"></div>
+
+<script>
+  // boot the app when the document is ready
+  // $(Trello.initialize);
+</script>

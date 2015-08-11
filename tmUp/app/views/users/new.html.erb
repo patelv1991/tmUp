@@ -1,0 +1,30 @@
+<h1>Sign Up</h1>
+<ul>
+  <% flash[:errors].try(:each) do |error| %>
+    <% if error == "Fname can't be blank" %>
+      <li><%= "First Name can't be blank" %></li>
+    <% elsif error == "Lname can't be blank" %>
+      <li><%= "Last Name can't be blank" %></li>
+    <% else %>
+      <li><%= error %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<form action="/users" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label>First Name<br>
+    <input name="user[fname]" type="text"><br>
+  </label><br>
+  <label>Last Name<br>
+    <input name="user[lname]" type="text"><br>
+  </label><br>
+  <label>Email<br>
+    <input name="user[email]" type="text"><br>
+  </label><br>
+  <label>Password<br>
+    <input name="user[password]" type="password"><br>
+  </label><br>
+  <input type="submit" value="Sign Up" class="btn btn-primary"><br>
+</form>
+<div>Already have an account? <a href="<%= new_session_url %>">Log In</a></div>

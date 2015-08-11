@@ -1,0 +1,15 @@
+<h1>Sign In</h1>
+
+<%= flash[:errors].join("<br>").html_safe if flash[:errors] %><br>
+
+<form action="/session" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <label>Email<br>
+    <input name="user[email]" type="text"><br>
+  </label><br>
+  <label>Password<br>
+    <input name="user[password]" type="password"><br>
+  </label><br>
+  <input type="submit" value="Log In" class="btn btn-primary"><br>
+</form><br>
+<div>Don't have an account? <a href="<%= new_user_url %>">Sign Up</a></div>
