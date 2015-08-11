@@ -34,7 +34,7 @@ workspace_id   | integer   | not null, foreign key (ref workspaces), index
 owner_id       | string    | foreign key (ref users), index
 due_date       | date      |
 
-## teams
+## team_assignments
 column name    | data type | details
 ---------------|-----------|-----------------------
 id             | integer   | not null, primary key
