@@ -21,12 +21,10 @@ tmUp is a clone of Asana built on Rails and Backbone. Users can:
 - [ ] Sort tasks by due dates
 - [ ] View taks on a calendar
 - [ ] Receive a notification upon task completion by other team members.
-- [ ] Search for tasks by keywords in title
-- [ ] Search for tasks by tag
+
 
 ## Design Docs
 * Wireframes - I will use actual asana as a guiding tool for my front end work. I don't plan to make any customizations.
-<!-- * [View Wireframes][views] -->
 * [DB schema][schema]
 
 <!-- [views]: ./docs/views.md -->
@@ -75,7 +73,7 @@ also allow users to see completed tasks in both views if they choose to do so.
 
 [Details][phase-six]
 
-### Phase 5: Followings and User notification (~1 days)
+### Phase 7: Followings and User notification (~1 days)
 I will add user notification feature for new task assignment, comments on
 assigned tasks and any tasks users are following and any CSS that is necessary
 for these features.
@@ -84,7 +82,8 @@ for these features.
 
 
 ### Bonus Features (TBD)
-- [ ] Search tasks
+- [ ] Search for tasks by keywords in title
+- [ ] Search for tasks by tag
 - [ ] User profile picture
 - [ ] Calendar view + sync feature with personal calendar
 - [ ] OmniAuth with Google

@@ -1,4 +1,4 @@
-# Phase 5: Searching for Blogs and Posts
+# Phase 5: All tasks (by due date) / All tasks (by project) 
 
 ## Rails
 ### Models
