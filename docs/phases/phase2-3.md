@@ -43,11 +43,14 @@
 
 ### Views
 * WorkspaceForm
-* WorkspaceShow
-* ProjectIndex
-* ProjectShow
-* TaskIndex
-* TaskShow
-* CommentsIndex
+* WorkspaceShow (subviews: AllTaskIndex, ProjectIndex, WorkspaceTeamIndex)
+* WorkspaceTeamIndex (subviews: WorkspaceTeamIndexItem)
+* ProjectIndex (subviews: ProjectIndexItem)
+* ProjectIndexItem (subviews: ProjectShow)
+* ProjectShow (Subviews: ProjectTasksIndex, ProjectTeamIndex)
+* ProjectTaskIndex / AllTaskIndex (subviews: TaskIndexItem)
+* TaskIndexItem (subview: TaskAssignmentShow)
+* TaskShow (subviews: CommentsIndex)
+* CommentsIndex (subview: CommentsIndexItem)
 
 ## Gems/Libraries

@@ -21,8 +21,7 @@
 * TaskAssignments
 
 ### Views
-* AllTeamMembers
-* TeamIndex
-* TaskAssignmentShow
+* WorkspaceTeamIndex (subviews: WorkspaceTeamIndexItem)
+* TaskAssignmentShow (subview of: TaskIndexItem)
 
 ## Gems/Libraries
