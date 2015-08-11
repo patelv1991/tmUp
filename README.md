@@ -1,16 +1,16 @@
 # tmUp - Inspired by asana:
 
-<!-- [Heroku link][heroku]
+[Heroku link][heroku]
 
-[heroku]: -->
+[heroku]: https://tmupapp.herokuapp.com/
 
 ## Minimum Viable Product
 tmUp is a clone of Asana built on Rails and Backbone. Users can:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
-- [ ] Create accounts
-- [ ] Create sessions (log in)
+- [x] Create accounts
+- [x] Create sessions (log in)
 - [ ] Create workspaces
 - [ ] Create projects
 - [ ] Add team members to a projects
@@ -33,7 +33,7 @@ tmUp is a clone of Asana built on Rails and Backbone. Users can:
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication (~1 day)
+### Phase 1: User Authentication (~1 day) (Done - minus CSS)
 I will implement user authentication in Rails based on practices learned at App
 Academy. By the end of this phase user will be able to create new account and login.
 The most important part of this phase will be pushing the app to Heroku and ensuring that everything works
@@ -84,7 +84,7 @@ for these features.
 ### Bonus Features (TBD)
 - [ ] Search for tasks by keywords in title
 - [ ] Search for tasks by tag
-- [ ] User profile picture (gravatars)
+- [ ] User profile picture (gravatars / Paperclip)
 - [ ] Calendar view + sync feature with personal calendar
 - [ ] OmniAuth with Google
 - [ ] Chat feature using third party plugin

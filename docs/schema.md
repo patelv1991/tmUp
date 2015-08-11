@@ -14,9 +14,9 @@ session_token  | string    | not null, unique, index
 column name    | data type | details
 ---------------|-----------|-----------------------
 id             | integer   | not null, primary key
-title          | string    | not null
+title          | string    | not null, unique, index
 
-## users_workspaces
+## user_workspaces
 column name    | data type | details
 ---------------|-----------|-----------------------
 id             | integer   | not null, primary key
