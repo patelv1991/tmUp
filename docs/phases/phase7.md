@@ -1,4 +1,4 @@
-# Phase 4: User Feeds
+# Phase 4: Followings and User notification
 
 ## Rails
 ### Models
@@ -19,5 +19,11 @@ Api::FollowingsController (feed)
 
 ### Views
 * FollowingsIndex
+
+### Question for TA
+* I don't know how I would go about implementing user notification for newly
+assigned tasks. Do you have any suggestions? Are there any backbone/javascript
+libraries that might be helpful?
+
 
 ## Gems/Libraries
