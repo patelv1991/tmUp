@@ -4,19 +4,18 @@
 ### Models
 
 ### Controllers
-Api::BlogsController (search)
-Api::PostsController (search)
 
 ### Views
 
 ## Backbone
 ### Models
+* Task (already defined)
 
 ### Collections
+* Tasks (already defined)
 
 ### Views
-* BlogSearchItem
-* SearchShow (composite view, contains BlogsIndex and PostsIndex subviews)
+* AllTaskSortedDate
+* AllTaskSortedProject
 
 ## Gems/Libraries
-

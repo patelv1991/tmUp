@@ -1,20 +1,28 @@
-# Phase 4: User Feeds
+# Phase 4: Project Teams and Task Assignments
 
 ## Rails
 ### Models
+* team_assignment
+* task_assignment
 
 ### Controllers
-Api::PostsController (feed)
+* TeamsController (create, update, destory)
+* task_assignment (create, update, destory)
 
 ### Views
-posts/feed.json.jbuilder
 
 ## Backbone
 ### Models
+* TeamAssignment
+* TaskAssignment
 
 ### Collections
+* TeamAssignments
+* TaskAssignments
 
 ### Views
-* FeedShow (composite view, contains PostsIndex subview)
+* AllTeamMembers
+* TeamIndex
+* TaskAssignmentShow
 
 ## Gems/Libraries
