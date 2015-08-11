@@ -20,6 +20,9 @@ class User < ActiveRecord::Base
   attr_reader :password
   after_initialize :ensure_session_token
 
+  has_many :user_workspaces
+  has_many :workspaces, through: :user_workspaces
+
   def gravatar_url
     "http://www.gravatar.com/avatar/#{ Digest::MD5.hexdigest(email) }"
   end
