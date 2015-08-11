@@ -3,24 +3,12 @@
 ## New Session
 ![new-session]
 
-## Feed Show (landing page)
-![feed-show]
+## Sign Up
+![signup]
 
-## Blog Show
-![blog-show]
+## Dashboard
+![dashboard]
 
-## Post Show
-![post-show]
-
-## Post Form
-![post-form]
-
-## Search Results
-![search-results]
-
-[new-session]: ./wireframes/new_session.png
-[feed-show]: ./wireframes/feed_show.png
-[blog-show]: ./wireframes/blog_show.png
-[post-show]: ./wireframes/post_show.png
-[post-form]: ./wireframes/post_form.png
-[search-results]: ./wireframes/search_results.png
+[new-session]: ./wireframes/login.jpg
+[signup]: ./wireframes/signup.jpg
+[dashboard]: ./wireframes/dashboard.jpg

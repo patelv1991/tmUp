@@ -24,7 +24,9 @@ tmUp is a clone of Asana built on Rails and Backbone. Users can:
 
 
 ## Design Docs
-* Wireframes - I will use actual asana as a guiding tool for my front end work. I don't plan to make any customizations.
+* Wireframes - I will use actual asana as a guiding tool for my front end work.
+  I don't plan to make any customizations.
+  [Wireframe][views]
 * [DB schema][schema]
 
 <!-- [views]: ./docs/views.md -->
