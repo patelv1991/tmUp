@@ -11,6 +11,9 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  creator_id     :integer          not null
+#  assignee_id    :integer
+#  assignor_id    :integer
+#  completed      :boolean          default(FALSE)
 #
 
 require 'test_helper'

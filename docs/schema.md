@@ -51,13 +51,8 @@ project_id     | integer   | not null, foreign key (ref projects)
 title          | string    | not null
 body           | string    |
 completed      | boolean   | not null, Defaults: false
-
-## task_assignment
-column name    | data type | details
----------------|-----------|-----------------------
-id             | integer   | not null, primary key
-task_id        | integer   | not null, foreign key (tasks)
 assignee_id    | integer   | foreign key (users)
+assignor_id    | integer   | foreign key (users)
 
 ## comments
 column name    | data type | details

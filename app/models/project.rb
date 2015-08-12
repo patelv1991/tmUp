@@ -18,7 +18,8 @@ class Project < ActiveRecord::Base
 
   has_many :team_assignments
   has_many :team_members, through: :team_assignments, source: :member
-
+  has_many :tasks
+  
   belongs_to :workspace
   belongs_to(
     :owner,

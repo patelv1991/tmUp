@@ -25,6 +25,13 @@ class User < ActiveRecord::Base
   has_many :projects, through: :team_assignments, source: :project
   has_many :workspaces, through: :user_workspaces
 
+  has_many(
+    :tasks,
+    class_name: "Task",
+    foreign_key: :assignee_id,
+    primary_key: :id
+  )
+
   def gravatar_url
     "http://www.gravatar.com/avatar/#{ Digest::MD5.hexdigest(email) }"
   end
