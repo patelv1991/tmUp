@@ -14,6 +14,7 @@ gem 'font-awesome-rails'
 gem 'ejs'
 gem 'serialize_json-rails'
 gem 'newrelic_rpm'
+gem 'backbone-on-rails'
 
 
 group :development do
