@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
 
   has_many :user_workspaces
+  has_many :team_assignments
+  has_many :projects, through: :team_assignments, source: :project
   has_many :workspaces, through: :user_workspaces
 
   def gravatar_url

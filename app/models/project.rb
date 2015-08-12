@@ -16,8 +16,10 @@ class Project < ActiveRecord::Base
   validates :title, :workspace, presence: true
   validates :title, uniqueness: { scope: :workspace_id }
 
-  belongs_to :workspace
+  has_many :team_assignments
+  has_many :team_members, through: :team_assignments, source: :member
 
+  belongs_to :workspace
   belongs_to(
     :owner,
     class_name: "User",
@@ -25,7 +27,4 @@ class Project < ActiveRecord::Base
     primary_key: :id
   )
 
-  # has_many(
-  #   :team_members
-  # )
 end

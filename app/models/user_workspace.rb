@@ -10,7 +10,7 @@
 #
 
 class UserWorkspace < ActiveRecord::Base
-  validates :user_id, :workspace_id, presence: true
+  validates :user, :workspace, presence: true
   validates :user_id, uniqueness: { scope: :workspace_id }
 
   belongs_to :user
