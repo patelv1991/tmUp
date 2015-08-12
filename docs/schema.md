@@ -44,6 +44,7 @@ member_id      | integer   | not null, foreign key (ref users), index
 column name    | data type | details
 ------------   |-----------|-----------------------
 id             | integer   | not null, primary key
+creator_id     | integer   | not null, foreign key (ref users)
 parent_task_id | integer   | foreign key (self referencing key)
 due_date       | date      |
 project_id     | integer   | not null, foreign key (ref projects)

@@ -82,6 +82,7 @@ for these features.
 
 
 ### Bonus Features (TBD)
+- [ ] Email validation
 - [ ] Search for tasks by keywords in title
 - [ ] Search for tasks by tag
 - [ ] User profile picture (gravatars / Paperclip)
