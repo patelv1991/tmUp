@@ -11976,3 +11976,733 @@ WHERE c.contype = 'f'
   AND t3.nspname = ANY (current_schemas(false))
 ORDER BY c.conname
 
+  [1m[36mUser Load (30.9ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mWorkspace Load (33.3ms)[0m  SELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1  [["user_id", 1]]
+  [1m[36mUserWorkspace Load (0.6ms)[0m  [1mSELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (1, 2)[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)
+  [1m[36mProject Load (20.6ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."workspace_id" IN (1, 2)[0m
+  [1m[35mTask Load (24.4ms)[0m  SELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" IN (1, 3, 4, 5)
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mWorkspace Load (0.9ms)[0m  SELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1  [["user_id", 1], ["id", 1]]
+  [1m[36mUserWorkspace Load (1.3ms)[0m  [1mSELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (1)[0m
+  [1m[35mUser Load (0.8ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)
+  [1m[36mProject Load (0.5ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."workspace_id" IN (1)[0m
+  [1m[35mTask Load (0.8ms)[0m  SELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" IN (1, 4)
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mWorkspace Load (1.1ms)[0m  SELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1  [["user_id", 1], ["id", 7]]
+
+
+Started GET "/" for 127.0.0.1 at 2015-08-13 09:32:51 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#root as HTML
+Redirected to http://localhost:3000/session/new
+Filter chain halted as :require_signed_in! rendered or redirected
+Completed 302 Found in 25ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2015-08-13 09:32:51 -0700
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 442ms (Views: 441.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for 127.0.0.1 at 2015-08-13 09:32:55 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"gGw9yXKkVrWIuJzwwttl7xIhyUb9c//9AJiWTPrjVQ+dCWEMORgnqQJUcYBIsT30sfgqlgYp7gv7fophxX+t+w==", "user"=>{"email"=>"patelv1991@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "patelv1991@gmail.com"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'patelv1991@gmail.com' AND "users"."id" != 1) LIMIT 1
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'BSe--00tOX5cKUWd8tVZiQ' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (24.5ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "BSe--00tOX5cKUWd8tVZiQ"], ["updated_at", "2015-08-13 16:32:55.338342"], ["id", 1]]
+  [1m[36m (7.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 233ms (ActiveRecord: 37.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-08-13 09:32:55 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "BSe--00tOX5cKUWd8tVZiQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 197ms (Views: 193.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/workspaces" for 127.0.0.1 at 2015-08-13 09:32:55 -0700
+Processing by Api::WorkspacesController#index as JSON
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "BSe--00tOX5cKUWd8tVZiQ"]]
+  [1m[35mWorkspace Load (1.1ms)[0m  SELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 93ms (Views: 11.3ms | ActiveRecord: 5.4ms)
+
+
+Started GET "/api/workspaces/2" for 127.0.0.1 at 2015-08-13 09:33:03 -0700
+Processing by Api::WorkspacesController#show as JSON
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "BSe--00tOX5cKUWd8tVZiQ"]]
+  [1m[35mWorkspace Load (0.9ms)[0m  SELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1  [["user_id", 1], ["id", 2]]
+  [1m[36mUserWorkspace Load (0.7ms)[0m  [1mSELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (2)[0m
+  [1m[35mUser Load (1.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)
+  [1m[36mProject Load (1.3ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."workspace_id" IN (2)[0m
+  [1m[35mTask Load (0.8ms)[0m  SELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" IN (3, 5)
+  Rendered users/_user.json.jbuilder (0.7ms)
+  Rendered users/_user.json.jbuilder (0.2ms)
+  Rendered api/projects/_project.json.jbuilder (1.5ms)
+  Rendered api/projects/_project.json.jbuilder (0.7ms)
+  Rendered api/workspaces/show.json.jbuilder (46.8ms)
+Completed 200 OK in 325ms (Views: 49.5ms | ActiveRecord: 10.8ms)
+
+
+Started GET "/api/workspaces/3" for 127.0.0.1 at 2015-08-13 09:33:09 -0700
+Processing by Api::WorkspacesController#show as JSON
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "BSe--00tOX5cKUWd8tVZiQ"]]
+  [1m[35mWorkspace Load (0.4ms)[0m  SELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1  [["user_id", 1], ["id", 3]]
+Completed 422 Unprocessable Entity in 5ms (Views: 0.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/workspaces/4" for 127.0.0.1 at 2015-08-13 09:33:14 -0700
+Processing by Api::WorkspacesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "BSe--00tOX5cKUWd8tVZiQ"]]
+  [1m[35mWorkspace Load (1.0ms)[0m  SELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1  [["user_id", 1], ["id", 4]]
+Completed 422 Unprocessable Entity in 9ms (Views: 0.2ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/workspaces/4" for 127.0.0.1 at 2015-08-13 09:33:41 -0700
+Processing by Api::WorkspacesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "BSe--00tOX5cKUWd8tVZiQ"]]
+  [1m[35mWorkspace Load (0.4ms)[0m  SELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1  [["user_id", 1], ["id", 4]]
+Completed 403 Forbidden in 48ms (Views: 0.2ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/api/workspaces" for 127.0.0.1 at 2015-08-13 09:33:51 -0700
+Processing by Api::WorkspacesController#index as JSON
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "BSe--00tOX5cKUWd8tVZiQ"]]
+  [1m[35mWorkspace Load (0.5ms)[0m  SELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 49ms (Views: 6.9ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/api/workspaces/1" for 127.0.0.1 at 2015-08-13 09:33:55 -0700
+Processing by Api::WorkspacesController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "BSe--00tOX5cKUWd8tVZiQ"]]
+  [1m[35mWorkspace Load (0.5ms)[0m  SELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1  [["user_id", 1], ["id", 1]]
+  [1m[36mUserWorkspace Load (0.4ms)[0m  [1mSELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (1)[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)
+  [1m[36mProject Load (0.8ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."workspace_id" IN (1)[0m
+  [1m[35mTask Load (0.6ms)[0m  SELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" IN (1, 4)
+  Rendered users/_user.json.jbuilder (0.3ms)
+  Rendered users/_user.json.jbuilder (0.2ms)
+  Rendered api/projects/_project.json.jbuilder (0.4ms)
+  Rendered api/tasks/_task.json.jbuilder (0.8ms)
+  Rendered api/projects/_project.json.jbuilder (0.5ms)
+  Rendered api/tasks/_task.json.jbuilder (1.1ms)
+  Rendered api/workspaces/show.json.jbuilder (11.9ms)
+Completed 200 OK in 91ms (Views: 14.3ms | ActiveRecord: 8.8ms)
+  [1m[36mUser Load (2.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (85.6ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "0"], ["created_at", "2015-08-13 16:35:43.432476"], ["updated_at", "2015-08-13 16:35:43.432476"]]
+  [1m[35mUserWorkspace Exists (1.1ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 5) LIMIT 1
+  [1m[36mSQL (23.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 5], ["created_at", "2015-08-13 16:35:43.562230"], ["updated_at", "2015-08-13 16:35:43.562230"]]
+  [1m[35m (14.6ms)[0m  COMMIT
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "1"], ["created_at", "2015-08-13 16:35:43.609456"], ["updated_at", "2015-08-13 16:35:43.609456"]]
+  [1m[35mUserWorkspace Exists (0.6ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 6) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 6], ["created_at", "2015-08-13 16:35:43.614908"], ["updated_at", "2015-08-13 16:35:43.614908"]]
+  [1m[35m (8.9ms)[0m  COMMIT
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "2"], ["created_at", "2015-08-13 16:35:43.632839"], ["updated_at", "2015-08-13 16:35:43.632839"]]
+  [1m[35mUserWorkspace Exists (0.6ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 7) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 7], ["created_at", "2015-08-13 16:35:43.637677"], ["updated_at", "2015-08-13 16:35:43.637677"]]
+  [1m[35m (9.6ms)[0m  COMMIT
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "3"], ["created_at", "2015-08-13 16:35:43.658121"], ["updated_at", "2015-08-13 16:35:43.658121"]]
+  [1m[35mUserWorkspace Exists (0.8ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 8) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 8], ["created_at", "2015-08-13 16:35:43.666714"], ["updated_at", "2015-08-13 16:35:43.666714"]]
+  [1m[35m (13.0ms)[0m  COMMIT
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "4"], ["created_at", "2015-08-13 16:35:43.692288"], ["updated_at", "2015-08-13 16:35:43.692288"]]
+  [1m[35mUserWorkspace Exists (0.6ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 9) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 9], ["created_at", "2015-08-13 16:35:43.698125"], ["updated_at", "2015-08-13 16:35:43.698125"]]
+  [1m[35m (4.0ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "5"], ["created_at", "2015-08-13 16:35:43.709193"], ["updated_at", "2015-08-13 16:35:43.709193"]]
+  [1m[35mUserWorkspace Exists (1.6ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 10) LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 10], ["created_at", "2015-08-13 16:35:43.719913"], ["updated_at", "2015-08-13 16:35:43.719913"]]
+  [1m[35m (4.1ms)[0m  COMMIT
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "6"], ["created_at", "2015-08-13 16:35:43.730863"], ["updated_at", "2015-08-13 16:35:43.730863"]]
+  [1m[35mUserWorkspace Exists (0.8ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 11) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 11], ["created_at", "2015-08-13 16:35:43.736028"], ["updated_at", "2015-08-13 16:35:43.736028"]]
+  [1m[35m (10.9ms)[0m  COMMIT
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "7"], ["created_at", "2015-08-13 16:35:43.755416"], ["updated_at", "2015-08-13 16:35:43.755416"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 12) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 12], ["created_at", "2015-08-13 16:35:43.760834"], ["updated_at", "2015-08-13 16:35:43.760834"]]
+  [1m[35m (8.4ms)[0m  COMMIT
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "8"], ["created_at", "2015-08-13 16:35:43.780479"], ["updated_at", "2015-08-13 16:35:43.780479"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 13) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 13], ["created_at", "2015-08-13 16:35:43.785527"], ["updated_at", "2015-08-13 16:35:43.785527"]]
+  [1m[35m (5.9ms)[0m  COMMIT
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "9"], ["created_at", "2015-08-13 16:35:43.797027"], ["updated_at", "2015-08-13 16:35:43.797027"]]
+  [1m[35mUserWorkspace Exists (1.2ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 14) LIMIT 1
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 14], ["created_at", "2015-08-13 16:35:43.804408"], ["updated_at", "2015-08-13 16:35:43.804408"]]
+  [1m[35m (6.9ms)[0m  COMMIT
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (1.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "10"], ["created_at", "2015-08-13 16:35:43.830073"], ["updated_at", "2015-08-13 16:35:43.830073"]]
+  [1m[35mUserWorkspace Exists (0.9ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 15) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 15], ["created_at", "2015-08-13 16:35:43.839416"], ["updated_at", "2015-08-13 16:35:43.839416"]]
+  [1m[35m (5.2ms)[0m  COMMIT
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "11"], ["created_at", "2015-08-13 16:35:43.853944"], ["updated_at", "2015-08-13 16:35:43.853944"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 16) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 16], ["created_at", "2015-08-13 16:35:43.858245"], ["updated_at", "2015-08-13 16:35:43.858245"]]
+  [1m[35m (10.8ms)[0m  COMMIT
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "12"], ["created_at", "2015-08-13 16:35:43.876581"], ["updated_at", "2015-08-13 16:35:43.876581"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 17) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 17], ["created_at", "2015-08-13 16:35:43.881057"], ["updated_at", "2015-08-13 16:35:43.881057"]]
+  [1m[35m (10.6ms)[0m  COMMIT
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "13"], ["created_at", "2015-08-13 16:35:43.902760"], ["updated_at", "2015-08-13 16:35:43.902760"]]
+  [1m[35mUserWorkspace Exists (0.7ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 18) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 18], ["created_at", "2015-08-13 16:35:43.908562"], ["updated_at", "2015-08-13 16:35:43.908562"]]
+  [1m[35m (3.8ms)[0m  COMMIT
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "14"], ["created_at", "2015-08-13 16:35:43.919083"], ["updated_at", "2015-08-13 16:35:43.919083"]]
+  [1m[35mUserWorkspace Exists (1.3ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 19) LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 19], ["created_at", "2015-08-13 16:35:43.926459"], ["updated_at", "2015-08-13 16:35:43.926459"]]
+  [1m[35m (5.3ms)[0m  COMMIT
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "15"], ["created_at", "2015-08-13 16:35:43.941149"], ["updated_at", "2015-08-13 16:35:43.941149"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 20) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 20], ["created_at", "2015-08-13 16:35:43.945766"], ["updated_at", "2015-08-13 16:35:43.945766"]]
+  [1m[35m (12.3ms)[0m  COMMIT
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "16"], ["created_at", "2015-08-13 16:35:43.967318"], ["updated_at", "2015-08-13 16:35:43.967318"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 21) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 21], ["created_at", "2015-08-13 16:35:43.971940"], ["updated_at", "2015-08-13 16:35:43.971940"]]
+  [1m[35m (8.1ms)[0m  COMMIT
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "17"], ["created_at", "2015-08-13 16:35:43.992814"], ["updated_at", "2015-08-13 16:35:43.992814"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 22) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 22], ["created_at", "2015-08-13 16:35:44.001643"], ["updated_at", "2015-08-13 16:35:44.001643"]]
+  [1m[35m (11.3ms)[0m  COMMIT
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "18"], ["created_at", "2015-08-13 16:35:44.025298"], ["updated_at", "2015-08-13 16:35:44.025298"]]
+  [1m[35mUserWorkspace Exists (0.8ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 23) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 23], ["created_at", "2015-08-13 16:35:44.031078"], ["updated_at", "2015-08-13 16:35:44.031078"]]
+  [1m[35m (4.1ms)[0m  COMMIT
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "19"], ["created_at", "2015-08-13 16:35:44.041125"], ["updated_at", "2015-08-13 16:35:44.041125"]]
+  [1m[35mUserWorkspace Exists (0.7ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 24) LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 24], ["created_at", "2015-08-13 16:35:44.047793"], ["updated_at", "2015-08-13 16:35:44.047793"]]
+  [1m[35m (8.1ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "20"], ["created_at", "2015-08-13 16:35:44.063093"], ["updated_at", "2015-08-13 16:35:44.063093"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 25) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 25], ["created_at", "2015-08-13 16:35:44.067318"], ["updated_at", "2015-08-13 16:35:44.067318"]]
+  [1m[35m (12.9ms)[0m  COMMIT
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "21"], ["created_at", "2015-08-13 16:35:44.089274"], ["updated_at", "2015-08-13 16:35:44.089274"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 26) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 26], ["created_at", "2015-08-13 16:35:44.093692"], ["updated_at", "2015-08-13 16:35:44.093692"]]
+  [1m[35m (8.4ms)[0m  COMMIT
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (1.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "22"], ["created_at", "2015-08-13 16:35:44.109572"], ["updated_at", "2015-08-13 16:35:44.109572"]]
+  [1m[35mUserWorkspace Exists (0.8ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 27) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 27], ["created_at", "2015-08-13 16:35:44.120460"], ["updated_at", "2015-08-13 16:35:44.120460"]]
+  [1m[35m (3.8ms)[0m  COMMIT
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "23"], ["created_at", "2015-08-13 16:35:44.130040"], ["updated_at", "2015-08-13 16:35:44.130040"]]
+  [1m[35mUserWorkspace Exists (0.7ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 28) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 28], ["created_at", "2015-08-13 16:35:44.134930"], ["updated_at", "2015-08-13 16:35:44.134930"]]
+  [1m[35m (9.6ms)[0m  COMMIT
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "24"], ["created_at", "2015-08-13 16:35:44.155655"], ["updated_at", "2015-08-13 16:35:44.155655"]]
+  [1m[35mUserWorkspace Exists (0.8ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 29) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 29], ["created_at", "2015-08-13 16:35:44.163673"], ["updated_at", "2015-08-13 16:35:44.163673"]]
+  [1m[35m (3.6ms)[0m  COMMIT
+  [1m[36mUser Load (1.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "25"], ["created_at", "2015-08-13 16:35:44.180916"], ["updated_at", "2015-08-13 16:35:44.180916"]]
+  [1m[35mUserWorkspace Exists (0.6ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 30) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 30], ["created_at", "2015-08-13 16:35:44.186383"], ["updated_at", "2015-08-13 16:35:44.186383"]]
+  [1m[35m (4.2ms)[0m  COMMIT
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "26"], ["created_at", "2015-08-13 16:35:44.197879"], ["updated_at", "2015-08-13 16:35:44.197879"]]
+  [1m[35mUserWorkspace Exists (1.2ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 31) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 31], ["created_at", "2015-08-13 16:35:44.208159"], ["updated_at", "2015-08-13 16:35:44.208159"]]
+  [1m[35m (4.1ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "27"], ["created_at", "2015-08-13 16:35:44.218697"], ["updated_at", "2015-08-13 16:35:44.218697"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 32) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 32], ["created_at", "2015-08-13 16:35:44.223463"], ["updated_at", "2015-08-13 16:35:44.223463"]]
+  [1m[35m (12.0ms)[0m  COMMIT
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "28"], ["created_at", "2015-08-13 16:35:44.246387"], ["updated_at", "2015-08-13 16:35:44.246387"]]
+  [1m[35mUserWorkspace Exists (0.7ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 33) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 33], ["created_at", "2015-08-13 16:35:44.255339"], ["updated_at", "2015-08-13 16:35:44.255339"]]
+  [1m[35m (12.8ms)[0m  COMMIT
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "29"], ["created_at", "2015-08-13 16:35:44.276591"], ["updated_at", "2015-08-13 16:35:44.276591"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 34) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 34], ["created_at", "2015-08-13 16:35:44.281853"], ["updated_at", "2015-08-13 16:35:44.281853"]]
+  [1m[35m (9.0ms)[0m  COMMIT
+  [1m[36mUser Load (1.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "30"], ["created_at", "2015-08-13 16:35:44.302318"], ["updated_at", "2015-08-13 16:35:44.302318"]]
+  [1m[35mUserWorkspace Exists (0.7ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 35) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 35], ["created_at", "2015-08-13 16:35:44.307935"], ["updated_at", "2015-08-13 16:35:44.307935"]]
+  [1m[35m (4.9ms)[0m  COMMIT
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "31"], ["created_at", "2015-08-13 16:35:44.320078"], ["updated_at", "2015-08-13 16:35:44.320078"]]
+  [1m[35mUserWorkspace Exists (1.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 36) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 36], ["created_at", "2015-08-13 16:35:44.331462"], ["updated_at", "2015-08-13 16:35:44.331462"]]
+  [1m[35m (3.2ms)[0m  COMMIT
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "32"], ["created_at", "2015-08-13 16:35:44.341014"], ["updated_at", "2015-08-13 16:35:44.341014"]]
+  [1m[35mUserWorkspace Exists (0.6ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 37) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 37], ["created_at", "2015-08-13 16:35:44.345925"], ["updated_at", "2015-08-13 16:35:44.345925"]]
+  [1m[35m (11.6ms)[0m  COMMIT
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "33"], ["created_at", "2015-08-13 16:35:44.366152"], ["updated_at", "2015-08-13 16:35:44.366152"]]
+  [1m[35mUserWorkspace Exists (0.8ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 38) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 38], ["created_at", "2015-08-13 16:35:44.371268"], ["updated_at", "2015-08-13 16:35:44.371268"]]
+  [1m[35m (8.3ms)[0m  COMMIT
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "34"], ["created_at", "2015-08-13 16:35:44.393255"], ["updated_at", "2015-08-13 16:35:44.393255"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 39) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 39], ["created_at", "2015-08-13 16:35:44.399862"], ["updated_at", "2015-08-13 16:35:44.399862"]]
+  [1m[35m (13.4ms)[0m  COMMIT
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "35"], ["created_at", "2015-08-13 16:35:44.423354"], ["updated_at", "2015-08-13 16:35:44.423354"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 40) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 40], ["created_at", "2015-08-13 16:35:44.428159"], ["updated_at", "2015-08-13 16:35:44.428159"]]
+  [1m[35m (6.8ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "36"], ["created_at", "2015-08-13 16:35:44.441151"], ["updated_at", "2015-08-13 16:35:44.441151"]]
+  [1m[35mUserWorkspace Exists (1.8ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 41) LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 41], ["created_at", "2015-08-13 16:35:44.452157"], ["updated_at", "2015-08-13 16:35:44.452157"]]
+  [1m[35m (4.4ms)[0m  COMMIT
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "37"], ["created_at", "2015-08-13 16:35:44.463045"], ["updated_at", "2015-08-13 16:35:44.463045"]]
+  [1m[35mUserWorkspace Exists (0.8ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 42) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 42], ["created_at", "2015-08-13 16:35:44.468046"], ["updated_at", "2015-08-13 16:35:44.468046"]]
+  [1m[35m (12.0ms)[0m  COMMIT
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "38"], ["created_at", "2015-08-13 16:35:44.487824"], ["updated_at", "2015-08-13 16:35:44.487824"]]
+  [1m[35mUserWorkspace Exists (0.8ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 43) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 43], ["created_at", "2015-08-13 16:35:44.492940"], ["updated_at", "2015-08-13 16:35:44.492940"]]
+  [1m[35m (8.4ms)[0m  COMMIT
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.8ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "39"], ["created_at", "2015-08-13 16:35:44.514570"], ["updated_at", "2015-08-13 16:35:44.514570"]]
+  [1m[35mUserWorkspace Exists (0.6ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 44) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 44], ["created_at", "2015-08-13 16:35:44.523725"], ["updated_at", "2015-08-13 16:35:44.523725"]]
+  [1m[35m (11.5ms)[0m  COMMIT
+  [1m[36mUser Load (1.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "40"], ["created_at", "2015-08-13 16:35:44.547172"], ["updated_at", "2015-08-13 16:35:44.547172"]]
+  [1m[35mUserWorkspace Exists (0.8ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 45) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 45], ["created_at", "2015-08-13 16:35:44.552629"], ["updated_at", "2015-08-13 16:35:44.552629"]]
+  [1m[35m (4.3ms)[0m  COMMIT
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "41"], ["created_at", "2015-08-13 16:35:44.564548"], ["updated_at", "2015-08-13 16:35:44.564548"]]
+  [1m[35mUserWorkspace Exists (1.7ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 46) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 46], ["created_at", "2015-08-13 16:35:44.575786"], ["updated_at", "2015-08-13 16:35:44.575786"]]
+  [1m[35m (3.1ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "42"], ["created_at", "2015-08-13 16:35:44.584657"], ["updated_at", "2015-08-13 16:35:44.584657"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 47) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 47], ["created_at", "2015-08-13 16:35:44.589116"], ["updated_at", "2015-08-13 16:35:44.589116"]]
+  [1m[35m (12.9ms)[0m  COMMIT
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "43"], ["created_at", "2015-08-13 16:35:44.609581"], ["updated_at", "2015-08-13 16:35:44.609581"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 48) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 48], ["created_at", "2015-08-13 16:35:44.614202"], ["updated_at", "2015-08-13 16:35:44.614202"]]
+  [1m[35m (9.6ms)[0m  COMMIT
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "44"], ["created_at", "2015-08-13 16:35:44.632970"], ["updated_at", "2015-08-13 16:35:44.632970"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 49) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 49], ["created_at", "2015-08-13 16:35:44.640315"], ["updated_at", "2015-08-13 16:35:44.640315"]]
+  [1m[35m (5.6ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "45"], ["created_at", "2015-08-13 16:35:44.651274"], ["updated_at", "2015-08-13 16:35:44.651274"]]
+  [1m[35mUserWorkspace Exists (1.3ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 50) LIMIT 1
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 50], ["created_at", "2015-08-13 16:35:44.658240"], ["updated_at", "2015-08-13 16:35:44.658240"]]
+  [1m[35m (7.9ms)[0m  COMMIT
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "46"], ["created_at", "2015-08-13 16:35:44.674365"], ["updated_at", "2015-08-13 16:35:44.674365"]]
+  [1m[35mUserWorkspace Exists (0.7ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 51) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 51], ["created_at", "2015-08-13 16:35:44.679456"], ["updated_at", "2015-08-13 16:35:44.679456"]]
+  [1m[35m (11.1ms)[0m  COMMIT
+  [1m[36mUser Load (1.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "47"], ["created_at", "2015-08-13 16:35:44.703729"], ["updated_at", "2015-08-13 16:35:44.703729"]]
+  [1m[35mUserWorkspace Exists (1.2ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 52) LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 52], ["created_at", "2015-08-13 16:35:44.719757"], ["updated_at", "2015-08-13 16:35:44.719757"]]
+  [1m[35m (13.0ms)[0m  COMMIT
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "48"], ["created_at", "2015-08-13 16:35:44.741069"], ["updated_at", "2015-08-13 16:35:44.741069"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 53) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 53], ["created_at", "2015-08-13 16:35:44.746148"], ["updated_at", "2015-08-13 16:35:44.746148"]]
+  [1m[35m (10.4ms)[0m  COMMIT
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "49"], ["created_at", "2015-08-13 16:35:44.764120"], ["updated_at", "2015-08-13 16:35:44.764120"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 54) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 54], ["created_at", "2015-08-13 16:35:44.769051"], ["updated_at", "2015-08-13 16:35:44.769051"]]
+  [1m[35m (10.1ms)[0m  COMMIT
+  [1m[36mUser Load (1.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "50"], ["created_at", "2015-08-13 16:35:44.790905"], ["updated_at", "2015-08-13 16:35:44.790905"]]
+  [1m[35mUserWorkspace Exists (0.8ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 55) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 55], ["created_at", "2015-08-13 16:35:44.796076"], ["updated_at", "2015-08-13 16:35:44.796076"]]
+  [1m[35m (5.2ms)[0m  COMMIT
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "51"], ["created_at", "2015-08-13 16:35:44.806606"], ["updated_at", "2015-08-13 16:35:44.806606"]]
+  [1m[35mUserWorkspace Exists (1.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 56) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 56], ["created_at", "2015-08-13 16:35:44.819793"], ["updated_at", "2015-08-13 16:35:44.819793"]]
+  [1m[35m (2.7ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "52"], ["created_at", "2015-08-13 16:35:44.828781"], ["updated_at", "2015-08-13 16:35:44.828781"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 57) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 57], ["created_at", "2015-08-13 16:35:44.832952"], ["updated_at", "2015-08-13 16:35:44.832952"]]
+  [1m[35m (13.3ms)[0m  COMMIT
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "53"], ["created_at", "2015-08-13 16:35:44.854328"], ["updated_at", "2015-08-13 16:35:44.854328"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 58) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 58], ["created_at", "2015-08-13 16:35:44.858666"], ["updated_at", "2015-08-13 16:35:44.858666"]]
+  [1m[35m (9.4ms)[0m  COMMIT
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "54"], ["created_at", "2015-08-13 16:35:44.877604"], ["updated_at", "2015-08-13 16:35:44.877604"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 59) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 59], ["created_at", "2015-08-13 16:35:44.887803"], ["updated_at", "2015-08-13 16:35:44.887803"]]
+  [1m[35m (13.2ms)[0m  COMMIT
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "55"], ["created_at", "2015-08-13 16:35:44.912394"], ["updated_at", "2015-08-13 16:35:44.912394"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 60) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 60], ["created_at", "2015-08-13 16:35:44.918004"], ["updated_at", "2015-08-13 16:35:44.918004"]]
+  [1m[35m (5.2ms)[0m  COMMIT
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "56"], ["created_at", "2015-08-13 16:35:44.928945"], ["updated_at", "2015-08-13 16:35:44.928945"]]
+  [1m[35mUserWorkspace Exists (0.6ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 61) LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 61], ["created_at", "2015-08-13 16:35:44.936112"], ["updated_at", "2015-08-13 16:35:44.936112"]]
+  [1m[35m (7.0ms)[0m  COMMIT
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "57"], ["created_at", "2015-08-13 16:35:44.951412"], ["updated_at", "2015-08-13 16:35:44.951412"]]
+  [1m[35mUserWorkspace Exists (0.7ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 62) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 62], ["created_at", "2015-08-13 16:35:44.956182"], ["updated_at", "2015-08-13 16:35:44.956182"]]
+  [1m[35m (12.0ms)[0m  COMMIT
+  [1m[36mUser Load (1.5ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "58"], ["created_at", "2015-08-13 16:35:44.976878"], ["updated_at", "2015-08-13 16:35:44.976878"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 63) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 63], ["created_at", "2015-08-13 16:35:44.981383"], ["updated_at", "2015-08-13 16:35:44.981383"]]
+  [1m[35m (8.8ms)[0m  COMMIT
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "59"], ["created_at", "2015-08-13 16:35:44.997187"], ["updated_at", "2015-08-13 16:35:44.997187"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 64) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 64], ["created_at", "2015-08-13 16:35:45.006671"], ["updated_at", "2015-08-13 16:35:45.006671"]]
+  [1m[35m (5.5ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "60"], ["created_at", "2015-08-13 16:35:45.017276"], ["updated_at", "2015-08-13 16:35:45.017276"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 65) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 65], ["created_at", "2015-08-13 16:35:45.021570"], ["updated_at", "2015-08-13 16:35:45.021570"]]
+  [1m[35m (11.5ms)[0m  COMMIT
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "61"], ["created_at", "2015-08-13 16:35:45.041625"], ["updated_at", "2015-08-13 16:35:45.041625"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 66) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 66], ["created_at", "2015-08-13 16:35:45.047064"], ["updated_at", "2015-08-13 16:35:45.047064"]]
+  [1m[35m (9.4ms)[0m  COMMIT
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "62"], ["created_at", "2015-08-13 16:35:45.068837"], ["updated_at", "2015-08-13 16:35:45.068837"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 67) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 67], ["created_at", "2015-08-13 16:35:45.074109"], ["updated_at", "2015-08-13 16:35:45.074109"]]
+  [1m[35m (4.4ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "63"], ["created_at", "2015-08-13 16:35:45.085173"], ["updated_at", "2015-08-13 16:35:45.085173"]]
+  [1m[35mUserWorkspace Exists (1.2ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 68) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 68], ["created_at", "2015-08-13 16:35:45.095741"], ["updated_at", "2015-08-13 16:35:45.095741"]]
+  [1m[35m (4.5ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "64"], ["created_at", "2015-08-13 16:35:45.106509"], ["updated_at", "2015-08-13 16:35:45.106509"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 69) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 69], ["created_at", "2015-08-13 16:35:45.111324"], ["updated_at", "2015-08-13 16:35:45.111324"]]
+  [1m[35m (12.4ms)[0m  COMMIT
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "65"], ["created_at", "2015-08-13 16:35:45.130887"], ["updated_at", "2015-08-13 16:35:45.130887"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 70) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 70], ["created_at", "2015-08-13 16:35:45.135508"], ["updated_at", "2015-08-13 16:35:45.135508"]]
+  [1m[35m (10.3ms)[0m  COMMIT
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "66"], ["created_at", "2015-08-13 16:35:45.158021"], ["updated_at", "2015-08-13 16:35:45.158021"]]
+  [1m[35mUserWorkspace Exists (0.8ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 71) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 71], ["created_at", "2015-08-13 16:35:45.163612"], ["updated_at", "2015-08-13 16:35:45.163612"]]
+  [1m[35m (3.7ms)[0m  COMMIT
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "67"], ["created_at", "2015-08-13 16:35:45.172881"], ["updated_at", "2015-08-13 16:35:45.172881"]]
+  [1m[35mUserWorkspace Exists (0.7ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 72) LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 72], ["created_at", "2015-08-13 16:35:45.179404"], ["updated_at", "2015-08-13 16:35:45.179404"]]
+  [1m[35m (5.2ms)[0m  COMMIT
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "68"], ["created_at", "2015-08-13 16:35:45.198104"], ["updated_at", "2015-08-13 16:35:45.198104"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 73) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 73], ["created_at", "2015-08-13 16:35:45.204506"], ["updated_at", "2015-08-13 16:35:45.204506"]]
+  [1m[35m (7.2ms)[0m  COMMIT
+  [1m[36mUser Load (1.5ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "69"], ["created_at", "2015-08-13 16:35:45.221742"], ["updated_at", "2015-08-13 16:35:45.221742"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 74) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 74], ["created_at", "2015-08-13 16:35:45.226331"], ["updated_at", "2015-08-13 16:35:45.226331"]]
+  [1m[35m (7.8ms)[0m  COMMIT
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "70"], ["created_at", "2015-08-13 16:35:45.241151"], ["updated_at", "2015-08-13 16:35:45.241151"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 75) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 75], ["created_at", "2015-08-13 16:35:45.252498"], ["updated_at", "2015-08-13 16:35:45.252498"]]
+  [1m[35m (3.7ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "71"], ["created_at", "2015-08-13 16:35:45.262022"], ["updated_at", "2015-08-13 16:35:45.262022"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 76) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 76], ["created_at", "2015-08-13 16:35:45.266584"], ["updated_at", "2015-08-13 16:35:45.266584"]]
+  [1m[35m (11.6ms)[0m  COMMIT
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "72"], ["created_at", "2015-08-13 16:35:45.285612"], ["updated_at", "2015-08-13 16:35:45.285612"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 77) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 77], ["created_at", "2015-08-13 16:35:45.290466"], ["updated_at", "2015-08-13 16:35:45.290466"]]
+  [1m[35m (10.2ms)[0m  COMMIT
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "73"], ["created_at", "2015-08-13 16:35:45.312297"], ["updated_at", "2015-08-13 16:35:45.312297"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 78) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 78], ["created_at", "2015-08-13 16:35:45.317146"], ["updated_at", "2015-08-13 16:35:45.317146"]]
+  [1m[35m (5.8ms)[0m  COMMIT
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "74"], ["created_at", "2015-08-13 16:35:45.329698"], ["updated_at", "2015-08-13 16:35:45.329698"]]
+  [1m[35mUserWorkspace Exists (0.9ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 79) LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 79], ["created_at", "2015-08-13 16:35:45.338452"], ["updated_at", "2015-08-13 16:35:45.338452"]]
+  [1m[35m (4.6ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "75"], ["created_at", "2015-08-13 16:35:45.350678"], ["updated_at", "2015-08-13 16:35:45.350678"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 80) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 80], ["created_at", "2015-08-13 16:35:45.355182"], ["updated_at", "2015-08-13 16:35:45.355182"]]
+  [1m[35m (12.6ms)[0m  COMMIT
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "76"], ["created_at", "2015-08-13 16:35:45.374911"], ["updated_at", "2015-08-13 16:35:45.374911"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 81) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 81], ["created_at", "2015-08-13 16:35:45.379629"], ["updated_at", "2015-08-13 16:35:45.379629"]]
+  [1m[35m (10.4ms)[0m  COMMIT
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "77"], ["created_at", "2015-08-13 16:35:45.402602"], ["updated_at", "2015-08-13 16:35:45.402602"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 82) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 82], ["created_at", "2015-08-13 16:35:45.407294"], ["updated_at", "2015-08-13 16:35:45.407294"]]
+  [1m[35m (4.6ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "78"], ["created_at", "2015-08-13 16:35:45.417175"], ["updated_at", "2015-08-13 16:35:45.417175"]]
+  [1m[35mUserWorkspace Exists (1.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 83) LIMIT 1
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 83], ["created_at", "2015-08-13 16:35:45.424487"], ["updated_at", "2015-08-13 16:35:45.424487"]]
+  [1m[35m (5.7ms)[0m  COMMIT
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "79"], ["created_at", "2015-08-13 16:35:45.439942"], ["updated_at", "2015-08-13 16:35:45.439942"]]
+  [1m[35mUserWorkspace Exists (0.8ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 84) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 84], ["created_at", "2015-08-13 16:35:45.445185"], ["updated_at", "2015-08-13 16:35:45.445185"]]
+  [1m[35m (11.1ms)[0m  COMMIT
+  [1m[36mUser Load (1.5ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "80"], ["created_at", "2015-08-13 16:35:45.465066"], ["updated_at", "2015-08-13 16:35:45.465066"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 85) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 85], ["created_at", "2015-08-13 16:35:45.469695"], ["updated_at", "2015-08-13 16:35:45.469695"]]
+  [1m[35m (8.7ms)[0m  COMMIT
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "81"], ["created_at", "2015-08-13 16:35:45.489108"], ["updated_at", "2015-08-13 16:35:45.489108"]]
+  [1m[35mUserWorkspace Exists (0.8ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 86) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 86], ["created_at", "2015-08-13 16:35:45.497003"], ["updated_at", "2015-08-13 16:35:45.497003"]]
+  [1m[35m (3.4ms)[0m  COMMIT
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "82"], ["created_at", "2015-08-13 16:35:45.506235"], ["updated_at", "2015-08-13 16:35:45.506235"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 87) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 87], ["created_at", "2015-08-13 16:35:45.511156"], ["updated_at", "2015-08-13 16:35:45.511156"]]
+  [1m[35m (11.3ms)[0m  COMMIT
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "83"], ["created_at", "2015-08-13 16:35:45.530134"], ["updated_at", "2015-08-13 16:35:45.530134"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 88) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 88], ["created_at", "2015-08-13 16:35:45.535663"], ["updated_at", "2015-08-13 16:35:45.535663"]]
+  [1m[35m (9.1ms)[0m  COMMIT
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "84"], ["created_at", "2015-08-13 16:35:45.557389"], ["updated_at", "2015-08-13 16:35:45.557389"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 89) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 89], ["created_at", "2015-08-13 16:35:45.564127"], ["updated_at", "2015-08-13 16:35:45.564127"]]
+  [1m[35m (54.5ms)[0m  COMMIT
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "85"], ["created_at", "2015-08-13 16:35:45.631461"], ["updated_at", "2015-08-13 16:35:45.631461"]]
+  [1m[35mUserWorkspace Exists (1.8ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 90) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 90], ["created_at", "2015-08-13 16:35:45.645018"], ["updated_at", "2015-08-13 16:35:45.645018"]]
+  [1m[35m (21.4ms)[0m  COMMIT
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "86"], ["created_at", "2015-08-13 16:35:45.678500"], ["updated_at", "2015-08-13 16:35:45.678500"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 91) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 91], ["created_at", "2015-08-13 16:35:45.683210"], ["updated_at", "2015-08-13 16:35:45.683210"]]
+  [1m[35m (6.1ms)[0m  COMMIT
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "87"], ["created_at", "2015-08-13 16:35:45.695099"], ["updated_at", "2015-08-13 16:35:45.695099"]]
+  [1m[35mUserWorkspace Exists (0.9ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 92) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 92], ["created_at", "2015-08-13 16:35:45.704823"], ["updated_at", "2015-08-13 16:35:45.704823"]]
+  [1m[35m (5.2ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "88"], ["created_at", "2015-08-13 16:35:45.716619"], ["updated_at", "2015-08-13 16:35:45.716619"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 93) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 93], ["created_at", "2015-08-13 16:35:45.720845"], ["updated_at", "2015-08-13 16:35:45.720845"]]
+  [1m[35m (13.2ms)[0m  COMMIT
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "89"], ["created_at", "2015-08-13 16:35:45.742491"], ["updated_at", "2015-08-13 16:35:45.742491"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 94) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 94], ["created_at", "2015-08-13 16:35:45.747040"], ["updated_at", "2015-08-13 16:35:45.747040"]]
+  [1m[35m (9.0ms)[0m  COMMIT
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (1.2ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "90"], ["created_at", "2015-08-13 16:35:45.764775"], ["updated_at", "2015-08-13 16:35:45.764775"]]
+  [1m[35mUserWorkspace Exists (0.7ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 95) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 95], ["created_at", "2015-08-13 16:35:45.773419"], ["updated_at", "2015-08-13 16:35:45.773419"]]
+  [1m[35m (4.5ms)[0m  COMMIT
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "91"], ["created_at", "2015-08-13 16:35:45.783648"], ["updated_at", "2015-08-13 16:35:45.783648"]]
+  [1m[35mUserWorkspace Exists (1.1ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 96) LIMIT 1
+  [1m[36mSQL (1.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 96], ["created_at", "2015-08-13 16:35:45.791117"], ["updated_at", "2015-08-13 16:35:45.791117"]]
+  [1m[35m (6.5ms)[0m  COMMIT
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "92"], ["created_at", "2015-08-13 16:35:45.806797"], ["updated_at", "2015-08-13 16:35:45.806797"]]
+  [1m[35mUserWorkspace Exists (0.8ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 97) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 97], ["created_at", "2015-08-13 16:35:45.812005"], ["updated_at", "2015-08-13 16:35:45.812005"]]
+  [1m[35m (10.3ms)[0m  COMMIT
+  [1m[36mUser Load (1.6ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "93"], ["created_at", "2015-08-13 16:35:45.831869"], ["updated_at", "2015-08-13 16:35:45.831869"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 98) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 98], ["created_at", "2015-08-13 16:35:45.836470"], ["updated_at", "2015-08-13 16:35:45.836470"]]
+  [1m[35m (8.0ms)[0m  COMMIT
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "94"], ["created_at", "2015-08-13 16:35:45.851546"], ["updated_at", "2015-08-13 16:35:45.851546"]]
+  [1m[35mUserWorkspace Exists (0.6ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 99) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 99], ["created_at", "2015-08-13 16:35:45.862391"], ["updated_at", "2015-08-13 16:35:45.862391"]]
+  [1m[35m (4.2ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "95"], ["created_at", "2015-08-13 16:35:45.872047"], ["updated_at", "2015-08-13 16:35:45.872047"]]
+  [1m[35mUserWorkspace Exists (0.5ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 100) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 100], ["created_at", "2015-08-13 16:35:45.876482"], ["updated_at", "2015-08-13 16:35:45.876482"]]
+  [1m[35m (12.1ms)[0m  COMMIT
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "96"], ["created_at", "2015-08-13 16:35:45.895032"], ["updated_at", "2015-08-13 16:35:45.895032"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 101) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 101], ["created_at", "2015-08-13 16:35:45.899455"], ["updated_at", "2015-08-13 16:35:45.899455"]]
+  [1m[35m (12.0ms)[0m  COMMIT
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "97"], ["created_at", "2015-08-13 16:35:45.922316"], ["updated_at", "2015-08-13 16:35:45.922316"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 102) LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 102], ["created_at", "2015-08-13 16:35:45.926824"], ["updated_at", "2015-08-13 16:35:45.926824"]]
+  [1m[35m (6.6ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "98"], ["created_at", "2015-08-13 16:35:45.939119"], ["updated_at", "2015-08-13 16:35:45.939119"]]
+  [1m[35mUserWorkspace Exists (1.1ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 103) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 103], ["created_at", "2015-08-13 16:35:45.949864"], ["updated_at", "2015-08-13 16:35:45.949864"]]
+  [1m[35m (4.5ms)[0m  COMMIT
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "workspaces" ("title", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["title", "99"], ["created_at", "2015-08-13 16:35:45.961022"], ["updated_at", "2015-08-13 16:35:45.961022"]]
+  [1m[35mUserWorkspace Exists (0.4ms)[0m  SELECT  1 AS one FROM "user_workspaces" WHERE ("user_workspaces"."user_id" = 1 AND "user_workspaces"."workspace_id" = 104) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "user_workspaces" ("user_id", "workspace_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 1], ["workspace_id", 104], ["created_at", "2015-08-13 16:35:45.965540"], ["updated_at", "2015-08-13 16:35:45.965540"]]
+  [1m[35m (12.5ms)[0m  COMMIT
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (1.2ms)[0m  SELECT COUNT(*) FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1  [["user_id", 1]]
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mWorkspace Load (1.2ms)[0m  SELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1  [["user_id", 1], ["id", 1]]
+  [1m[36mUserWorkspace Load (0.9ms)[0m  [1mSELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (1)[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)
+  [1m[36mProject Load (1.1ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."workspace_id" IN (1)[0m
+  [1m[35mTask Load (1.0ms)[0m  SELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" IN (1, 4)

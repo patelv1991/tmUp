@@ -24,14 +24,18 @@ class Api::WorkspacesController < ApplicationController
     # w.map {|space| space.projects.map(&:tasks)}.flatten
 
 
-    workspaces = current_user.workspaces.includes(:users, projects: :tasks)
+    @workspace = current_user.workspaces.includes(:users, projects: :tasks).find_by_id(params[:id])
 
-    if workspaces.where(id: params[:id]).exists?
-      @workspace = workspaces.select { |ws| ws.id.to_s == params[:id] }.first # find(params[:id])
+    if @workspace
       render :show
     else
-      render json: ["You aren't a member of this board"], status: 403
+      render json: ["You aren't a member of this board"], status: 422
     end
+    #
+    # if workspaces.where(id: params[:id]).exists?
+    #   @workspace = workspaces.select { |ws| ws.id.to_s == params[:id] }.first # find(params[:id])
+    # else
+    # end
 
   end
 
