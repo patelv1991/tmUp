@@ -2,6 +2,6 @@
 
 <ul>
   <% workspaces.each(function (workspace) { %>
-    <li><a href="#"><%= workspace.escape("title") %></a></li>
+    <li><a href="#/workspaces/<%= workspace.id %>"><%= workspace.escape("title") %></a></li>
   <% }) %>
 </ul>

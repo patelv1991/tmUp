@@ -19,4 +19,4 @@ TmUp.Collections.Workspaces = Backbone.Collection.extend({
   }
 });
 
-TmUp.Collection.workspaces = new TmUp.Collections.Workspaces;
+// TmUp.Collection.workspaces = new TmUp.Collections.Workspaces
