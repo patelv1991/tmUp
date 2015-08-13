@@ -14729,3 +14729,405 @@ Processing by Api::WorkspacesController#index as JSON
   [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "XR5JLHpmS64Rhn2I3Gy_1Q"]]
   [1m[36mWorkspace Load (2.3ms)[0m  [1mSELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1[0m  [["user_id", 1]]
 Completed 200 OK in 60ms (Views: 53.8ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-08-13 11:08:23 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (1.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "XR5JLHpmS64Rhn2I3Gy_1Q"]]
+  Rendered static_pages/root.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 519ms (Views: 374.8ms | ActiveRecord: 26.8ms)
+
+
+Started GET "/api/workspaces" for 127.0.0.1 at 2015-08-13 11:08:25 -0700
+Processing by Api::WorkspacesController#index as JSON
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "XR5JLHpmS64Rhn2I3Gy_1Q"]]
+  [1m[35mWorkspace Load (2.1ms)[0m  SELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 217ms (Views: 81.8ms | ActiveRecord: 7.0ms)
+
+
+Started DELETE "/session" for 127.0.0.1 at 2015-08-13 11:08:26 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"Ll81ulK/9+XQWPVHdincW+sYrTVgU/o29SGFN0z2K2YzOml/GQOG+Vq0GDf8Q4RASMFO5ZsJ68AOx5kac2rTkg=="}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "XR5JLHpmS64Rhn2I3Gy_1Q"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'patelv1991@gmail.com' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'oO3pWYxExtn62rNrrCW9Bw' AND "users"."id" != 1) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "oO3pWYxExtn62rNrrCW9Bw"], ["updated_at", "2015-08-13 18:08:26.853767"], ["id", 1]]
+  [1m[35m (13.5ms)[0m  COMMIT
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 55ms (ActiveRecord: 15.7ms)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2015-08-13 11:08:26 -0700
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 234ms (Views: 233.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for 127.0.0.1 at 2015-08-13 11:08:32 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"DaqneEuwkDLST6072ZQBR5etf116DWE7ez5ccGUfW6kQz/u9AAzhLlijQEtT/llcNHScjYFXcM2A2EBdWoOjXQ==", "user"=>{"email"=>"patelv1026@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "patelv1026@gmail.com"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'patelv1026@gmail.com' AND "users"."id" != 2) LIMIT 1[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'kT8KN1sKxfQj5S48LyjDpg' AND "users"."id" != 2) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "kT8KN1sKxfQj5S48LyjDpg"], ["updated_at", "2015-08-13 18:08:32.381825"], ["id", 2]]
+  [1m[35m (21.9ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 156ms (ActiveRecord: 24.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-08-13 11:08:32 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "kT8KN1sKxfQj5S48LyjDpg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 105ms (Views: 103.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/workspaces" for 127.0.0.1 at 2015-08-13 11:08:32 -0700
+Processing by Api::WorkspacesController#index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "kT8KN1sKxfQj5S48LyjDpg"]]
+  [1m[36mWorkspace Load (1.7ms)[0m  [1mSELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1[0m  [["user_id", 2]]
+Completed 200 OK in 8ms (Views: 2.9ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/api/workspaces/2" for 127.0.0.1 at 2015-08-13 11:08:35 -0700
+Processing by Api::WorkspacesController#show as JSON
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "kT8KN1sKxfQj5S48LyjDpg"]]
+  [1m[36mWorkspace Load (0.7ms)[0m  [1mSELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1[0m  [["user_id", 2], ["id", 2]]
+  [1m[35mUserWorkspace Load (1.0ms)[0m  SELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (2)
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)[0m
+  [1m[35mProject Load (0.7ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."workspace_id" IN (2)
+  [1m[36mTask Load (2.3ms)[0m  [1mSELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" IN (3, 5)[0m
+  Rendered users/_user.json.jbuilder (0.6ms)
+  Rendered users/_user.json.jbuilder (0.2ms)
+  Rendered api/projects/_project.json.jbuilder (0.7ms)
+  Rendered api/projects/_project.json.jbuilder (0.3ms)
+  Rendered api/workspaces/show.json.jbuilder (45.1ms)
+Completed 200 OK in 240ms (Views: 47.6ms | ActiveRecord: 11.8ms)
+
+
+Started GET "/api/workspaces" for 127.0.0.1 at 2015-08-13 11:08:43 -0700
+Processing by Api::WorkspacesController#index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "kT8KN1sKxfQj5S48LyjDpg"]]
+  [1m[36mWorkspace Load (0.7ms)[0m  [1mSELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1[0m  [["user_id", 2]]
+Completed 200 OK in 8ms (Views: 3.1ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/workspaces/1" for 127.0.0.1 at 2015-08-13 11:08:47 -0700
+Processing by Api::WorkspacesController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "kT8KN1sKxfQj5S48LyjDpg"]]
+  [1m[36mWorkspace Load (0.6ms)[0m  [1mSELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1[0m  [["user_id", 2], ["id", 1]]
+  [1m[35mUserWorkspace Load (0.9ms)[0m  SELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (1)
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)[0m
+  [1m[35mProject Load (0.6ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."workspace_id" IN (1)
+  [1m[36mTask Load (0.5ms)[0m  [1mSELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" IN (1, 4)[0m
+  Rendered users/_user.json.jbuilder (0.3ms)
+  Rendered users/_user.json.jbuilder (0.2ms)
+  Rendered api/projects/_project.json.jbuilder (0.4ms)
+  Rendered api/projects/_project.json.jbuilder (0.3ms)
+  Rendered api/workspaces/show.json.jbuilder (6.4ms)
+Completed 200 OK in 51ms (Views: 8.4ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-08-13 11:09:03 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (2.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "kT8KN1sKxfQj5S48LyjDpg"]]
+  Rendered static_pages/root.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 197ms (Views: 189.9ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/api/workspaces" for 127.0.0.1 at 2015-08-13 11:09:04 -0700
+Processing by Api::WorkspacesController#index as JSON
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "kT8KN1sKxfQj5S48LyjDpg"]]
+  [1m[35mWorkspace Load (0.8ms)[0m  SELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1  [["user_id", 2]]
+Completed 200 OK in 7ms (Views: 3.0ms | ActiveRecord: 1.1ms)
+
+
+Started DELETE "/session" for 127.0.0.1 at 2015-08-13 11:09:05 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"6LV916de0M/8Dg50gCjcpOrWy7eR8vFBptrTtrFyOuL10CES7OKh03bi4wQKQoS/SQ8oZ2qo4LddPM+bju7CFg=="}
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "kT8KN1sKxfQj5S48LyjDpg"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'patelv1026@gmail.com' AND "users"."id" != 2) LIMIT 1[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = '3G8I-3-ZA8bJBDmg-DefiQ' AND "users"."id" != 2) LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "3G8I-3-ZA8bJBDmg-DefiQ"], ["updated_at", "2015-08-13 18:09:05.601734"], ["id", 2]]
+  [1m[35m (15.1ms)[0m  COMMIT
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 29ms (ActiveRecord: 17.4ms)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2015-08-13 11:09:05 -0700
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 116ms (Views: 115.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for 127.0.0.1 at 2015-08-13 11:09:08 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"C43hpfZneJ408Ow0MP9MnwSh50NYhAvJ9LsahEm9aaMW6L1gvdsJgr4cAUS6lRSEp3gEk6PeGj8PXQapdiGRVw==", "user"=>{"email"=>"patelv1991@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "patelv1991@gmail.com"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.8ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'patelv1991@gmail.com' AND "users"."id" != 1) LIMIT 1[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'FZNkSt8u1Djjz4ygpV1ziA' AND "users"."id" != 1) LIMIT 1
+  [1m[36mSQL (0.8ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "FZNkSt8u1Djjz4ygpV1ziA"], ["updated_at", "2015-08-13 18:09:08.636325"], ["id", 1]]
+  [1m[35m (19.7ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 145ms (ActiveRecord: 22.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-08-13 11:09:08 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "FZNkSt8u1Djjz4ygpV1ziA"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 135ms (Views: 133.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/workspaces" for 127.0.0.1 at 2015-08-13 11:09:09 -0700
+Processing by Api::WorkspacesController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "FZNkSt8u1Djjz4ygpV1ziA"]]
+  [1m[36mWorkspace Load (1.4ms)[0m  [1mSELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 49ms (Views: 45.1ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/workspaces" for 127.0.0.1 at 2015-08-13 11:09:13 -0700
+Processing by Api::WorkspacesController#index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "FZNkSt8u1Djjz4ygpV1ziA"]]
+  [1m[36mWorkspace Load (2.0ms)[0m  [1mSELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 49ms (Views: 42.2ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-08-13 12:13:07 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (61.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "FZNkSt8u1Djjz4ygpV1ziA"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 873ms (Views: 773.1ms | ActiveRecord: 61.7ms)
+
+
+Started GET "/assets/projects/index_item.self-18c1993a677bb2db750457c62871c35913b4b4cc8aac6e44746e047e192c5651.js?body=1" for 127.0.0.1 at 2015-08-13 12:13:08 -0700
+
+
+Started GET "/assets/models/workspace.self-d95b34d27f2490b337a3e4c3acd866dff547f45a288bcc8abb444331980612e6.js?body=1" for 127.0.0.1 at 2015-08-13 12:13:09 -0700
+
+
+Started GET "/assets/models/project.self-f6bf2747740643cd7ed3fe59a93a24c0a374dc7033ef48642e1ed73bcf460790.js?body=1" for 127.0.0.1 at 2015-08-13 12:13:09 -0700
+
+
+Started GET "/assets/workspaces/show.self-f1c4fbdd2919e57e5e2dd39651f1e5f480c24eb117e1415bf27878c60c820049.js?body=1" for 127.0.0.1 at 2015-08-13 12:13:09 -0700
+
+
+Started GET "/assets/collections/projects.self-31b8f7e30955c59c2cc74f225556577c0ff438abc91149546feecf968c3b319c.js?body=1" for 127.0.0.1 at 2015-08-13 12:13:09 -0700
+
+
+Started GET "/assets/views/project_index_item.self-1304f2f7313c8617610884a3a173a2ad350e3f4f0c03cb028e5ac45dbbcad83a.js?body=1" for 127.0.0.1 at 2015-08-13 12:13:09 -0700
+
+
+Started GET "/assets/views/workspace_show.self-d63bf9cfce8561bbe5b74c59a5fd13f149acd0b60e9ca5acd34f63443700560e.js?body=1" for 127.0.0.1 at 2015-08-13 12:13:09 -0700
+
+
+Started GET "/api/workspaces" for 127.0.0.1 at 2015-08-13 12:13:09 -0700
+Processing by Api::WorkspacesController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "FZNkSt8u1Djjz4ygpV1ziA"]]
+  [1m[35mWorkspace Load (66.0ms)[0m  SELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 109ms (Views: 37.3ms | ActiveRecord: 66.4ms)
+
+
+Started GET "/api/workspaces/1" for 127.0.0.1 at 2015-08-13 12:13:11 -0700
+Processing by Api::WorkspacesController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "FZNkSt8u1Djjz4ygpV1ziA"]]
+  [1m[35mWorkspace Load (1.3ms)[0m  SELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1  [["user_id", 1], ["id", 1]]
+  [1m[36mUserWorkspace Load (12.3ms)[0m  [1mSELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (1)[0m
+  [1m[35mUser Load (34.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)
+  [1m[36mProject Load (1.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."workspace_id" IN (1)[0m
+  [1m[35mTask Load (29.5ms)[0m  SELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" IN (1, 4)
+  Rendered users/_user.json.jbuilder (0.5ms)
+  Rendered users/_user.json.jbuilder (0.4ms)
+  Rendered api/projects/_project.json.jbuilder (0.7ms)
+  Rendered api/tasks/_task.json.jbuilder (1.2ms)
+  Rendered api/projects/_project.json.jbuilder (0.5ms)
+  Rendered api/tasks/_task.json.jbuilder (0.5ms)
+  Rendered api/workspaces/show.json.jbuilder (15.8ms)
+Completed 200 OK in 493ms (Views: 20.9ms | ActiveRecord: 78.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-08-13 12:13:27 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (4.9ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "FZNkSt8u1Djjz4ygpV1ziA"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 145ms (Views: 137.3ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/api/workspaces" for 127.0.0.1 at 2015-08-13 12:13:28 -0700
+Processing by Api::WorkspacesController#index as JSON
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "FZNkSt8u1Djjz4ygpV1ziA"]]
+  [1m[36mWorkspace Load (1.2ms)[0m  [1mSELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1[0m  [["user_id", 1]]
+Completed 200 OK in 82ms (Views: 76.3ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-08-13 12:14:01 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "FZNkSt8u1Djjz4ygpV1ziA"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 369ms (Views: 366.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/api/api.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 12:14:01 -0700
+
+
+Started GET "/assets/api/tasks.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 12:14:01 -0700
+
+
+Started GET "/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 12:14:01 -0700
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:01 -0700
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-08-13 12:14:01 -0700
+
+
+Started GET "/assets/underscore.self-b84a7a5ac0e8afc4f176b95606590bfc56044eeae9286097bdee013a6909fde5.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:01 -0700
+
+
+Started GET "/assets/static_pages.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 12:14:01 -0700
+
+
+Started GET "/assets/api/projects.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/sessions.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/api/workspaces.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/jquery_ujs.self-ca5248a2fad13d6bd58ea121318d642f195f0b2dd818b30615f785ff365e8d1f.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/projects/index_item.self-18c1993a677bb2db750457c62871c35913b4b4cc8aac6e44746e047e192c5651.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/workspaces/show.self-f1c4fbdd2919e57e5e2dd39651f1e5f480c24eb117e1415bf27878c60c820049.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/models/project.self-f6bf2747740643cd7ed3fe59a93a24c0a374dc7033ef48642e1ed73bcf460790.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/models/workspace.self-d95b34d27f2490b337a3e4c3acd866dff547f45a288bcc8abb444331980612e6.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/backbone.self-0977290d5e68ce40d516cd4dc3965586680024e51399f0ee54ee8ed3a99b1506.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/tm_up.self-1ab643a6a14ef56932ee9ddc17f858d05ac313a43c48479db60cdda24450fccf.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/workspaces/index.self-db7c263c256000bd5b44e2406d0b9089a7f9f7b26d22a871caea6d88bc4293b4.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/collections/projects.self-16aad6f0d98a85ad53bcc2d9a49a331dd0fe1aa65401392dfb0d57e4bbc1b26a.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/views/project_index_item.self-1304f2f7313c8617610884a3a173a2ad350e3f4f0c03cb028e5ac45dbbcad83a.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/collections/workspaces.self-caee85f740b8a293a157742fa83cde96a99651452d4cab7a51c52e5457180ff8.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/views/workspace_show.self-d63bf9cfce8561bbe5b74c59a5fd13f149acd0b60e9ca5acd34f63443700560e.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/views/workspaces_index.self-476d908f6a52d90a0e4fe2179227a989d4791388b3dbb5a8d4a0e4f97bfa718a.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/routers/router.self-3cccef2683c839bdeb18e5663ebef84d691e51ecb65be43a4444bef4ed14f74e.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/api/api.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/utils/composite_view.self-ae3948e953312d3e050f4baf312fdaea87b998a104d2eece8f5b81287ad1a4f7.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/api/projects.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/sessions.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/api/workspaces.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/static_pages.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/api/tasks.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/assets/application.self-b5567fb0cb73f9d4ecd4fa178bbc995d9efe2b53da5e5bf4ca587adb307de5b1.js?body=1" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+
+
+Started GET "/api/workspaces" for 127.0.0.1 at 2015-08-13 12:14:02 -0700
+Processing by Api::WorkspacesController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "FZNkSt8u1Djjz4ygpV1ziA"]]
+  [1m[35mWorkspace Load (1.2ms)[0m  SELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 63ms (Views: 58.0ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/workspaces/1" for 127.0.0.1 at 2015-08-13 12:14:04 -0700
+Processing by Api::WorkspacesController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "FZNkSt8u1Djjz4ygpV1ziA"]]
+  [1m[35mWorkspace Load (0.5ms)[0m  SELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1  [["user_id", 1], ["id", 1]]
+  [1m[36mUserWorkspace Load (0.4ms)[0m  [1mSELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (1)[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)
+  [1m[36mProject Load (0.4ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."workspace_id" IN (1)[0m
+  [1m[35mTask Load (0.7ms)[0m  SELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" IN (1, 4)
+  Rendered users/_user.json.jbuilder (0.6ms)
+  Rendered users/_user.json.jbuilder (0.2ms)
+  Rendered api/projects/_project.json.jbuilder (0.3ms)
+  Rendered api/tasks/_task.json.jbuilder (0.5ms)
+  Rendered api/projects/_project.json.jbuilder (0.4ms)
+  Rendered api/tasks/_task.json.jbuilder (0.4ms)
+  Rendered api/workspaces/show.json.jbuilder (30.4ms)
+Completed 200 OK in 48ms (Views: 32.8ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/api/workspaces" for 127.0.0.1 at 2015-08-13 12:14:24 -0700
+Processing by Api::WorkspacesController#index as JSON
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "FZNkSt8u1Djjz4ygpV1ziA"]]
+  [1m[35mWorkspace Load (2.7ms)[0m  SELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 57ms (Views: 51.3ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/api/workspaces/1" for 127.0.0.1 at 2015-08-13 12:14:26 -0700
+Processing by Api::WorkspacesController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "FZNkSt8u1Djjz4ygpV1ziA"]]
+  [1m[35mWorkspace Load (5.4ms)[0m  SELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1  [["user_id", 1], ["id", 1]]
+  [1m[36mUserWorkspace Load (1.8ms)[0m  [1mSELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (1)[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)
+  [1m[36mProject Load (1.2ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."workspace_id" IN (1)[0m
+  [1m[35mTask Load (1.5ms)[0m  SELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" IN (1, 4)
+  Rendered users/_user.json.jbuilder (0.4ms)
+  Rendered users/_user.json.jbuilder (0.3ms)
+  Rendered api/projects/_project.json.jbuilder (0.7ms)
+  Rendered api/tasks/_task.json.jbuilder (1.8ms)
+  Rendered api/projects/_project.json.jbuilder (0.6ms)
+  Rendered api/tasks/_task.json.jbuilder (0.6ms)
+  Rendered api/workspaces/show.json.jbuilder (16.3ms)
+Completed 200 OK in 56ms (Views: 19.6ms | ActiveRecord: 10.9ms)
+
+
+Started GET "/api/workspaces" for 127.0.0.1 at 2015-08-13 12:14:30 -0700
+Processing by Api::WorkspacesController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "FZNkSt8u1Djjz4ygpV1ziA"]]
+  [1m[35mWorkspace Load (1.2ms)[0m  SELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1  [["user_id", 1]]
+Completed 200 OK in 51ms (Views: 45.9ms | ActiveRecord: 1.5ms)
