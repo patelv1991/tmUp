@@ -9,8 +9,8 @@
 #
 
 class Workspace < ActiveRecord::Base
-  validates :title, presence: true, uniqueness: true
-
+  validates :title, presence: true
+  
   has_many :user_workspaces, dependent: :destroy
   has_many :users, through: :user_workspaces
   has_many :projects, dependent: :destroy
