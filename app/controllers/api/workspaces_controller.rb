@@ -23,10 +23,11 @@ class Api::WorkspacesController < ApplicationController
     # w.map {|space| space.projects.map(&:tasks)}.flatten
 
 
-    @workspaces = current_user.workspaces.includes(projects: :tasks)
+    workspaces = current_user.workspaces.includes(projects: :tasks)
 
-    if @workspaces.where(id: params[:id]).exists?
-      render json: @workspaces.find(params[:id])
+    if workspaces.where(id: params[:id]).exists?
+      @workspace = workspaces.find(params[:id])
+      render :show
     else
       render json: ["You aren't a member of this board"], status: 403
     end
