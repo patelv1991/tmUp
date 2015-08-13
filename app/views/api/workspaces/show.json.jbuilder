@@ -17,11 +17,17 @@
 
 json.extract! @workspace, :id, :title, :created_at, :updated_at
 
+json.team_members @workspace.users do |member|
+  json.partial! 'users/user', user: member
+end
+
 json.projects @workspace.projects do |project|
   json.partial! 'api/projects/project', project: project
+
   json.tasks project.tasks do |task|
     if task.assignee_id == current_user.id
       json.partial! 'api/tasks/task', task: task
     end
   end
+
 end

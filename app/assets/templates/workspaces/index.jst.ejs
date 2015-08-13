@@ -1,0 +1,7 @@
+<h3>All Workspaces</h3>
+
+<ul>
+  <% workspaces.each(function (workspace) { %>
+    <li><a href="#"><%= workspace.escape("title") %></a></li>
+  <% }) %>
+</ul>

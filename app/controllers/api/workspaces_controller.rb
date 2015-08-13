@@ -1,4 +1,5 @@
 class Api::WorkspacesController < ApplicationController
+  before_action :require_signed_in!
 
   def create
     @workspace = current_user.workspaces.new(workspace_params)
@@ -23,10 +24,10 @@ class Api::WorkspacesController < ApplicationController
     # w.map {|space| space.projects.map(&:tasks)}.flatten
 
 
-    workspaces = current_user.workspaces.includes(projects: :tasks)
+    workspaces = current_user.workspaces.includes(:users, projects: :tasks)
 
     if workspaces.where(id: params[:id]).exists?
-      @workspace = workspaces.find(params[:id])
+      @workspace = workspaces.select { |ws| ws.id.to_s == params[:id] }.first # find(params[:id])
       render :show
     else
       render json: ["You aren't a member of this board"], status: 403
@@ -44,11 +45,22 @@ class Api::WorkspacesController < ApplicationController
       membership.first.destroy
     end
 
+    def update
+      @workspace = current_user.workspaces.find(params[:id])
+
+      if @workspace.update_attributes(workspace_params)
+        render json: @workspace
+      else
+        render json: @workspace.errors.full_messages, status: :unprocessable_entity
+      end
+
+    end
+
   end
 
   private
     def workspace_params
-      params.require(:workspace).permit(:id, :title)
+      params.require(:workspace).permit(:title)
     end
 
 end

@@ -4,7 +4,11 @@ window.TmUp = {
   Views: {},
   Routers: {},
   initialize: function() {
-    // alert('Hello from Backbone!');
+    new TmUp.Routers.Router({
+      $rootEl: $("#main"),
+      workspaces: new TmUp.Collections.Workspaces()
+    });
+    Backbone.history.start();
   }
 };
 
