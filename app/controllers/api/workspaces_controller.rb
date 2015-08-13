@@ -34,6 +34,18 @@ class Api::WorkspacesController < ApplicationController
 
   end
 
+  def destroy
+    @workspace = current_user.workspaces.includes(:users).find(params[:id])
+    if @workspace.users.length <= 1
+      @workspace.destroy
+    else
+      membership = @workspace.user_workspaces.select { |m| m.user_id ==
+            current_user.id && m.workspace_id == @workspace.id }
+      membership.first.destroy
+    end
+
+  end
+
   private
     def workspace_params
       params.require(:workspace).permit(:id, :title)

@@ -9458,3 +9458,58 @@ Processing by Api::WorkspacesController#show as JSON
   Rendered api/projects/_project.json.jbuilder (0.3ms)
   Rendered api/workspaces/show.json.jbuilder (3.7ms)
 Completed 200 OK in 19ms (Views: 6.0ms | ActiveRecord: 2.4ms)
+  [1m[36mUser Load (68.4ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mWorkspace Load (39.3ms)[0m  SELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1  [["user_id", 1]]
+  [1m[36mUserWorkspace Load (1.0ms)[0m  [1mSELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (1, 2)[0m
+  [1m[35mUser Load (1.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mWorkspace Load (1.5ms)[0m  SELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1  [["user_id", 1]]
+  [1m[36mUserWorkspace Load (0.8ms)[0m  [1mSELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (1, 2)[0m
+  [1m[35mUser Load (1.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mWorkspace Load (1.3ms)[0m  SELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1  [["user_id", 1], ["id", 1]]
+  [1m[36mUserWorkspace Load (0.9ms)[0m  [1mSELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (1)[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mWorkspace Load (0.9ms)[0m  SELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1  [["user_id", 1], ["id", 1]]
+  [1m[36mUserWorkspace Load (1.0ms)[0m  [1mSELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (1)[0m
+  [1m[35mUser Load (1.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mWorkspace Load (0.9ms)[0m  SELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1  [["user_id", 1], ["id", 1]]
+  [1m[36mUserWorkspace Load (0.8ms)[0m  [1mSELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (1)[0m
+  [1m[35mUser Load (0.8ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mWorkspace Load (0.7ms)[0m  SELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1  [["user_id", 1], ["id", 1]]
+  [1m[36mUserWorkspace Load (0.5ms)[0m  [1mSELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (1)[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)
+PG::UndefinedTable: ERROR:  missing FROM-clause entry for table "id"
+LINE 1: ..." WHERE "user_workspaces"."workspace_id" = $1 AND "id"."user...
+                                                             ^
+: SELECT  "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" = $1 AND "id"."user_id" = 1 AND "id"."workspace_id" = 1 LIMIT 1
+PG::UndefinedTable: ERROR:  missing FROM-clause entry for table "id"
+LINE 1: ..." WHERE "user_workspaces"."workspace_id" = $1 AND "id"."user...
+                                                             ^
+: SELECT  "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" = $1 AND "id"."user_id" = 1 LIMIT 1
+PG::UndefinedTable: ERROR:  missing FROM-clause entry for table "id"
+LINE 1: ..." WHERE "user_workspaces"."workspace_id" = $1 AND "id"."user...
+                                                             ^
+: SELECT  "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" = $1 AND "id"."user_id" = 1 AND "id"."workspace_id" = 1 LIMIT 1
+  [1m[36mUserWorkspace Load (0.5ms)[0m  [1mSELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" = $1 AND "user_workspaces"."user_id" = $2 AND "user_workspaces"."workspace_id" = $3[0m  [["workspace_id", 1], ["user_id", 1], ["workspace_id", 1]]
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mWorkspace Load (0.7ms)[0m  [1mSELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1[0m  [["user_id", 1], ["id", 1]]
+  [1m[35mUserWorkspace Load (0.6ms)[0m  SELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (1)
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)[0m
+  [1m[35mUserWorkspace Load (1.2ms)[0m  SELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" = $1 AND "user_workspaces"."user_id" = $2 AND "user_workspaces"."workspace_id" = $3  [["workspace_id", 1], ["user_id", 1], ["workspace_id", 1]]
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mWorkspace Load (1.1ms)[0m  SELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1  [["user_id", 1], ["id", 1]]
+  [1m[36mUserWorkspace Load (0.7ms)[0m  [1mSELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (1)[0m
+  [1m[35mUser Load (0.8ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)
+  [1m[36mUserWorkspace Load (1.3ms)[0m  [1mSELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" = $1 AND "user_workspaces"."user_id" = $2 AND "user_workspaces"."workspace_id" = $3[0m  [["workspace_id", 1], ["user_id", 1], ["workspace_id", 1]]
+PG::GroupingError: ERROR:  column "user_workspaces.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT "user_workspaces".* FROM "user_workspaces" WHERE "use...
+               ^
+: SELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" = $1 HAVING "user_workspaces"."user_id" = $2 AND "user_workspaces"."workspace_id" = $3
+PG::GroupingError: ERROR:  column "user_workspaces.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT "user_workspaces".* FROM "user_workspaces" WHERE "use...
+               ^
+: SELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" = $1 HAVING "user_workspaces"."user_id" = $2
