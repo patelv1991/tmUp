@@ -48,23 +48,22 @@ class Api::WorkspacesController < ApplicationController
             current_user.id && m.workspace_id == @workspace.id }
       membership.first.destroy
     end
+  end
 
-    def update
-      @workspace = current_user.workspaces.find(params[:id])
+  def update
+    @workspace = current_user.workspaces.find(params[:id])
 
-      if @workspace.update_attributes(workspace_params)
-        render json: @workspace
-      else
-        render json: @workspace.errors.full_messages, status: :unprocessable_entity
-      end
-
+    if @workspace.update_attributes(workspace_params)
+      render json: @workspace
+    else
+      render json: @workspace.errors.full_messages, status: :unprocessable_entity
     end
 
   end
 
   private
     def workspace_params
-      params.require(:workspace).permit(:title)
+      params.require(:workspace).permit(:title, :active)
     end
 
 end

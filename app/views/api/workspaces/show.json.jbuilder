@@ -15,7 +15,7 @@
 # end
 
 
-json.extract! @workspace, :id, :title, :created_at, :updated_at
+json.extract! @workspace, :id, :title, :active, :created_at, :updated_at
 
 json.team_members @workspace.users do |member|
   json.partial! 'users/user', user: member

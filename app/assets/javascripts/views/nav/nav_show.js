@@ -13,8 +13,11 @@ TmUp.Views.NavShow = Backbone.View.extend({
   },
 
   handleRoute: function (routeName, params) {
-    this.$el.find(".active").removeClass("active");
-    this.$el.find("." + routeName).addClass("active");
+    if (params[0] !== null) {
+      this.workspaceId = parseInt(params[0]);
+    }
+    // this.$el.find(".active").removeClass("active");
+    // this.$el.find("." + routeName).addClass("active");
   },
 
   logOut: function (event) {
@@ -28,13 +31,18 @@ TmUp.Views.NavShow = Backbone.View.extend({
     });
   },
 
-
   render: function () {
     var content = this.template({
       workspaces: this.collection
     });
+
     this.$el.html(content);
     return this;
-  }
+  },
 
+  getCurrentWorkspace: function () {
+    if (this.workspaceId) {
+      return this.collection.getOrFetch(this.workspaceId);
+    }
+  }
 });
