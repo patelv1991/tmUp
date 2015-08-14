@@ -1,0 +1,2 @@
+I"Rfunction(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div class="team-index-item" data-project-id="',  team_member.id ,'">\n  <a href="#">',  team_member.escape('fname')[0].toUpperCase() +
+                  team_member.escape('lname')[0].toUpperCase() ,'</a>\n</div>\n');}return __p.join('');}:ET

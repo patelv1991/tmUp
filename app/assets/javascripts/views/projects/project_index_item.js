@@ -1,4 +1,4 @@
-TmUp.Views.ProjectIndexItem = Backbone.CompositeView.extend({
+TmUp.Views.ProjectIndexItem = Backbone.View.extend({
   template: JST['projects/index_item'],
 
   render: function () {

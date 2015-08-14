@@ -1,0 +1,1 @@
+I"ûfunction(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div class="project-index-item" data-project-id="',  project.id ,'">\n  <a href="#">',  project.escape('title') ,'</a>\n</div>\n');}return __p.join('');}:ET

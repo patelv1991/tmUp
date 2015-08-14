@@ -1,0 +1,1 @@
+I"Dfunction(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<h3>',  workspace.escape("title") ,'</h3>\n\n<h4>Work Team</h4>\n<div id="work-team">\n</div>\n\n<h4>All Projects</h4>\n<div id="projects">\n</div>\n\n<h4>My Tasks</h4>\n<div id=\'my-tasks\'>\n</div>\n');}return __p.join('');}:ET
