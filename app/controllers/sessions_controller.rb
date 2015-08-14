@@ -13,9 +13,14 @@ class SessionsController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find_by_session_token(session[:token])
+    render show
+  end
+
   def destroy
     sign_out!
     redirect_to new_session_url
   end
-  
+
 end
