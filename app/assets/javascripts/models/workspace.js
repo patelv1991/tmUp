@@ -28,17 +28,17 @@ TmUp.Models.Workspace = Backbone.Model.extend({
   parse: function (response) {
     if (response.projects) {
       this.projects().set(response.projects, { parse: true });
-
-      response.projects.forEach(function (project) {
-        this.myTasks().add(project.tasks, { parse: true });
-      }.bind(this));
-
       delete response.projects;
     }
 
     if (response.team_members) {
       this.workTeam().set(response.team_members, { parse: true });
       delete response.team_members;
+    }
+
+    if (response.my_tasks) {
+      this.myTasks().set(response.my_tasks, { parse: true });
+      delete response.my_tasks;
     }
 
     return response;

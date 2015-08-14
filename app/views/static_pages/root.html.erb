@@ -3,9 +3,15 @@
 <h3><%= "Hello " + current_user.fname %></h3>
 <%= button_to "Sign Out", session_url, :method => :delete, :class => "btn btn-primary" %>
 
-  <div id="main"></div>
+<div id="navbar"></div>
+<div id="main"></div>
 
 <script>
   // boot the app when the document is ready
-  $(TmUp.initialize);
+  $(function () {
+    TmUp.CURRENT_USER = {
+      initials: "<%= current_user.fname[0].upcase + current_user.lname[0].upcase %>"
+    };
+    TmUp.initialize();
+  });
 </script>

@@ -4,10 +4,20 @@ window.TmUp = {
   Views: {},
   Routers: {},
   initialize: function() {
-    new TmUp.Routers.Router({
+    var workspaces = new TmUp.Collections.Workspaces();
+
+    var router = new TmUp.Routers.Router({
       $rootEl: $("#main"),
-      workspaces: new TmUp.Collections.Workspaces()
+      workspaces: workspaces
     });
+
+    var nav = new TmUp.Views.NavShow({
+      router: router,
+      collection: workspaces
+    });
+
+    $("#navbar").html(nav.render().$el);
+
     Backbone.history.start();
   }
 };

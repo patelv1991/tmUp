@@ -24,10 +24,10 @@ end
 json.projects @workspace.projects do |project|
   json.partial! 'api/projects/project', project: project
 
-  json.tasks project.tasks do |task|
-    if task.assignee_id == current_user.id
-      json.partial! 'api/tasks/task', task: task
-    end
-  end
+end
 
+json.my_tasks @workspace.projects.map(&:tasks).flatten do |task|
+  if task.assignee_id == current_user.id
+    json.partial! 'api/tasks/task', task: task
+  end
 end
