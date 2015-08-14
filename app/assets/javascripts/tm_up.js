@@ -5,7 +5,7 @@ window.TmUp = {
   Routers: {},
   initialize: function() {
     var workspaces = new TmUp.Collections.Workspaces();
-    
+
     var router = new TmUp.Routers.Router({
       $rootEl: $("#main"),
       workspaces: workspaces

@@ -19,8 +19,8 @@ TmUp.Collections.Workspaces = Backbone.Collection.extend({
   },
 
   getActiveWorkspace: function() {
-    return this.where({ active: true });
-  }
+    return this.where({ active: true })[0];
+  },
 });
 
 // TmUp.Collection.workspaces = new TmUp.Collections.Workspaces

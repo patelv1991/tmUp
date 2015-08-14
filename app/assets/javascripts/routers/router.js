@@ -10,21 +10,31 @@ TmUp.Routers.Router = Backbone.Router.extend({
   },
 
   index: function () {
-    this.workspaces.fetch();
-
-    var WorkspacesIndexView = new TmUp.Views.WorkspacesIndex({
-      collection: this.workspaces
+    this.workspaces.fetch({
+      success: function (collection) {
+        var workspace = collection.getActiveWorkspace();
+        var route = '/workspace/' + workspace.id;
+        Backbone.history.navigate(route, { trigger: true });
+      }
     });
+    // var workspace = this.workspaces.getActiveWorkspace();
+    // debugger;
 
-    this._swapView(WorkspacesIndexView);
+    //
+    // var WorkspacesIndexView = new TmUp.Views.WorkspacesIndex({
+    //   collection: this.workspaces
+    // });
+    //
+    // this._swapView(WorkspacesIndexView);
   },
 
   show: function (id) {
     this.workspaces.fetch({
       success: function () {
         var previouslyActiveWorkspace = this.workspaces.getActiveWorkspace();
-        if (previouslyActiveWorkspace.length > 0) {
-          previouslyActiveWorkspace[0].save({ active: null });
+        // debugger
+        if (previouslyActiveWorkspace && previouslyActiveWorkspace.id != id) {
+          previouslyActiveWorkspace.save({ active: null });
         }
       }.bind(this)
     });
@@ -37,6 +47,7 @@ TmUp.Routers.Router = Backbone.Router.extend({
     });
     this._swapView(WorkspacesShowView);
   },
+
 
   _swapView: function (view) {
     this.currentView && this.currentView.remove();
