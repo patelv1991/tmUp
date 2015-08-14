@@ -15,7 +15,7 @@ gem 'ejs'
 gem 'serialize_json-rails'
 gem 'newrelic_rpm'
 gem 'backbone-on-rails'
-
+gem 'bootstrap-sass'
 
 group :development do
   gem 'annotate'
