@@ -17,6 +17,11 @@ TmUp.Routers.Router = Backbone.Router.extend({
         Backbone.history.navigate(route, { trigger: true });
       }
     });
+
+    // this._workspaces = new TmUp.Views.WorkspacesIndex({
+    //   collection: this.workspaces
+    // });
+    // this._workspaces.fetchWorkspaces(callback);
     // var workspace = this.workspaces.getActiveWorkspace();
     // debugger;
 
@@ -29,6 +34,10 @@ TmUp.Routers.Router = Backbone.Router.extend({
   },
 
   show: function (id) {
+    // if (this._workspaces === undefined) {
+    //   this.index(this.show.bind(this, id, callback));
+    //   return;
+    // }
     this.workspaces.fetch({
       success: function () {
         var previouslyActiveWorkspace = this.workspaces.getActiveWorkspace();
@@ -43,7 +52,8 @@ TmUp.Routers.Router = Backbone.Router.extend({
     workspace && workspace.save({ active: true });
 
     var WorkspacesShowView = new TmUp.Views.WorkspacesShow({
-      model: workspace
+      model: workspace,
+      collection: this.workspaces
     });
     this._swapView(WorkspacesShowView);
   },

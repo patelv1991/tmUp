@@ -9,5 +9,11 @@ TmUp.Views.WorkspacesIndex = Backbone.View.extend({
     var content = this.template({ workspaces: this.collection });
     this.$el.html(content);
     return this;
-  }
+  },
+
+  // fetchWorkspaces: function (callback) {
+  //   this.collection.fetch({ success: function () {
+  //     callback && callback();
+  //   }});
+  // }
 });
