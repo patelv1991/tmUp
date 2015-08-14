@@ -1,0 +1,1 @@
+I"Ífunction(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<input type="checkbox" data-task-id="',  task.id ,'">',  task.escape('title') ,'\n');}return __p.join('');}:ET

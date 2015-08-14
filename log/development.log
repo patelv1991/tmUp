@@ -19659,3 +19659,301 @@ Processing by Api::WorkspacesController#show as JSON
   Rendered api/tasks/_task.json.jbuilder (0.5ms)
   Rendered api/workspaces/show.json.jbuilder (12.1ms)
 Completed 200 OK in 36ms (Views: 14.9ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-08-13 17:11:55 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AJbYhIzKGovHvDvqQYLjYg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 613ms (Views: 608.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/tasks/index_item.self-2f8cdd269382472c79c1d7e588eac5bacab54e61a4625d76b7be91751352facc.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/api/tasks.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/api/api.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/api/projects.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/api/workspaces.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/sessions.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/static_pages.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/jquery_ujs.self-ca5248a2fad13d6bd58ea121318d642f195f0b2dd818b30615f785ff365e8d1f.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/backbone.self-0977290d5e68ce40d516cd4dc3965586680024e51399f0ee54ee8ed3a99b1506.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/underscore.self-b84a7a5ac0e8afc4f176b95606590bfc56044eeae9286097bdee013a6909fde5.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/tm_up.self-1ab643a6a14ef56932ee9ddc17f858d05ac313a43c48479db60cdda24450fccf.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/projects/index_item.self-d2f7effcf5be5fa39886063268082b177cf079354f286a99035e54086c60eb86.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/teams/index_item.self-1545887910deefa19d27c53b4c2b6118e97428c1bb1d05a198b6b1dcb12bbf1a.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/workspaces/index.self-db7c263c256000bd5b44e2406d0b9089a7f9f7b26d22a871caea6d88bc4293b4.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/workspaces/show.self-6cefae5693b5b77e818a0feefc6fbb774295fd2f90123c029b0e5bb79cd83fc4.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/models/project.self-f6bf2747740643cd7ed3fe59a93a24c0a374dc7033ef48642e1ed73bcf460790.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/models/task.self-7b025150cf973741dd330a246e9a938e3651da4f2b0fbf46b70dd098317cd239.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/models/team_member.self-44329f30a7c6b517bbfc54d28fadaa47fb4df175875fc33fce436347513c79a0.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/models/workspace.self-8007386d33cbe61d54061b0f1762ec3faa76517e45ee261cd47fd4a287e89a5c.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/collections/projects.self-16aad6f0d98a85ad53bcc2d9a49a331dd0fe1aa65401392dfb0d57e4bbc1b26a.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/collections/tasks.self-84e1c384002d76cee10352222ece3800ef30835c14b4dfd98dba34e330bcc4e7.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/collections/work_team.self-eb4754d0aab509c4497f12618de7a853b6b8d78cdc10edf250c65247d798352f.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/collections/workspaces.self-caee85f740b8a293a157742fa83cde96a99651452d4cab7a51c52e5457180ff8.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/utils/composite_view.self-ae3948e953312d3e050f4baf312fdaea87b998a104d2eece8f5b81287ad1a4f7.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/views/projects/project_index_item.self-c6fac6dc95f3ae089bc63213c8d98fe9c1163608d138f36b1c352bcb4544705c.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:56 -0700
+
+
+Started GET "/assets/views/tasks/task_index_item.self-4a570b51098769748a90bd95dbfd49a28e0937473ebc37840779b2221ae52bdc.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:57 -0700
+
+
+Started GET "/assets/views/teams/team_index_item.self-55c039a0c2adc9e823f0b0478f61dabf12b0f6295d395b8cddb5e87b39bfd93d.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:57 -0700
+
+
+Started GET "/assets/views/workspaces/workspace_show.self-7e2ce8ac8ca8008393ca2202b8f29e4d23e672895e3f2ea0ff36713880eae3b5.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:57 -0700
+
+
+Started GET "/assets/views/workspaces/workspaces_index.self-476d908f6a52d90a0e4fe2179227a989d4791388b3dbb5a8d4a0e4f97bfa718a.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:57 -0700
+
+
+Started GET "/assets/api/projects.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:57 -0700
+
+
+Started GET "/assets/api/tasks.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:57 -0700
+
+
+Started GET "/assets/static_pages.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:57 -0700
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:57 -0700
+
+
+Started GET "/assets/application.self-b5567fb0cb73f9d4ecd4fa178bbc995d9efe2b53da5e5bf4ca587adb307de5b1.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:57 -0700
+
+
+Started GET "/assets/api/api.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:57 -0700
+
+
+Started GET "/assets/sessions.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:57 -0700
+
+
+Started GET "/assets/api/workspaces.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:57 -0700
+
+
+Started GET "/assets/routers/router.self-3cccef2683c839bdeb18e5663ebef84d691e51ecb65be43a4444bef4ed14f74e.js?body=1" for 127.0.0.1 at 2015-08-13 17:11:57 -0700
+
+
+Started GET "/api/workspaces/1" for 127.0.0.1 at 2015-08-13 17:11:57 -0700
+Processing by Api::WorkspacesController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AJbYhIzKGovHvDvqQYLjYg"]]
+  [1m[35mWorkspace Load (0.3ms)[0m  SELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1  [["user_id", 1], ["id", 1]]
+  [1m[36mUserWorkspace Load (55.6ms)[0m  [1mSELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (1)[0m
+  [1m[35mUser Load (48.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)
+  [1m[36mProject Load (0.5ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."workspace_id" IN (1)[0m
+  [1m[35mTask Load (0.5ms)[0m  SELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" IN (1, 4)
+  Rendered users/_user.json.jbuilder (0.2ms)
+  Rendered users/_user.json.jbuilder (0.2ms)
+  Rendered api/projects/_project.json.jbuilder (0.5ms)
+  Rendered api/tasks/_task.json.jbuilder (0.6ms)
+  Rendered api/projects/_project.json.jbuilder (1.0ms)
+  Rendered api/tasks/_task.json.jbuilder (1.4ms)
+  Rendered api/workspaces/show.json.jbuilder (14.7ms)
+Completed 200 OK in 151ms (Views: 17.8ms | ActiveRecord: 105.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-08-13 17:12:48 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "AJbYhIzKGovHvDvqQYLjYg"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 688ms (Views: 685.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/api/api.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 17:12:49 -0700
+
+
+Started GET "/assets/api/projects.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 17:12:49 -0700
+
+
+Started GET "/assets/api/workspaces.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 17:12:49 -0700
+
+
+Started GET "/assets/sessions.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 17:12:49 -0700
+
+
+Started GET "/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 17:12:49 -0700
+
+
+Started GET "/assets/api/tasks.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 17:12:49 -0700
+
+
+Started GET "/assets/static_pages.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2015-08-13 17:12:49 -0700
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2015-08-13 17:12:49 -0700
+
+
+Started GET "/assets/jquery.self-d03a5518f45df77341bdbe6201ba3bfa547ebba8ed64f0ea56bfa5f96ea7c074.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/jquery_ujs.self-ca5248a2fad13d6bd58ea121318d642f195f0b2dd818b30615f785ff365e8d1f.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/underscore.self-b84a7a5ac0e8afc4f176b95606590bfc56044eeae9286097bdee013a6909fde5.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/tm_up.self-1ab643a6a14ef56932ee9ddc17f858d05ac313a43c48479db60cdda24450fccf.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/projects/index_item.self-d2f7effcf5be5fa39886063268082b177cf079354f286a99035e54086c60eb86.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/backbone.self-0977290d5e68ce40d516cd4dc3965586680024e51399f0ee54ee8ed3a99b1506.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/tasks/index_item.self-fe637e4fb7eeae1d231a1f3dc8b9f387c25bfbcfed081f3ad470d3ce8a314da6.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/teams/index_item.self-1545887910deefa19d27c53b4c2b6118e97428c1bb1d05a198b6b1dcb12bbf1a.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/workspaces/index.self-db7c263c256000bd5b44e2406d0b9089a7f9f7b26d22a871caea6d88bc4293b4.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/workspaces/show.self-6cefae5693b5b77e818a0feefc6fbb774295fd2f90123c029b0e5bb79cd83fc4.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/models/project.self-f6bf2747740643cd7ed3fe59a93a24c0a374dc7033ef48642e1ed73bcf460790.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/models/task.self-7b025150cf973741dd330a246e9a938e3651da4f2b0fbf46b70dd098317cd239.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/models/team_member.self-44329f30a7c6b517bbfc54d28fadaa47fb4df175875fc33fce436347513c79a0.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/models/workspace.self-8007386d33cbe61d54061b0f1762ec3faa76517e45ee261cd47fd4a287e89a5c.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/collections/projects.self-16aad6f0d98a85ad53bcc2d9a49a331dd0fe1aa65401392dfb0d57e4bbc1b26a.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/collections/tasks.self-84e1c384002d76cee10352222ece3800ef30835c14b4dfd98dba34e330bcc4e7.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/collections/work_team.self-eb4754d0aab509c4497f12618de7a853b6b8d78cdc10edf250c65247d798352f.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/collections/workspaces.self-caee85f740b8a293a157742fa83cde96a99651452d4cab7a51c52e5457180ff8.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/utils/composite_view.self-ae3948e953312d3e050f4baf312fdaea87b998a104d2eece8f5b81287ad1a4f7.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/views/projects/project_index_item.self-c6fac6dc95f3ae089bc63213c8d98fe9c1163608d138f36b1c352bcb4544705c.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/views/tasks/task_index_item.self-4a570b51098769748a90bd95dbfd49a28e0937473ebc37840779b2221ae52bdc.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/views/teams/team_index_item.self-55c039a0c2adc9e823f0b0478f61dabf12b0f6295d395b8cddb5e87b39bfd93d.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/views/workspaces/workspace_show.self-7e2ce8ac8ca8008393ca2202b8f29e4d23e672895e3f2ea0ff36713880eae3b5.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/views/workspaces/workspaces_index.self-476d908f6a52d90a0e4fe2179227a989d4791388b3dbb5a8d4a0e4f97bfa718a.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/routers/router.self-3cccef2683c839bdeb18e5663ebef84d691e51ecb65be43a4444bef4ed14f74e.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/api/api.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/api/projects.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/api/tasks.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/api/workspaces.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/sessions.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/static_pages.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/assets/application.self-b5567fb0cb73f9d4ecd4fa178bbc995d9efe2b53da5e5bf4ca587adb307de5b1.js?body=1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+
+
+Started GET "/api/workspaces/1" for 127.0.0.1 at 2015-08-13 17:12:50 -0700
+Processing by Api::WorkspacesController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "AJbYhIzKGovHvDvqQYLjYg"]]
+  [1m[36mWorkspace Load (0.3ms)[0m  [1mSELECT  "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1 AND "workspaces"."id" = $2 LIMIT 1[0m  [["user_id", 1], ["id", 1]]
+  [1m[35mUserWorkspace Load (1.1ms)[0m  SELECT "user_workspaces".* FROM "user_workspaces" WHERE "user_workspaces"."workspace_id" IN (1)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" IN (1, 2)[0m
+  [1m[35mProject Load (0.4ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."workspace_id" IN (1)
+  [1m[36mTask Load (0.4ms)[0m  [1mSELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" IN (1, 4)[0m
+  Rendered users/_user.json.jbuilder (0.3ms)
+  Rendered users/_user.json.jbuilder (0.4ms)
+  Rendered api/projects/_project.json.jbuilder (0.5ms)
+  Rendered api/tasks/_task.json.jbuilder (0.9ms)
+  Rendered api/projects/_project.json.jbuilder (0.7ms)
+  Rendered api/tasks/_task.json.jbuilder (0.6ms)
+  Rendered api/workspaces/show.json.jbuilder (13.6ms)
+Completed 200 OK in 35ms (Views: 15.8ms | ActiveRecord: 3.1ms)
