@@ -5,7 +5,6 @@ TmUp.Views.ProjectIndexItem = Backbone.View.extend({
   render: function () {
     var content = this.template({ project: this.model });
     this.$el.html(content);
-    this.$el.data('project-id', this.model.id);
     return this;
   }
 });

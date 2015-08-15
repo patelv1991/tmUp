@@ -6,24 +6,23 @@ TmUp.Views.WorkspacesShow = Backbone.CompositeView.extend({
     this.workTeam = this.model.workTeam();
     this.myTasks = this.model.myTasks();
     this.listenTo(this.model, 'sync', this.render);
-    this.listenTo(this.projects, 'add', this.addProjectIndexSubview);
-    this.listenTo(this.workTeam, 'add', this.addTeamMember);
+    this.listenTo(this.projects, 'add', this.renderProjectIndexSubview);
+    this.listenTo(this.workTeam, 'add', this.renderTeamMembers);
     this.listenTo(this.myTasks, 'add', this.addTasks);
   },
 
-
-  addProjectIndexSubview: function () {
+  renderProjectIndexSubview: function () {
     var view = new TmUp.Views.ProjectIndex({
       collection: this.projects
     });
     this.addSubview('#projects-container', view);
   },
 
-  addTeamMember: function (member) {
-    var view = new TmUp.Views.TeamIndexItem({
-      model: member
+  renderTeamMembers: function () {
+    var view = new TmUp.Views.TeamIndex({
+      collection: this.workTeam
     });
-    this.addSubview('#work-team', view);
+    this.addSubview('#work-team-container', view);
   },
 
   addTasks: function (task) {
@@ -36,16 +35,12 @@ TmUp.Views.WorkspacesShow = Backbone.CompositeView.extend({
   render: function () {
     var content = this.template({ workspace: this.model });
     this.$el.html(content);
-    this.addProjectIndexSubview();
-    this.renderWorkTeam();
+    this.renderProjectIndexSubview();
+    this.renderTeamMembers();
     this.renderMyTasks();
     Cookies.set('current-workspace-id', this.model.id);
     Cookies.set('current-workspace-title', this.model.escape('title'));
     return this;
-  },
-
-  renderWorkTeam: function () {
-    this.model.workTeam().each(this.addTeamMember.bind(this));
   },
 
   renderMyTasks: function () {

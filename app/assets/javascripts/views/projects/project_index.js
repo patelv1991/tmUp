@@ -14,12 +14,12 @@ TmUp.Views.ProjectIndex = Backbone.CompositeView.extend({
     var view = new TmUp.Views.ProjectIndexItem({
       model: project
     });
-    this.addSubview('.project-index-items', view);
+    this.addSubview('.projects', view);
   },
 
   render: function () {
     this.$el.html(this.template());
     this.attachSubviews();
     return this;
-  },
+  }
 });
