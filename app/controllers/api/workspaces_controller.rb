@@ -63,7 +63,7 @@ class Api::WorkspacesController < ApplicationController
 
   private
     def workspace_params
-      params.require(:workspace).permit(:title, :active)
+      params.require(:workspace).permit(:title)
     end
 
 end
