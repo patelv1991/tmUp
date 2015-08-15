@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
+  <div class="container-fluid my-nav">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -28,7 +28,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="current-workspace"></span> <span class="user_initials"><%= TmUp.CURRENT_USER.initials %></span></a>
           <ul class="dropdown-menu">
             <% workspaces.each(function (workspace) { %>
-              <li><a href="#/workspaces/<%= workspace.id %>"><%= workspace.escape("title") %></a></li>
+              <li><a href="#/workspaces/<%= workspace.id %>" class=dropdown-item><%= workspace.escape("title") %></a></li>
             <% }) %>
             <li role="separator" class="divider"></li>
             <li><a href="#" class='log-out'>Log Out</a></li>

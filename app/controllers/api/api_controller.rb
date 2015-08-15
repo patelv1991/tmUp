@@ -2,7 +2,8 @@ class Api::ApiController < ApplicationController
   before_action :require_signed_in!
 
   def require_workspace_membership!
-    redirect_to new_session_url unless current_workspace.is_member?(current_user)
+    render json: ["You must be a member to do that"], status: :unauthorized
+    # redirect_to new_session_url unless current_workspace.is_member?(current_user)
   end
 
   def require_signed_in!
