@@ -21,7 +21,3 @@ window.TmUp = {
     Backbone.history.start();
   }
 };
-
-// $(document).ready(function(){
-//   TmUp.initialize();
-// });

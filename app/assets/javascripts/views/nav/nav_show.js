@@ -2,7 +2,7 @@ TmUp.Views.NavShow = Backbone.View.extend({
   template: JST['nav/nav_bar'],
 
   initialize: function (options) {
-    this.collection.fetch();
+    this.workspaces = this.collection.fetch();
     this.router = options.router;
     this.listenTo(this.collection, 'sync', this.render);
     this.listenTo(this.router, "route", this.handleRoute);
@@ -35,24 +35,13 @@ TmUp.Views.NavShow = Backbone.View.extend({
     var content = this.template({
       workspaces: this.collection
     });
-
     this.$el.html(content);
-    this.renderActiveWorkspace();
+    this.renderActiveWorkspaceTitle();
     return this;
   },
 
-  renderActiveWorkspace: function(){
-    var active = this.collection.getActiveWorkspace();
-    var name;
-    if (active){
-      name = active.escape('title');
-    }
-    this.$('.current-workspace').html(name)
-  },
-
-  getCurrentWorkspace: function () {
-    if (this.workspaceId) {
-      return this.collection.getOrFetch(this.workspaceId);
-    }
+  renderActiveWorkspaceTitle: function () {
+    this.$('.current-workspace').html(Cookies.get('current-workspace-title'));
   }
+
 });

@@ -5,7 +5,6 @@ TmUp.Views.WorkspacesShow = Backbone.CompositeView.extend({
     this.projects = this.model.projects();
     this.workTeam = this.model.workTeam();
     this.myTasks = this.model.myTasks();
-    this.listenTo(this.collection, 'sync', this.render);
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.projects, 'add', this.addProject);
     this.listenTo(this.workTeam, 'add', this.addTeamMember);
@@ -40,7 +39,8 @@ TmUp.Views.WorkspacesShow = Backbone.CompositeView.extend({
     this.renderProjects();
     this.renderWorkTeam();
     this.renderMyTasks();
-    Cookies.set('current-workspace', this.model.id);
+    Cookies.set('current-workspace-id', this.model.id);
+    Cookies.set('current-workspace-title', this.model.escape('title'));
     return this;
   },
 
