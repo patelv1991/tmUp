@@ -10,6 +10,10 @@ TmUp.Views.ProjectIndex = Backbone.CompositeView.extend({
     }.bind(this));
   },
 
+  events: {
+    'click .glyphicon-plus': 'addNewProject'
+  },
+
   addProject: function (project) {
     var view = new TmUp.Views.ProjectIndexItem({
       model: project
@@ -21,5 +25,9 @@ TmUp.Views.ProjectIndex = Backbone.CompositeView.extend({
     this.$el.html(this.template());
     this.attachSubviews();
     return this;
+  },
+
+  addNewProject: function (event) {
+
   }
 });
