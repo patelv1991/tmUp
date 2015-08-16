@@ -6,6 +6,7 @@
   // boot the app when the document is ready
   $(function () {
     TmUp.CURRENT_USER = {
+      id: <%= current_user.id %>,
       initials: "<%= current_user.fname[0].upcase + current_user.lname[0].upcase %>"
     };
     TmUp.initialize();

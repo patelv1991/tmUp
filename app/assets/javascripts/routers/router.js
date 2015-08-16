@@ -28,6 +28,7 @@ TmUp.Routers.Router = Backbone.Router.extend({
   show: function (id) {
 
     var workspace = this.workspaces.getOrFetch(id);
+    TmUp.CURRENT_WORKSPACE = parseInt(workspace.id);
     var WorkspacesShowView = new TmUp.Views.WorkspacesShow({
       model: workspace,
     });

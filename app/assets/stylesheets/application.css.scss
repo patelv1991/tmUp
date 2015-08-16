@@ -19,19 +19,23 @@
 ul {
   list-style: none;
 }
+//
+// input[type="password"],
+// input[type="email"],
+// input[type="text"],
+// input[type="submit"],
+// textarea,
+// button {
+//   /*
+//   Get rid of native styling. Read more here:
+//   http://css-tricks.com/almanac/properties/a/appearance/
+//   */
+//   -webkit-appearance: none;
+//   -moz-appearance: none;
+// }
 
-input[type="password"],
-input[type="email"],
-input[type="text"],
-input[type="submit"],
-textarea,
-button {
-  /*
-  Get rid of native styling. Read more here:
-  http://css-tricks.com/almanac/properties/a/appearance/
-  */
-  -webkit-appearance: none;
-  -moz-appearance: none;
+body {
+  font-family: "proxima-nova", "Helvetica Neue", "Helvetica", Arial, sans-serif;
 }
 
 button,
@@ -59,10 +63,71 @@ input[type="submit"] {
   padding-right: 0
 }
 
-.glyphicon-plus {
-  cursor: pointer;
+#projects-container .glyphicon-plus {
+  top: -2px;
 }
 
-.glyphicon-plus:hover {
-  border: 1px solid
+#projects-container .glyphicon-plus:hover {
+  cursor: pointer;
+  // top: -2px;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+// Dropdown Menu
+.dropdown-menu .divider {
+    margin: 2px 0;
+}
+
+// Modals
+.m-background {
+  background: rgba(92, 88, 88, 0.6);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+}
+
+
+.m-content {
+  color: #9fa5ab;
+  z-index: 10;
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  margin-left: -220px;
+  min-width: 400px;
+  width: 500px;
+  max-width: 600px;
+  background: #fff;
+  border-radius: 5px;
+}
+
+.m-content > header {
+  color: #636c72;
+  height: 45px;
+  background: #f6f7f7;
+  border-radius: inherit;
+  padding: 12px;
+}
+
+.m-content > form {
+  padding: 1pc;
+}
+
+.m-content > header > button.close {
+  color: #2375ab;
+  font-size: 25px;
+}
+
+.m-content > form button.btn-default {
+  background: linear-gradient(to top, #1e8cd4, #61aee1);
+  color: #fff;
+  font-weight: bold;
+}
+
+.m-content > .form-horizontal .control-label {
+  font-size: 12px
 }

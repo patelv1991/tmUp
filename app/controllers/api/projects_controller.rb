@@ -1,10 +1,17 @@
 class Api::ProjectsController < ApplicationController
-  before_action :require_workspace_membership!
 
   def index
   end
 
   def create
+    @project = Project.new(project_params)
+
+    if @project.save
+      render json: @project
+    else
+      render json: @project.errors.full_messages, status: :unprocessable_entity
+    end
+
   end
 
   def show
@@ -13,9 +20,6 @@ class Api::ProjectsController < ApplicationController
   def destroy
   end
   private
-    def current_workspace
-      
-    end
 
     def project_params
       params.require(:project).permit(:title, :description,

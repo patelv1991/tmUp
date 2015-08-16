@@ -1,6 +1,6 @@
 TmUp.Models.Workspace = Backbone.Model.extend({
   urlRoot: 'api/workspaces',
-
+  
   projects: function () {
     if (!this._projects) {
       this._projects = new TmUp.Collections.Projects([], { workspace: this });
