@@ -9,7 +9,8 @@ TmUp.Views.NavShow = Backbone.View.extend({
   },
 
   events: {
-    'click .log-out':'logOut'
+    'click .log-out':'logOut',
+    'click .new-workspace': 'addNewWorkspace'
   },
 
   handleRoute: function (routeName, params) {
@@ -29,6 +30,15 @@ TmUp.Views.NavShow = Backbone.View.extend({
         window.location = "session/new";
       }
     });
+  },
+
+  addNewWorkspace: function () {
+    modal = new TmUp.Views.NewWorkspaceForm({
+      collection: this.workspaces,
+      model: new TmUp.Models.Workspace()
+    });
+    $('body').append(modal.$el);
+    modal.render();
   },
 
   render: function () {
