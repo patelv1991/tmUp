@@ -10,10 +10,13 @@ TmUp.Views.NewProjectForm = Backbone.View.extend({
 
   initialize: function () {
     $(document).on('keyup', this.handleKey.bind(this));
+<<<<<<< HEAD
     // this.model.set({
     //   workspace_id: TmUp.CURRENT_WORKSPACE,
     //   owner_id: TmUp.CURRENT_USER.id
     // });
+=======
+>>>>>>> 944a1f30fbb11a63c2936f79108cfd9e5dac619e
   },
 
   handleKey: function (event) {
@@ -41,8 +44,11 @@ TmUp.Views.NewProjectForm = Backbone.View.extend({
   createNewProject: function (event) {
     event.preventDefault();
     var formData = $(event.currentTarget).serializeJSON();
+<<<<<<< HEAD
     formData.project['workspace_id'] = TmUp.CURRENT_WORKSPACE;
     formData.project['owner_id'] = TmUp.CURRENT_USER.id;
+=======
+>>>>>>> 944a1f30fbb11a63c2936f79108cfd9e5dac619e
     this.model.save(formData, {
       success: function (project) {
         this.collection.add(project);

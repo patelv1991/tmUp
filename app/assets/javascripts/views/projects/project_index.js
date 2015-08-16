@@ -31,7 +31,11 @@ TmUp.Views.ProjectIndex = Backbone.CompositeView.extend({
     $('.glyphicon-plus').prop('disabled', true);
     modal = new TmUp.Views.NewProjectForm({
       collection: this.collection,
+<<<<<<< HEAD
       model: new TmUp.Models.Project({ workspace: this.workspace })
+=======
+      model: new TmUp.Models.Project()
+>>>>>>> 944a1f30fbb11a63c2936f79108cfd9e5dac619e
     });
     $('body').append(modal.$el);
     modal.render();
