@@ -27,7 +27,14 @@ TmUp.Views.ProjectIndex = Backbone.CompositeView.extend({
     return this;
   },
 
-  addNewProject: function (event) {
+  addNewProject: function () {
+    $('.glyphicon-plus').prop('disabled', true);
+    modal = new TmUp.Views.NewProjectForm({
+      collection: this.collection,
+      model: new TmUp.Models.Project()
+    });
+    $('body').append(modal.$el);
+    modal.render();
+  },
 
-  }
 });

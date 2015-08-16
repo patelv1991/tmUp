@@ -1,1 +1,0 @@
-I"âfunction(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div class="task-index-item" data-project-id="',  task.id ,'">\n  ',  task.escape('title') ,'\n</div>\n');}return __p.join('');}:ET
