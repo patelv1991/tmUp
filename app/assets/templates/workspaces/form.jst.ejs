@@ -1,0 +1,29 @@
+<div class="m-background"></div>
+
+<div class="m-content">
+  <header class="heading">
+    <strong>Create Your Workspace </strong><button class="close">&times;</button>
+  </header>
+
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label for="workspace-title" class="col-sm-3 control-label">Workspace Name</label>
+      <div class="col-sm-9">
+        <input type="text" name="workspace[title]" class="form-control" id="workspace-title" placeholder="Company or Team Name">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="work-team" class="col-sm-3 control-label">Project Description</label>
+      <div class="col-sm-9">
+        <textarea class="form-control" rows="2" placeholder="Separate emails with commas" id="work-team" name="user[emails]"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
+        <button disabled type="submit" class="btn btn-default">Create Workspace</button>
+      </div>
+    </div>
+  </form>
+</div>
