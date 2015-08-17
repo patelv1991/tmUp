@@ -34,7 +34,7 @@ TmUp.Views.NavShow = Backbone.View.extend({
 
   addNewWorkspace: function () {
     modal = new TmUp.Views.NewWorkspaceForm({
-      collection: this.workspaces,
+      collection: this.collection,
       model: new TmUp.Models.Workspace()
     });
     $('body').append(modal.$el);

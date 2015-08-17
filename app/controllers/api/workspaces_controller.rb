@@ -5,6 +5,8 @@ class Api::WorkspacesController < ApplicationController
     @workspace = current_user.workspaces.new(workspace_params)
     if @workspace.save
       render json: @workspace
+      current_user.user_workspaces.create({workspace_id: @workspace.id})
+
     else
       render json: @workspace.errors.full_messages, status: :unprocessable_entity
     end

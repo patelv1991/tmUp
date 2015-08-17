@@ -47,17 +47,17 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
   createNewWorkspace: function (event) {
     event.preventDefault();
     var formData = $(event.currentTarget).serializeJSON();
-    debugger;
-    // this.validateEmails(formData);
+
     // formData.project['workspace_id'] = TmUp.CURRENT_WORKSPACE;
     // formData.project['owner_id'] = TmUp.CURRENT_USER.id;
-    // this.model.save(formData, {
-    //   success: function (project) {
-    //     this.collection.add(project);
-    //     this.remove();
-    //     $('.glyphicon-plus').prop('disabled', false);
-    //   }.bind(this)
-    // });
+    this.model.save(formData, {
+      success: function (project) {
+        this.collection.add(project);
+        this.remove();
+        var route = '/workspaces/' + project.id;
+        Backbone.history.navigate(route, { trigger: true });
+      }.bind(this)
+    });
   },
 
   validateEmails: function (event) {
