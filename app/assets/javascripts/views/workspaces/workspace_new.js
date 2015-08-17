@@ -49,10 +49,10 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
     var formData = $(event.currentTarget).serializeJSON();
 
     this.model.save(formData, {
-      success: function (project) {
-        this.collection.add(project);
+      success: function (workspace) {
+        this.collection.add(workspace);
         this.remove();
-        var route = '/workspaces/' + project.id;
+        var route = '/workspaces/' + workspace.id;
         Backbone.history.navigate(route, { trigger: true });
       }.bind(this)
     });
