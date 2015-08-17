@@ -52,7 +52,9 @@ TmUp.Views.NavShow = Backbone.View.extend({
   },
 
   renderActiveWorkspaceTitle: function () {
-    this.$('.nav-current-workspace-title').html(Cookies.get('current-workspace-title'));
+    if (this.collection.length > 0) {
+      this.$('.nav-current-workspace-title').html(Cookies.get('current-workspace-title'));
+    }
   }
 
 });

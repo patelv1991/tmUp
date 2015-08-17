@@ -6,9 +6,17 @@ class Api::WorkspacesController < ApplicationController
     if @workspace.save
       render json: @workspace
       current_user.user_workspaces.create({workspace_id: @workspace.id})
-
+      add_team_member(user_params["emails"], @workspace)
     else
       render json: @workspace.errors.full_messages, status: :unprocessable_entity
+    end
+  end
+
+  def add_team_member(emails, workspace)
+    emails = emails.split(",").map(&:strip).map(&:downcase)
+    users = User.where({email: emails})
+    users.each do |user|
+      UserWorkspace.create!({ user_id: user.id, workspace_id: workspace.id })
     end
   end
 
@@ -66,6 +74,10 @@ class Api::WorkspacesController < ApplicationController
   private
     def workspace_params
       params.require(:workspace).permit(:title)
+    end
+
+    def user_params
+      params.require(:user).permit(:emails)
     end
 
 end

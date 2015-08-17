@@ -48,8 +48,6 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
     event.preventDefault();
     var formData = $(event.currentTarget).serializeJSON();
 
-    // formData.project['workspace_id'] = TmUp.CURRENT_WORKSPACE;
-    // formData.project['owner_id'] = TmUp.CURRENT_USER.id;
     this.model.save(formData, {
       success: function (project) {
         this.collection.add(project);
