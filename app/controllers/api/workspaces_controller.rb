@@ -14,10 +14,14 @@ class Api::WorkspacesController < ApplicationController
 
   def add_team_member(emails, workspace)
     emails = emails.split(",").map(&:strip).map(&:downcase)
+    # finds users that are in the database and adds them to workspace
     users = User.where({email: emails})
     users.each do |user|
       UserWorkspace.create!({ user_id: user.id, workspace_id: workspace.id })
     end
+
+    new_users = emails - users
+    # Need to add method to invite users who aren't in the database.
   end
 
   def index
