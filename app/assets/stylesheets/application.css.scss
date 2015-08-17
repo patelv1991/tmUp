@@ -116,6 +116,18 @@ input[type="submit"] {
   padding: 1pc;
 }
 
+.m-content > table tr > th:first-child {
+  padding-left: 13px;
+}
+
+.m-content > table tr:not(.column-names) > {
+  padding-left: 13px;
+}
+
+.m-content > table tr td {
+  vertical-align: middle;
+}
+
 .m-content > header > button.close {
   color: #2375ab;
   font-size: 25px;
