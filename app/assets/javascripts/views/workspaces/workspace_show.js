@@ -40,6 +40,7 @@ TmUp.Views.WorkspacesShow = Backbone.CompositeView.extend({
     this.renderMyTasks();
     Cookies.set('current-workspace-id', this.model.id);
     Cookies.set('current-workspace-title', this.model.escape('title'));
+    $('.nav-current-workspace-title').html(this.model.escape('title'));
     return this;
   },
 

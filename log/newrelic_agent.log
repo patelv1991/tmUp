@@ -1528,3 +1528,5 @@
 [08/16/15 17:22:21 -0700 varun-X502CA (3780)] INFO : Installing Rails 4 Error instrumentation
 [08/16/15 17:22:21 -0700 varun-X502CA (3780)] INFO : Finished instrumentation
 [08/16/15 17:22:22 -0700 varun-X502CA (3780)] INFO : Doing deferred dependency-detection before Rack startup
+[08/16/15 17:27:39 -0700 varun-X502CA (2853)] ERROR : Invalid license key, please contact support@newrelic.com
+[08/16/15 17:27:39 -0700 varun-X502CA (2853)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.

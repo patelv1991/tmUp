@@ -28,6 +28,7 @@ TmUp.Views.NavShow = Backbone.View.extend({
       data: {_method: 'delete'},
       success: function (html, status, object) {
         window.location = "session/new";
+        Cookies.set('last-logged-in-user', TmUp.CURRENT_USER.id);
       }
     });
   },
@@ -51,7 +52,7 @@ TmUp.Views.NavShow = Backbone.View.extend({
   },
 
   renderActiveWorkspaceTitle: function () {
-    this.$('.current-workspace').html(Cookies.get('current-workspace-title'));
+    this.$('.nav-current-workspace-title').html(Cookies.get('current-workspace-title'));
   }
 
 });

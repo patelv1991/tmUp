@@ -9,16 +9,26 @@ TmUp.Routers.Router = Backbone.Router.extend({
     "workspaces/:id": "show"
   },
 
+  createNewWorkspace: function () {
+    modal = new TmUp.Views.NewWorkspaceForm({
+      collection: this.workspaces,
+      model: new TmUp.Models.Workspace()
+    });
+    $('body').append(modal.$el);
+    modal.render();
+  },
+
   index: function () {
-    if (Cookies.get('current-workspace-id')) {
+    if (TmUp.checkCurrentUser()) {
       this.show(Cookies.get('current-workspace-id'));
     } else {
       this.workspaces.fetch({
         success: function (collection) {
           if (collection.length > 0) {
             this.show(collection.first().id);
+            // $('.nav-current-workspace-title').html(collection.first().escape('title'));
           } else {
-            // this.createNewWorkspace();
+            this.createNewWorkspace();
           }
         }.bind(this)
       });
@@ -26,7 +36,6 @@ TmUp.Routers.Router = Backbone.Router.extend({
   },
 
   show: function (id) {
-
     var workspace = this.workspaces.getOrFetch(id);
     TmUp.CURRENT_WORKSPACE = parseInt(workspace.id);
     var WorkspacesShowView = new TmUp.Views.WorkspacesShow({
