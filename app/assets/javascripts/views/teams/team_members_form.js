@@ -58,9 +58,10 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
   inviteMembers: function (event) {
     event.preventDefault();
     var formData = $(event.currentTarget).serializeJSON().user;
-    this.findUsers(formData);
-
-    //
+    this.findUsersAndCreateCollection(formData);
+    users.forEach(function (user) {
+      debugger
+    });
     // var model = new TmUp.Models.TeamMember();
     //
     // this.model.save(formData, {
@@ -73,8 +74,16 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
     // });
   },
 
-  findUsers: function () {
-
+  findUsersAndCreateCollection: function () {
+    emails = this.parsedEmails;
+    users = new TmUp.Collections.WorkTeam();
+    var that = this;
+    users.fetch({
+      data: { emails: emails },
+      success: function (users) {
+        this.newMembers = users;
+      }.bind(this)
+    });
   },
 
   render: function () {

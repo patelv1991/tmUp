@@ -1,0 +1,2 @@
+module Api::WorkspaceMembershipHelper
+end
