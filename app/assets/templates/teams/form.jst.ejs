@@ -1,0 +1,33 @@
+<div class="m-background"></div>
+
+<div class="m-content">
+
+  <header class="heading">
+    <strong>Manage Workspace: <%= workspace.escape('title') %></strong><button class="close">&times;</button>
+  </header>
+
+  <!-- Table -->
+  <table class="table table-striped">
+    <tr class="column-names">
+      <th>Name</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
+  </table>
+
+  <form class="form-group">
+    <div class="form-group" >
+      <label for="work-team" class="col-sm-3 control-label">Invite Team Members</label>
+      <div class="col-sm-9">
+        <textarea class="form-control" rows="2" placeholder="Separate emails with commas" id="work-team" name="user[emails]"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
+        <button style="margin: 1pc 0" disabled type="submit" class="btn btn-default">Invite</button>
+      </div>
+    </div>
+  </form>
+
+</div>
