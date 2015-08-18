@@ -9,7 +9,8 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
     'input #work-team': 'validateEmails',
     'mouseleave #work-team': 'validateEmails',
     'focus #work-team': 'removeEmailError',
-    'mouseenter #work-team': 'removeEmailError'
+    'mouseenter #work-team': 'removeEmailError',
+    'click .btn-danger': 'removeFromWorkspace'
   },
 
   initialize: function () {
@@ -137,6 +138,14 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
     }
   },
 
+  removeFromWorkspace: function (event) {
+    event.preventDefault();
+
+    var workspaceId = $(event.currentTarget).data('workspace-id');
+    var userId = $(event.currentTarget).data('user-id');
+});
+  },
+
   render: function () {
     this.$el.html(this.template({ workspace: workspace }));
     this.renderTeamMembers();
@@ -150,7 +159,8 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
       var $firstTd = $('<td>');
       var $secondTd = $('<td>');
       var $thirdTd = $('<td><button type="button" class="btn btn-xs btn-danger">Remove</button></td>');
-
+      $thirdTd.data('member-id', member.id);
+      $thirdTd.data('workspace-id', workspace.id);
       $tr.append($firstTd.html(member.escape('fname') + " " + member.escape('lname')));
       $tr.append($secondTd.html(member.escape('email')));
       $tr.append($thirdTd);

@@ -27,6 +27,9 @@ class Api::WorkspaceMembershipsController < ApplicationController
     end
   end
 
+  def destroy
+    @membership = UserWorkspace.find({user_id: param[:user_id], workspace_id: params[:workspace_id]})
+  end
 
   private
     def workspace_membership_params
