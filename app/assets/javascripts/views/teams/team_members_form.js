@@ -28,9 +28,13 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
   },
 
   validateEmails: function (event) {
+    // Removes error messages from the view if they exist
+    this.$el.find('.alert-danger') && event.type === "input" &&
+              this.$el.find('.alert-danger').remove();
+
+    // validates entered email(s)
     var emails = $('textarea#work-team').serializeJSON();
     if (emails.user.emails === "") {
-      this.enableButton('button.btn-default');
       return;
     } else {
       this.parseEmails(emails.user.emails);
@@ -46,7 +50,7 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
       if (regex.test(email)) {
         this.parsedEmails.push(email);
         this.removeEmailError('form div.form-group:first-child');
-        this.enableButton('button.btn-default')
+        this.enableButton('button.btn-default');
       } else {
         this.addEmailError('form div.form-group:first-child');
         this.disableButton('button.btn-default');
@@ -59,16 +63,6 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
     event.preventDefault();
     var formData = $(event.currentTarget).serializeJSON().user;
     this.findUsersAndCreateCollection(formData);
-    // var model = new TmUp.Models.TeamMember();
-    //
-    // this.model.save(formData, {
-    //   success: function (project) {
-    //     this.collection.add(project);
-    //     this.remove();
-    //     var route = '/workspaces/' + project.id;
-    //     Backbone.history.navigate(route, { trigger: true });
-    //   }.bind(this)
-    // });
   },
 
   findUsersAndCreateCollection: function () {
@@ -92,12 +86,21 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
             that.remove();
           }
         });
-        // Backbone.sync("create", workspaceMemberships, {
-        //
-        // });
-      }
+      },
+
+      error: function (users, serverResp) {
+        if (serverResp.status === 422 && this.$el.find(".alert").length === 0) {
+          var $errorDiv = $('<div class="alert alert-danger" role="alert">');
+          $errorDiv.append("<p>User not found. Please ensure that user has " +
+                           "TmUp account.</p>");
+          $errorDiv.append("<p>Try using <strong>'example@example.com'</strong>" +
+                           " for testing purposes.</p>");
+          this.$el.find('form').prepend($errorDiv);
+        }
+      }.bind(this)
     });
   },
+
 
   render: function () {
     this.$el.html(this.template({ workspace: workspace }));
