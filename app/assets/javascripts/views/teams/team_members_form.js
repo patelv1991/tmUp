@@ -69,57 +69,73 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
   findUsersAndCreateCollection: function () {
     emails = this.parsedEmails;
     users = new TmUp.Collections.WorkTeam();
-    var that = this;
     users.fetch({
       data: { emails: emails },
       success: function (users) {
-        var workspaceMemberships = new TmUp.Collections.workspaceMemberships();
-        users.forEach(function (user) {
-          var workspaceMembership = new TmUp.Models.workspaceMembership({ user_id: user.id, workspace_id: workspace.id });
-          workspaceMemberships.add(workspaceMembership);
-        });
-
-        Backbone.sync('create', workspaceMemberships, {
-          success: function () {
-            users.forEach(function (user) {
-              that.collection.add(user);
-            });
-            that.remove();
-          },
-
-          error: function (serverResp) {
-            if (serverResp.status === 422 && that.$el.find(".alert-warning").length === 0) {
-              var $errorDiv = $('<div class="alert alert-warning" role="alert">');
-              var failedEmails = serverResp.responseJSON.join(", ");
-              if (serverResp.responseJSON.length === 1) {
-                $errorDiv.append("<p>" + failedEmails + " is already in your " +
-                                 "workspace. </p>");
-              } else {
-                $errorDiv.append("<p>" + failedEmails + " are already in your " +
-                                 "workspace. </p>");
-              }
-              that.$el.find('form').prepend($errorDiv);
-            }
-          }
-        });
-      },
+        this.usersFound (users);
+      }.bind(this),
 
       error: function (users, serverResp) {
-        debugger
-        if (serverResp.status === 422 && this.$el.find(".alert-danger").length === 0) {
-          var $errorDiv = $('<div class="alert alert-danger" role="alert">');
-          var failedEmails = serverResp.responseJSON.join(", ");
-          $errorDiv.append("<p><strong>" + failedEmails + "</strong> could" +
-                           "not be found. Please ensure that user(s) have" +
-                           "TmUp account(s). </p>");
-          $errorDiv.append("<p>Try using <strong>example@example.com</strong>" +
-                           " for testing purposes.</p>");
-          this.$el.find('form').prepend($errorDiv);
-        }
+        this.noUsersFoundError(users, serverResp);
       }.bind(this)
     });
   },
 
+  usersFound: function (users) {
+    var workspaceMemberships = new TmUp.Collections.workspaceMemberships();
+    users.forEach(function (user) {
+      var workspaceMembership = new TmUp.Models.workspaceMembership({
+        user_id: user.id,
+        workspace_id: workspace.id
+      });
+      workspaceMemberships.add(workspaceMembership);
+    });
+
+    this.saveWorkspaceMemberships(this, workspaceMemberships);
+  },
+
+  saveWorkspaceMemberships: function (that, objects) {
+    Backbone.sync('create', objects, {
+      success: function () {
+        users.forEach(function (user) {
+          that.collection.add(user);
+        });
+        that.remove();
+      },
+
+      error: function (serverResp) {
+        this.usersAlreadyInWorkspaceError(serverResp);
+      }.bind(this)
+    });
+  },
+
+  noUsersFoundError: function (users, serverResp) {
+    if (serverResp.status === 422 && this.$el.find(".alert-danger").length === 0) {
+      var $errorDiv = $('<div class="alert alert-danger" role="alert">');
+      var failedEmails = serverResp.responseJSON.join(", ");
+      $errorDiv.append("<p><strong>" + failedEmails + "</strong> could " +
+                       "not be found. Please ensure that user(s) have" +
+                       "TmUp account(s). </p>");
+      $errorDiv.append("<p>Try using <strong>example@example.com</strong>" +
+                       " for testing purposes.</p>");
+      this.$el.find('form').prepend($errorDiv);
+    }
+  },
+
+  usersAlreadyInWorkspaceError: function (serverResp) {
+    if (serverResp.status === 422 && this.$el.find(".alert-warning").length === 0) {
+      var $errorDiv = $('<div class="alert alert-warning" role="alert">');
+      var failedEmails = serverResp.responseJSON.join(", ");
+      if (serverResp.responseJSON.length === 1) {
+        $errorDiv.append("<p>" + failedEmails + " is already in your " +
+                         "workspace. </p>");
+      } else {
+        $errorDiv.append("<p>" + failedEmails + " are already in your " +
+                         "workspace. </p>");
+      }
+      this.$el.find('form').prepend($errorDiv);
+    }
+  },
 
   render: function () {
     this.$el.html(this.template({ workspace: workspace }));
