@@ -30,11 +30,12 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
   validateEmails: function (event) {
     // Removes error messages from the view if they exist
     this.$el.find('.alert-danger') && event.type === "input" &&
-              this.$el.find('.alert-danger').remove();
+              this.$el.find('.alert').remove();
 
     // validates entered email(s)
     var emails = $('textarea#work-team').serializeJSON();
     if (emails.user.emails === "") {
+      this.disableButton('button.btn-default');
       return;
     } else {
       this.parseEmails(emails.user.emails);
@@ -84,16 +85,34 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
               that.collection.add(user);
             });
             that.remove();
+          },
+
+          error: function (serverResp) {
+            if (serverResp.status === 422 && that.$el.find(".alert-warning").length === 0) {
+              var $errorDiv = $('<div class="alert alert-warning" role="alert">');
+              var failedEmails = serverResp.responseJSON.join(", ");
+              if (serverResp.responseJSON.length === 1) {
+                $errorDiv.append("<p>" + failedEmails + " is already in your " +
+                                 "workspace. </p>");
+              } else {
+                $errorDiv.append("<p>" + failedEmails + " are already in your " +
+                                 "workspace. </p>");
+              }
+              that.$el.find('form').prepend($errorDiv);
+            }
           }
         });
       },
 
       error: function (users, serverResp) {
-        if (serverResp.status === 422 && this.$el.find(".alert").length === 0) {
+        debugger
+        if (serverResp.status === 422 && this.$el.find(".alert-danger").length === 0) {
           var $errorDiv = $('<div class="alert alert-danger" role="alert">');
-          $errorDiv.append("<p>User not found. Please ensure that user has " +
-                           "TmUp account.</p>");
-          $errorDiv.append("<p>Try using <strong>'example@example.com'</strong>" +
+          var failedEmails = serverResp.responseJSON.join(", ");
+          $errorDiv.append("<p><strong>" + failedEmails + "</strong> could" +
+                           "not be found. Please ensure that user(s) have" +
+                           "TmUp account(s). </p>");
+          $errorDiv.append("<p>Try using <strong>example@example.com</strong>" +
                            " for testing purposes.</p>");
           this.$el.find('form').prepend($errorDiv);
         }
