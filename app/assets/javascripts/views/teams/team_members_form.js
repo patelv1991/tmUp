@@ -59,9 +59,6 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
     event.preventDefault();
     var formData = $(event.currentTarget).serializeJSON().user;
     this.findUsersAndCreateCollection(formData);
-    users.forEach(function (user) {
-      debugger
-    });
     // var model = new TmUp.Models.TeamMember();
     //
     // this.model.save(formData, {
@@ -81,8 +78,21 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
     users.fetch({
       data: { emails: emails },
       success: function (users) {
-        this.newMembers = users;
-      }.bind(this)
+        var workspaceMemberships = new TmUp.Collections.workspaceMemberships();
+        users.forEach(function (user) {
+          var workspaceMembership = new TmUp.Models.workspaceMembership({ user_id: user.id, workspace_id: workspace.id });
+          workspaceMemberships.add(workspaceMembership);
+        });
+
+        Backbone.sync('create', workspaceMemberships, {
+          success: function () {
+            that.collection.add(users);
+          }
+        });
+        // Backbone.sync("create", workspaceMemberships, {
+        //
+        // });
+      }
     });
   },
 

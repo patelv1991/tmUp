@@ -8,6 +8,6 @@ Rails.application.routes.draw do
     resource :users, only: [:show]
     resources :workspaces
     resources :projects
-    resources :workspace_membership
+    resource :workspace_memberships, only: [:create]
   end
 end
