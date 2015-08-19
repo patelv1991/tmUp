@@ -2,7 +2,7 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
   template: JST['workspaces/form'],
 
   events: {
-    'submit form': 'createNewWorkspace',
+    'submit form': 'initiateNewWorkspaceEvent',
     'input #workspace-title': 'checkForTitle',
     'click .m-background': 'removeBtn',
     'click .close': 'removeBtn',
@@ -45,9 +45,29 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
     }
   },
 
-  createNewWorkspace: function (event) {
+  initiateNewWorkspaceEvent: function (event) {
     event.preventDefault();
     var formData = $(event.currentTarget).serializeJSON();
+    this.checkUsersExistance(formData);
+  },
+
+  checkUsersExistance: function (formData) {
+    var emails = this.parsedEmails;
+    users = new TmUp.Collections.WorkTeam();
+    users.fetch({
+      data: { emails: emails },
+      success: function (users) {
+        this.createNewWorkspace(formData);
+      }.bind(this),
+
+      error: function (users, serverResp) {
+        this.noUsersFoundError(users, serverResp);
+        this._usersExists = false;
+      }.bind(this)
+    });
+  },
+
+  createNewWorkspace: function (formData) {
     this.model.save(formData, {
       success: function (workspace) {
         this.collection.add(workspace);
@@ -58,7 +78,22 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
     });
   },
 
+  noUsersFoundError: function (users, serverResp) {
+    if (serverResp.status === 422 && this.$el.find(".alert-danger").length === 0) {
+      var $errorDiv = $('<div class="alert alert-danger" role="alert">');
+      var failedEmails = serverResp.responseJSON.join(", ");
+      $errorDiv.append("<p><strong>" + failedEmails + "</strong> could " +
+                       "not be found. Please make sure that user(s) have" +
+                       "TmUp account(s). </p>");
+      $errorDiv.append("<p>Try using <strong>example@example.com</strong>" +
+                       " for testing purposes.</p>");
+      this.$el.find('form').prepend($errorDiv);
+    }
+  },
+
   validateEmails: function (event) {
+    this.$el.find('.alert-danger') && event.type === "input" &&
+              this.$el.find('.alert').remove();
     var emails = $('textarea#work-team').serializeJSON();
     if (emails.user.emails === "") {
       if (event.type !== "mouseleave") {

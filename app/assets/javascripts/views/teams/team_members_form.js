@@ -69,8 +69,8 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
   },
 
   findUsersAndCreateCollection: function () {
-    emails = this.parsedEmails;
-    users = new TmUp.Collections.WorkTeam();
+    var emails = this.parsedEmails;
+    var users = new TmUp.Collections.WorkTeam();
     users.fetch({
       data: { emails: emails },
       success: function (users) {
@@ -118,7 +118,7 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
       var $errorDiv = $('<div class="alert alert-danger" role="alert">');
       var failedEmails = serverResp.responseJSON.join(", ");
       $errorDiv.append("<p><strong>" + failedEmails + "</strong> could " +
-                       "not be found. Please ensure that user(s) have" +
+                       "not be found. Please make sure that user(s) have" +
                        "TmUp account(s). </p>");
       $errorDiv.append("<p>Try using <strong>example@example.com</strong>" +
                        " for testing purposes.</p>");
@@ -214,7 +214,7 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
   },
 
   onRender: function () {
-    $('#workspace-team').focus();
+    $('#work-team').focus();
   },
 
   removeEmailError: function (selector) {
