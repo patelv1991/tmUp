@@ -5,21 +5,22 @@ TmUp.Views.NavShow = Backbone.View.extend({
     this.workspaces = this.collection.fetch();
     this.router = options.router;
     this.listenTo(this.collection, 'sync', this.render);
-    this.listenTo(this.router, "route", this.handleRoute);
+    // this.listenTo(this.router, "route", this.handleRoute);
   },
 
   events: {
     'click .log-out':'logOut',
-    'click .new-workspace': 'addNewWorkspace'
+    'click .new-workspace': 'createNewWorkspace'
   },
 
-  handleRoute: function (routeName, params) {
-    // if (params[0] !== null) {
-    //   this.workspaceId = parseInt(params[0]);
-    // }
-    // this.$el.find(".active").removeClass("active");
-    // this.$el.find("." + routeName).addClass("active");
-  },
+  // handleRoute: function (routeName, params) {
+  //   debugger
+  //   if (params[0] !== null) {
+  //     this.workspaceId = parseInt(params[0]);
+  //   }
+  //   this.$el.find(".active").removeClass("active");
+  //   this.$el.find("." + routeName).addClass("active");
+  // },
 
   logOut: function (event) {
     $.ajax({
@@ -33,7 +34,7 @@ TmUp.Views.NavShow = Backbone.View.extend({
     });
   },
 
-  addNewWorkspace: function () {
+  createNewWorkspace: function () {
     modal = new TmUp.Views.NewWorkspaceForm({
       collection: this.collection,
       model: new TmUp.Models.Workspace()

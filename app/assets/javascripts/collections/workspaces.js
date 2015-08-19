@@ -4,7 +4,7 @@ TmUp.Collections.Workspaces = Backbone.Collection.extend({
 
   getOrFetch: function (id) {
     var collection = this;
-    workspace = collection.get(id);
+    var workspace = collection.get(id);
 
     if (workspace) {
       workspace.fetch();

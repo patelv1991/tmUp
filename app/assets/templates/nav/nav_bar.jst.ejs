@@ -22,18 +22,19 @@
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
+      <a href="#">Home</a>
       <ul class="nav navbar-nav navbar-right">
 
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="nav-current-workspace-title"></span> <span class="user_initials"><%= TmUp.CURRENT_USER.initials %></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="nav-current-workspace-title"></span> <span class="user_initials"><%= TmUp.CURRENT_USER.initials %></span></a>
           <ul class="dropdown-menu">
             <% workspaces.each(function (workspace) { %>
               <li><a href="#/workspaces/<%= workspace.id %>" class=dropdown-item><%= workspace.escape("title") %></a></li>
             <% }) %>
             <li role="separator" class="divider"></li>
-            <li class='new-workspace'><a href="#">Create New Workspace</a></li>
+            <li class='new-workspace'><a>Create New Workspace</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#" class='log-out'>Log Out</a></li>
+            <li><a class='log-out'>Log Out</a></li>
           </ul>
         </li>
       </ul>

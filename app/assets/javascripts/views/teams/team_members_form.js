@@ -181,9 +181,16 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
       var $tr = $('<tr id=' + member.id + '></tr>');
       var $firstTd = $('<td>');
       var $secondTd = $('<td>');
-      var $thirdTd = $('<td><button type="button" class="btn btn-xs ' +
-                       'btn-danger" data-user-id=' + member.id +
-                       ' data-workspace-id=' + workspace.id + '>Remove</button></td>');
+      var $thirdTd;
+      if (member.id === TmUp.CURRENT_USER.id) {
+        $thirdTd = $('<td><button type="button" class="btn btn-xs ' +
+                     'btn-danger" data-user-id=' + member.id +
+                     ' data-workspace-id=' + workspace.id + '>Leave Workspace</button></td>');
+      } else {
+        $thirdTd = $('<td><button type="button" class="btn btn-xs ' +
+                     'btn-danger" data-user-id=' + member.id +
+                     ' data-workspace-id=' + workspace.id + '>Remove</button></td>');
+      }
       $tr.append($firstTd.html(member.escape('fname') + " " + member.escape('lname')));
       $tr.append($secondTd.html(member.escape('email')));
       $tr.append($thirdTd);

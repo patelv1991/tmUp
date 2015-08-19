@@ -2,6 +2,7 @@ TmUp.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
     this.workspaces = options.workspaces;
+    window.testingSpace = this.workspaces;
   },
 
   routes: {

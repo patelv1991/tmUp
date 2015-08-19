@@ -48,7 +48,6 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
   createNewWorkspace: function (event) {
     event.preventDefault();
     var formData = $(event.currentTarget).serializeJSON();
-
     this.model.save(formData, {
       success: function (workspace) {
         this.collection.add(workspace);
@@ -96,7 +95,7 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
   },
 
   render: function () {
-    
+
     // this.enableButton('button.btn-default');
     this.$el.html(this.template());
     this.onRender();

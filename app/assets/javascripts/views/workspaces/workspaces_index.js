@@ -17,7 +17,7 @@ TmUp.Views.WorkspacesIndex = Backbone.View.extend({
 
   createNewWorkspace: function () {
     modal = new TmUp.Views.NewWorkspaceForm({
-      collection: new TmUp.Collections.Workspaces(),
+      collection: this.collection,
       model: new TmUp.Models.Workspace()
     });
     $('body').append(modal.$el);
