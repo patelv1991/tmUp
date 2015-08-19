@@ -154,23 +154,34 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
     var member = this.model.workTeam().findWhere({
       id: userId
     });
+    var route;
+    if (this.checkUser(userId)) {
+      route = true;
+    }
 
     membership.destroy({
       success: function () {
         this.model.workTeam().remove(member);
         this.model.allMemberships().remove(membership);
         this.$el.find('tr#' + userId).remove();
-        if (this.model.allMemberships().length === 0) {
-          // Cookies.remove('current-workspace-id');
+        if (route) {
           Backbone.history.navigate('', { trigger: true });
           this.remove();
         }
+        // if (this.model.allMemberships().length === 0) {
+        //   // Cookies.remove('current-workspace-id');
+        // }
       }.bind(this)
     });
 
 
     // works/pace.
     // this.renderTeamMembers();
+  },
+
+  checkUser: function (userId) {
+    u = this.model.workTeam().findWhere({id: userId});
+    return u.id == TmUp.CURRENT_USER.id;
   },
 
   render: function () {
