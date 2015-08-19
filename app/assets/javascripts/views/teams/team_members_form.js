@@ -162,7 +162,7 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
 
     if (workspace.allMemberships().length === 0) {
       // Cookies.remove('current-workspace-id');
-      Backbone.history.navigate('workspaces', { trigger: true });
+      Backbone.history.navigate('', { trigger: true });
       this.remove();
     }
     // works/pace.

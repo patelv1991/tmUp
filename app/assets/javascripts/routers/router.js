@@ -5,16 +5,16 @@ TmUp.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    "": "root",
+    "": "index",
     "workspaces/:id": "show",
-    "workspaces": "index"
+    // "workspaces": "index"
   },
 
   index: function () {
     this.workspaces.fetch();
-      var view = new TmUp.Views.WorkspacesIndex({
-        collection: this.workspaces
-      });
+    var view = new TmUp.Views.WorkspacesIndex({
+      collection: this.workspaces
+    });
     this._swapView(view);
   },
 
@@ -27,22 +27,22 @@ TmUp.Routers.Router = Backbone.Router.extend({
     modal.render();
   },
 
-  root: function () {
-    if (TmUp.checkCurrentUser()) {
-      this.show(Cookies.get('current-workspace-id'));
-    } else {
-      this.workspaces.fetch({
-        success: function (collection) {
-          if (collection.length > 0) {
-            this.show(collection.first().id);
-            // $('.nav-current-workspace-title').html(collection.first().escape('title'));
-          } else {
-            this.createNewWorkspace();
-          }
-        }.bind(this)
-      });
-    }
-  },
+  // root: function () {
+  //   if (TmUp.checkCurrentUser()) {
+  //     this.show(Cookies.get('current-workspace-id'));
+  //   } else {
+  //     this.workspaces.fetch({
+  //       success: function (collection) {
+  //         if (collection.length > 0) {
+  //           this.show(collection.first().id);
+  //           // $('.nav-current-workspace-title').html(collection.first().escape('title'));
+  //         } else {
+  //           this.createNewWorkspace();
+  //         }
+  //       }.bind(this)
+  //     });
+  //   }
+  // },
 
   show: function (id) {
     var workspace = this.workspaces.getOrFetch(id);

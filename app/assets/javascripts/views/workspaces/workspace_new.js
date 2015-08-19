@@ -96,7 +96,7 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
   },
 
   render: function () {
-    debugger
+    
     // this.enableButton('button.btn-default');
     this.$el.html(this.template());
     this.onRender();
