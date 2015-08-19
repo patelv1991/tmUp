@@ -155,16 +155,20 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
       id: userId
     });
 
-    this.model.workTeam().remove(member);
-    this.$el.find('tr#' + userId).remove();
-    membership.destroy();
-    this.model.allMemberships().remove(membership);
+    membership.destroy({
+      success: function () {
+        this.model.workTeam().remove(member);
+        this.model.allMemberships().remove(membership);
+        this.$el.find('tr#' + userId).remove();
+        if (this.model.allMemberships().length === 0) {
+          // Cookies.remove('current-workspace-id');
+          Backbone.history.navigate('', { trigger: true });
+          this.remove();
+        }
+      }.bind(this)
+    });
 
-    if (this.model.allMemberships().length === 0) {
-      // Cookies.remove('current-workspace-id');
-      Backbone.history.navigate('', { trigger: true });
-      this.remove();
-    }
+
     // works/pace.
     // this.renderTeamMembers();
   },
