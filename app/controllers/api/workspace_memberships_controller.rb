@@ -28,8 +28,19 @@ class Api::WorkspaceMembershipsController < ApplicationController
   end
 
   def destroy
-    @membership = UserWorkspace.find(params[:id])
-    @membership.destroy if @membership
+    @membership = UserWorkspace.includes(workspace: :users).find(params[:id])
+    if @membership
+      @membership.destroy
+      workspace_members = @membership.workspace.users
+
+      # if there is only one user in the workspace, it destroys the workspace as well
+      if (workspace_members.length == 1) &&
+              workspace_members[0].id == current_user.id
+        @membership.workspace.destroy
+      end
+    end
+
+
     render json: @membership
   end
 

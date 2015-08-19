@@ -52,17 +52,18 @@ class Api::WorkspacesController < ApplicationController
     # end
 
   end
-
-  def destroy
-    @workspace = current_user.workspaces.includes(:users).find(params[:id])
-    if @workspace.users.length <= 1
-      @workspace.destroy
-    else
-      membership = @workspace.user_workspaces.select { |m| m.user_id ==
-            current_user.id && m.workspace_id == @workspace.id }
-      membership.first.destroy
-    end
-  end
+  # Destroy event is being handled from the workspace_membership_controller
+  
+  # def destroy
+  #   @workspace = current_user.workspaces.includes(:users).find(params[:id])
+  #   if @workspace.users.length <= 1
+  #     @workspace.destroy
+  #   else
+  #     membership = @workspace.user_workspaces.select { |m| m.user_id ==
+  #           current_user.id && m.workspace_id == @workspace.id }
+  #     membership.first.destroy
+  #   end
+  # end
 
   def update
     @workspace = current_user.workspaces.find(params[:id])
