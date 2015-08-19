@@ -53,29 +53,38 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
 
   checkUsersExistance: function (formData) {
     var emails = this.parsedEmails;
-    users = new TmUp.Collections.WorkTeam();
-    users.fetch({
-      data: { emails: emails },
-      success: function (users) {
-        this.createNewWorkspace(formData);
-      }.bind(this),
+    if (emails === undefined || emails.length === 0) {
+      this.createNewWorkspace([], formData);
+    } else {
+      users = new TmUp.Collections.WorkTeam();
+      users.fetch({
+        data: { emails: emails },
+        success: function (users) {
+          this.createNewWorkspace(emails, formData);
+        }.bind(this),
 
-      error: function (users, serverResp) {
-        this.noUsersFoundError(users, serverResp);
-        this._usersExists = false;
-      }.bind(this)
-    });
+        error: function (users, serverResp) {
+          this.noUsersFoundError(users, serverResp);
+          this._usersExists = false;
+        }.bind(this)
+      });
+    }
   },
 
-  createNewWorkspace: function (formData) {
-    this.model.save(formData, {
-      success: function (workspace) {
-        this.collection.add(workspace);
-        this.remove();
-        var route = '/workspaces/' + workspace.id;
-        Backbone.history.navigate(route, { trigger: true });
-      }.bind(this)
-    });
+  createNewWorkspace: function (emails, formData) {
+    if (_.includes(emails, TmUp.CURRENT_USER.email)) {
+      this.throwSelfEmailError();
+      this.parsedEmails = [];
+    } else {
+      this.model.save(formData, {
+        success: function (workspace) {
+          this.collection.add(workspace);
+          this.remove();
+          var route = '/workspaces/' + workspace.id;
+          Backbone.history.navigate(route, { trigger: true });
+        }.bind(this)
+      });
+    }
   },
 
   noUsersFoundError: function (users, serverResp) {
@@ -92,7 +101,7 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
   },
 
   validateEmails: function (event) {
-    this.$el.find('.alert-danger') && event.type === "input" &&
+    this.$el.find('.alert') && event.type === "input" &&
               this.$el.find('.alert').remove();
     var emails = $('textarea#work-team').serializeJSON();
     if (emails.user.emails === "") {
@@ -112,6 +121,7 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
     emails.forEach(function (email) {
       email = email.trim();
       if (regex.test(email)) {
+        // this.checkForSelfEmail(email);
         this.parsedEmails.push(email.trim());
         this.checkForTitle();
         this.removeEmailError();
@@ -123,6 +133,19 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
       }
     }.bind(this));
 
+  },
+
+  checkForSelfEmail: function (email) {
+    if (email === TmUp.CURRENT_USER.email) {
+      this.throwSelfEmailError();
+    }
+  },
+
+  throwSelfEmailError: function () {
+    var $errorDiv = $('<div class="alert alert-warning" role="alert">');
+    $errorDiv.append("<p> You don't need to include your own email.</p>");
+    this.$el.find('form').prepend($errorDiv);
+    // this.parsedEmails = [];
   },
 
   removeEmailError: function () {

@@ -93,10 +93,10 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
       workspaceMemberships.add(workspaceMembership);
     }.bind(this));
     this.model.allMemberships().add(workspaceMemberships.models);
-    this.saveWorkspaceMemberships(workspaceMemberships);
+    this.saveWorkspaceMemberships(users, workspaceMemberships);
   },
 
-  saveWorkspaceMemberships: function (objects) {
+  saveWorkspaceMemberships: function (users, objects) {
     Backbone.sync('create', objects, {
       success: function () {
         users.forEach(function (user) {
