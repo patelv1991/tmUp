@@ -15,6 +15,7 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
 
   initialize: function () {
     $(document).on('keyup', this.handleKey.bind(this));
+    // this.listenTo(this.collection, 'remove', this.collection.fetch);
   },
 
   handleKey: function (event) {
@@ -91,7 +92,7 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
       });
       workspaceMemberships.add(workspaceMembership);
     });
-
+    workspace.allMemberships().add(workspaceMemberships.models);
     this.saveWorkspaceMemberships(this, workspaceMemberships);
   },
 
@@ -99,7 +100,9 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
     Backbone.sync('create', objects, {
       success: function () {
         users.forEach(function (user) {
-          that.collection.add(user);
+          workspace.workTeam().add(user);
+          workspace.fetch();
+          // that.collection.add(user);
         });
         that.remove();
       },
@@ -143,7 +146,27 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
 
     var workspaceId = $(event.currentTarget).data('workspace-id');
     var userId = $(event.currentTarget).data('user-id');
-});
+
+    var membership = workspace.allMemberships().findWhere({
+      user_id: userId,
+      workspace_id: workspaceId
+    });
+    var member = workspace.workTeam().findWhere({
+      id: userId
+    });
+
+    workspace.workTeam().remove(member);
+    this.$el.find('tr#' + userId).remove();
+    membership.destroy();
+    workspace.allMemberships().remove(membership);
+
+    if (workspace.allMemberships().length === 0) {
+      // Cookies.remove('current-workspace-id');
+      Backbone.history.navigate('workspaces', { trigger: true });
+      this.remove();
+    }
+    // works/pace.
+    // this.renderTeamMembers();
   },
 
   render: function () {
@@ -155,16 +178,15 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
 
   renderTeamMembers: function () {
     this.collection.forEach(function (member) {
-      var $tr = $('<tr>');
+      var $tr = $('<tr id=' + member.id + '></tr>');
       var $firstTd = $('<td>');
       var $secondTd = $('<td>');
-      var $thirdTd = $('<td><button type="button" class="btn btn-xs btn-danger">Remove</button></td>');
-      $thirdTd.data('member-id', member.id);
-      $thirdTd.data('workspace-id', workspace.id);
+      var $thirdTd = $('<td><button type="button" class="btn btn-xs ' +
+                       'btn-danger" data-user-id=' + member.id +
+                       ' data-workspace-id=' + workspace.id + '>Remove</button></td>');
       $tr.append($firstTd.html(member.escape('fname') + " " + member.escape('lname')));
       $tr.append($secondTd.html(member.escape('email')));
       $tr.append($thirdTd);
-
       this.$el.find('table').append($tr);
     }.bind(this));
   },

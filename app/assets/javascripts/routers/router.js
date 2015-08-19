@@ -5,8 +5,17 @@ TmUp.Routers.Router = Backbone.Router.extend({
   },
 
   routes: {
-    "": "index",
-    "workspaces/:id": "show"
+    "": "root",
+    "workspaces/:id": "show",
+    "workspaces": "index"
+  },
+
+  index: function () {
+    this.workspaces.fetch();
+      var view = new TmUp.Views.WorkspacesIndex({
+        collection: this.workspaces
+      });
+    this._swapView(view);
   },
 
   createNewWorkspace: function () {
@@ -18,7 +27,7 @@ TmUp.Routers.Router = Backbone.Router.extend({
     modal.render();
   },
 
-  index: function () {
+  root: function () {
     if (TmUp.checkCurrentUser()) {
       this.show(Cookies.get('current-workspace-id'));
     } else {

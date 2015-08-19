@@ -1,3 +1,3 @@
-TmUp.Models.workspaceMembership = Backbone.Collection.extend({
+TmUp.Models.workspaceMembership = Backbone.Model.extend({
   urlRoot: 'api/workspace_memberships'
 });

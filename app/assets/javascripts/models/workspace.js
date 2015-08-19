@@ -1,6 +1,6 @@
 TmUp.Models.Workspace = Backbone.Model.extend({
   urlRoot: 'api/workspaces',
-  
+
   projects: function () {
     if (!this._projects) {
       this._projects = new TmUp.Collections.Projects([], { workspace: this });
@@ -25,6 +25,14 @@ TmUp.Models.Workspace = Backbone.Model.extend({
     return this._myTasks;
   },
 
+  allMemberships: function () {
+    if (!this._allMemberships) {
+      this._allMemberships = new TmUp.Collections.workspaceMemberships([], { workspace: this });
+    }
+
+    return this._allMemberships;
+  },
+
   parse: function (response) {
     if (response.projects) {
       this.projects().set(response.projects, { parse: true });
@@ -41,6 +49,10 @@ TmUp.Models.Workspace = Backbone.Model.extend({
       delete response.my_tasks;
     }
 
+    if (response.workspace_memberships) {
+      this.allMemberships().set(response.workspace_memberships, { parse: true });
+      delete response.workspace_memberships;
+    }
     return response;
   }
 });

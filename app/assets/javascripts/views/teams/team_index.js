@@ -7,19 +7,23 @@ TmUp.Views.TeamIndex = Backbone.CompositeView.extend({
 
   initialize: function () {
     this.listenTo(this.collection, 'sync add', this.render);
-    this.listenTo(this.collection, 'add', this.addMember);
+    this.listenTo(this.collection, 'add', this.addMemberSubView);
 
     this.collection.each(function (member) {
-      this.addMember(member);
+      this.addMemberSubView(member);
     }.bind(this));
   },
 
-  addMember: function (member) {
+  addMemberSubView: function (member) {
     var view = new TmUp.Views.TeamIndexItem({
       model: member
     });
     this.addSubview('.team-members', view);
   },
+  // 
+  // removeMemberSubView: function (member) {
+  //   var view
+  // },
 
   render: function () {
     this.$el.html(this.template());

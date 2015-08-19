@@ -2,7 +2,7 @@ TmUp.Views.WorkspacesIndex = Backbone.View.extend({
   template: JST['workspaces/index'],
 
   initialize: function () {
-    this.listenTo(this.collection, 'sync', this.render);
+    this.listenTo(this.collection, 'sync remove', this.render);
   },
 
   render: function () {

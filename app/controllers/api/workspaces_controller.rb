@@ -38,7 +38,7 @@ class Api::WorkspacesController < ApplicationController
     # w.map {|space| space.projects.map(&:tasks)}.flatten
 
 
-    @workspace = current_user.workspaces.includes(:users, projects: :tasks).find_by_id(params[:id])
+    @workspace = current_user.workspaces.includes(:users, :user_workspaces, projects: :tasks).find_by_id(params[:id])
 
     if @workspace
       render :show

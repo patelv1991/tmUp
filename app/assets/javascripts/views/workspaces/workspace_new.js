@@ -16,6 +16,7 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
 
   initialize: function () {
     $(document).on('keyup', this.handleKey.bind(this));
+    // this.listenTo(this.collection, 'sync', this.render);
   },
 
   handleKey: function (event) {
@@ -95,6 +96,8 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
   },
 
   render: function () {
+    debugger
+    // this.enableButton('button.btn-default');
     this.$el.html(this.template());
     this.onRender();
     return this;

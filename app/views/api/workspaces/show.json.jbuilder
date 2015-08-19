@@ -23,11 +23,14 @@ end
 
 json.projects @workspace.projects do |project|
   json.partial! 'api/projects/project', project: project
-
 end
 
 json.my_tasks @workspace.projects.map(&:tasks).flatten do |task|
   if task.assignee_id == current_user.id
     json.partial! 'api/tasks/task', task: task
   end
+end
+
+json.workspace_memberships @workspace.user_workspaces do |membership|
+  json.extract! membership, :id, :user_id, :workspace_id, :created_at, :updated_at
 end
