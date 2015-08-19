@@ -88,24 +88,24 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
     users.forEach(function (user) {
       var workspaceMembership = new TmUp.Models.workspaceMembership({
         user_id: user.id,
-        workspace_id: workspace.id
+        workspace_id: this.model.id
       });
       workspaceMemberships.add(workspaceMembership);
-    });
-    workspace.allMemberships().add(workspaceMemberships.models);
-    this.saveWorkspaceMemberships(this, workspaceMemberships);
+    }.bind(this));
+    this.model.allMemberships().add(workspaceMemberships.models);
+    this.saveWorkspaceMemberships(workspaceMemberships);
   },
 
-  saveWorkspaceMemberships: function (that, objects) {
+  saveWorkspaceMemberships: function (objects) {
     Backbone.sync('create', objects, {
       success: function () {
         users.forEach(function (user) {
-          workspace.workTeam().add(user);
-          workspace.fetch();
+          this.model.workTeam().add(user);
+          this.model.fetch();
           // that.collection.add(user);
-        });
-        that.remove();
-      },
+        }.bind(this));
+        this.remove();
+      }.bind(this),
 
       error: function (serverResp) {
         this.usersAlreadyInWorkspaceError(serverResp);
@@ -147,20 +147,20 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
     var workspaceId = $(event.currentTarget).data('workspace-id');
     var userId = $(event.currentTarget).data('user-id');
 
-    var membership = workspace.allMemberships().findWhere({
+    var membership = this.model.allMemberships().findWhere({
       user_id: userId,
       workspace_id: workspaceId
     });
-    var member = workspace.workTeam().findWhere({
+    var member = this.model.workTeam().findWhere({
       id: userId
     });
 
-    workspace.workTeam().remove(member);
+    this.model.workTeam().remove(member);
     this.$el.find('tr#' + userId).remove();
     membership.destroy();
-    workspace.allMemberships().remove(membership);
+    this.model.allMemberships().remove(membership);
 
-    if (workspace.allMemberships().length === 0) {
+    if (this.model.allMemberships().length === 0) {
       // Cookies.remove('current-workspace-id');
       Backbone.history.navigate('', { trigger: true });
       this.remove();
@@ -170,7 +170,7 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
   },
 
   render: function () {
-    this.$el.html(this.template({ workspace: workspace }));
+    this.$el.html(this.template({ workspace: this.model }));
     this.renderTeamMembers();
     this.onRender();
     return this;
@@ -185,11 +185,11 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
       if (member.id === TmUp.CURRENT_USER.id) {
         $thirdTd = $('<td><button type="button" class="btn btn-xs ' +
                      'btn-danger" data-user-id=' + member.id +
-                     ' data-workspace-id=' + workspace.id + '>Leave Workspace</button></td>');
+                     ' data-workspace-id=' + this.model.id + '>Leave Workspace</button></td>');
       } else {
         $thirdTd = $('<td><button type="button" class="btn btn-xs ' +
                      'btn-danger" data-user-id=' + member.id +
-                     ' data-workspace-id=' + workspace.id + '>Remove</button></td>');
+                     ' data-workspace-id=' + this.model.id + '>Remove</button></td>');
       }
       $tr.append($firstTd.html(member.escape('fname') + " " + member.escape('lname')));
       $tr.append($secondTd.html(member.escape('email')));

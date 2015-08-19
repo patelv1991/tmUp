@@ -6,7 +6,7 @@ TmUp.Views.WorkspacesShow = Backbone.CompositeView.extend({
     this.workTeam = this.model.workTeam();
     this.myTasks = this.model.myTasks();
     this.allMemberships = this.model.allMemberships();
-
+    this.listenTo(this.model, 'sync', this.renderTeamMembers);
     this.listenTo(this.model, 'sync', this.render);
     // this.listenTo(this.projects, 'add', this.renderProjectIndexSubview);
     // this.listenTo(this.workTeam, 'sync', this.renderTeamMembers);
@@ -24,7 +24,7 @@ TmUp.Views.WorkspacesShow = Backbone.CompositeView.extend({
   renderTeamMembers: function () {
     var view = new TmUp.Views.TeamIndex({
       collection: this.workTeam,
-      workspace: this.model
+      model: this.model
     });
     this.addSubview('#work-team-container', view);
   },
@@ -37,6 +37,7 @@ TmUp.Views.WorkspacesShow = Backbone.CompositeView.extend({
   },
 
   render: function () {
+    // this.remove();
     var content = this.template({ workspace: this.model });
     this.$el.html(content);
     this.renderProjectIndexSubview();
