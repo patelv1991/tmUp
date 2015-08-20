@@ -5,7 +5,8 @@ TmUp.Views.NavShow = Backbone.View.extend({
     this.workspaces = this.collection.fetch();
     this.router = options.router;
     this.listenTo(this.collection, 'sync', this.render);
-    // this.listenTo(this.router, "route", this.handleRoute);
+    this.listenTo(this.collection, 'sync', this.renderActiveWorkspaceTitle);
+    this.listenTo(this.router, "route", this.getRouteNameAndParams);
   },
 
   events: {
@@ -13,6 +14,22 @@ TmUp.Views.NavShow = Backbone.View.extend({
     'click .new-workspace': 'createNewWorkspace'
   },
 
+  renderActiveWorkspaceTitle: function (id) {
+    workspace = this.collection.get(id);
+    if (this._routeName === 'show') {
+      this.$('.nav-current-workspace-title').html(workspace.escape('title'));
+    }
+  },
+
+  getRouteNameAndParams: function (routeName, params) {
+    // debugger
+    this._routeName = routeName;
+    this._workspaceId = parseInt(params[0]);
+
+    if (routeName === "show" && params[0] !== null) {
+      this.renderActiveWorkspaceTitle(this._workspaceId);
+    }
+  },
   // handleRoute: function (routeName, params) {
   //   debugger
   //   if (params[0] !== null) {
@@ -48,14 +65,14 @@ TmUp.Views.NavShow = Backbone.View.extend({
       workspaces: this.collection
     });
     this.$el.html(content);
-    this.renderActiveWorkspaceTitle();
+    // this.renderActiveWorkspaceTitle();
     return this;
   },
 
-  renderActiveWorkspaceTitle: function () {
-    if (this.collection.length > 0) {
-      this.$('.nav-current-workspace-title').html(Cookies.get('current-workspace-title'));
-    }
-  }
+  // renderActiveWorkspaceTitle: function () {
+  //   if (this.collection.length > 0) {
+  //     this.$('.nav-current-workspace-title').html(Cookies.get('current-workspace-title'));
+  //   }
+  // }
 
 });

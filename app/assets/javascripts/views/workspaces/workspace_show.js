@@ -6,6 +6,7 @@ TmUp.Views.WorkspacesShow = Backbone.CompositeView.extend({
     this.workTeam = this.model.workTeam();
     this.myTasks = this.model.myTasks();
     this.allMemberships = this.model.allMemberships();
+    // this.listenTo(this.model, 'sync', this.renderWorkspaceTitleInNav);
     this.listenTo(this.model, 'sync', this.renderTeamMembers);
     this.listenTo(this.model, 'sync', this.render);
     // this.listenTo(this.projects, 'add', this.renderProjectIndexSubview);
@@ -48,11 +49,15 @@ TmUp.Views.WorkspacesShow = Backbone.CompositeView.extend({
     this.renderProjectIndexSubview();
     this.renderTeamMembers();
     this.renderMyTasks();
+    // this.renderActiveWorkspaceTitle();
     Cookies.set('current-workspace-id', this.model.id);
     Cookies.set('current-workspace-title', this.model.escape('title'));
-    $('.nav-current-workspace-title').html(this.model.escape('title'));
     return this;
   },
 
+  // renderActiveWorkspaceTitle: function () {
+  //   debugger
+  //   $('.nav-current-workspace-title').html(this.model.escape('title'));
+  // }
 
 });
