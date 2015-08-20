@@ -14,7 +14,7 @@ TmUp.Views.NavShow = Backbone.View.extend({
     'click .new-workspace': 'createNewWorkspace'
   },
 
-  renderActiveWorkspaceTitle: function (workspace) {
+  ActiveWorkspaceTitle: function (workspace) {
       this._workspaceTitle = workspace.escape('title');
   },
 
@@ -24,7 +24,7 @@ TmUp.Views.NavShow = Backbone.View.extend({
     this._workspaceId = parseInt(params[0]);
 
     if (routeName === "show" && params[0] !== null) {
-      this.collection.getOrFetch(params[0], this.renderActiveWorkspaceTitle.bind(this));
+      this.collection.getOrFetch(params[0], this.ActiveWorkspaceTitle.bind(this));
     }
   },
   // handleRoute: function (routeName, params) {
@@ -62,11 +62,19 @@ TmUp.Views.NavShow = Backbone.View.extend({
       workspaces: this.collection
     });
     this.$el.html(content);
-    this.$('.nav-current-workspace-title').html(this._workspaceTitle);
-    // this.renderActiveWorkspaceTitle();
+    this.renderActiveWorkspaceTitle();
+    this.addRandomColorToInitials();
     return this;
   },
 
+  renderActiveWorkspaceTitle: function () {
+    this.$('.nav-current-workspace-title').html(this._workspaceTitle);
+  },
+
+  addRandomColorToInitials: function () {
+    var randomColor = Math.floor(Math.random()*16777215).toString(16);
+    this.$('.user-initials').css({"background-color": "#" + randomColor});
+  }
   // renderActiveWorkspaceTitle: function () {
   //   if (this.collection.length > 0) {
   //     this.$('.nav-current-workspace-title').html(Cookies.get('current-workspace-title'));
