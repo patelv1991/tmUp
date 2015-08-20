@@ -35,11 +35,11 @@ TmUp.Views.WorkspacesShow = Backbone.CompositeView.extend({
       collection: this.myTasks,
       model: this.model
     });
-    $('body').find('#left-main').html(view.$el);
-    view.render();
+    // $('body').find('#left-main').html(view.$el);
+    // view.render();
     //     this.$sideEl.html(view.$el);
     // debugger
-    // this.addSubview('#my-tasks-container', view);
+    this.addSubview('#my-tasks-container', view);
   },
 
   render: function () {
