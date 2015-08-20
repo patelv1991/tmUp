@@ -5,6 +5,7 @@ TmUp.Views.NavShow = Backbone.View.extend({
     this.workspaces = this.collection.fetch();
     this.router = options.router;
     this.listenTo(this.collection, 'sync', this.render);
+    this.listenTo(this.collection, 'sync', this.addRandomColorToInitials);
     // this.listenTo(this.collection, 'sync', this.renderActiveWorkspaceTitle);
     this.listenTo(this.router, "route", this.getRouteNameAndParams);
   },
@@ -63,7 +64,7 @@ TmUp.Views.NavShow = Backbone.View.extend({
     });
     this.$el.html(content);
     this.renderActiveWorkspaceTitle();
-    this.addRandomColorToInitials();
+    // this.addRandomColorToInitials();
     return this;
   },
 
@@ -72,8 +73,13 @@ TmUp.Views.NavShow = Backbone.View.extend({
   },
 
   addRandomColorToInitials: function () {
-    var randomColor = Math.floor(Math.random()*16777215).toString(16);
-    this.$('.user-initials').css({"background-color": "#" + randomColor});
+    var x = Math.round(0xffffff * Math.random()).toString(16);
+    var y = (6-x.length);
+    var z = '000000';
+    var z1 = z.substring(0,y);
+    var randomColor = "#" + z1 + x;
+
+    this.$('.user-initials').css({"background-color": randomColor});
   }
   // renderActiveWorkspaceTitle: function () {
   //   if (this.collection.length > 0) {
