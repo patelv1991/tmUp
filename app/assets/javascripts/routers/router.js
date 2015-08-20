@@ -1,6 +1,9 @@
 TmUp.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
-    this.$rootEl = options.$rootEl;
+    this.$landingEl = options.$landingEl;
+    this.$sideEl = options.$sideEl;
+    this.$leftMainEl = options.$leftMainEl;
+    this.$rightMainEl = options.$rightMainEl;
     this.workspaces = options.workspaces;
     window.testingSpace = this.workspaces;
   },
@@ -16,17 +19,20 @@ TmUp.Routers.Router = Backbone.Router.extend({
     var view = new TmUp.Views.WorkspacesIndex({
       collection: this.workspaces
     });
-    this._swapView(view);
+    this.currentSideView && this.currentSideView.remove();
+    this.currentLeftMainView && this.currentLeftMainView.remove();
+    this.currentRightMainView && this.currentRightMainView.remove();
+    this._swapLandingView(view);
   },
 
-  createNewWorkspace: function () {
-    modal = new TmUp.Views.NewWorkspaceForm({
-      collection: this.workspaces,
-      model: new TmUp.Models.Workspace()
-    });
-    $('body').append(modal.$el);
-    modal.render();
-  },
+  // createNewWorkspace: function () {
+  //   modal = new TmUp.Views.NewWorkspaceForm({
+  //     collection: this.workspaces,
+  //     model: new TmUp.Models.Workspace()
+  //   });
+  //   $('body').append(modal.$el);
+  //   modal.render();
+  // },
 
   // root: function () {
   //   if (TmUp.checkCurrentUser()) {
@@ -51,14 +57,35 @@ TmUp.Routers.Router = Backbone.Router.extend({
     var WorkspacesShowView = new TmUp.Views.WorkspacesShow({
       model: workspace,
     });
-    this._swapView(WorkspacesShowView);
+    this.currentLandingView && this.currentLandingView.remove();
+    this._swapSideView(WorkspacesShowView);
   },
 
+  _swapLandingView: function (view) {
+    this.currentLandingView && this.currentLandingView.remove();
+    this.currentLandingView = view;
+    this.$sideEl.html(view.$el);
+    view.render();
+  },
 
-  _swapView: function (view) {
-    this.currentView && this.currentView.remove();
-    this.currentView = view;
-    this.$rootEl.html(view.$el);
+  _swapSideView: function (view) {
+    this.currentSideView && this.currentSideView.remove();
+    this.currentSideView = view;
+    this.$sideEl.html(view.$el);
+    view.render();
+  },
+
+  _swapLeftMainView: function (view) {
+    this.currentLeftMainView && this.currentLeftMainView.remove();
+    this.currentLeftMainView = view;
+    this.$leftMainEl.html(view.$el);
+    view.render();
+  },
+
+  _swapRightMainView: function (view) {
+    this.currentRightMainView && this.currentRightMainView.remove();
+    this.currentRightMainView = view;
+    this.$rightMainEl.html(view.$el);
     view.render();
   }
 

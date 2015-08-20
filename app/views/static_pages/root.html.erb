@@ -1,12 +1,19 @@
+<div id="wrapper">
+  <div id="navbar"></div>
+  <div id="landing-page"></div>
+  <div id="sidebar"></div>
+  <div id="left-main"></div>
+  <div id="right-main"></div>
+</div>
 
-<div id="navbar"></div>
-<div id="main"></div>
 
 <script>
   // boot the app when the document is ready
   $(function () {
     TmUp.CURRENT_USER = {
       id: <%= current_user.id %>,
+      fname: "<%= current_user.fname.capitalize %>",
+      lname: "<%= current_user.lname.capitalize %>",
       initials: "<%= current_user.fname[0].upcase + current_user.lname[0].upcase %>",
       email: "<%= current_user.email %>"
     };

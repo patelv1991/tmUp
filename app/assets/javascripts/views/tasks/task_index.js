@@ -18,7 +18,10 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this.$el.html(this.template());
+    this.$el.html(this.template({
+      workspace: this.model,
+      name: TmUp.CURRENT_USER.fname 
+    }));
     this.attachSubviews();
     return this;
   }

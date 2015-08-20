@@ -11,7 +11,10 @@ window.TmUp = {
     var workspaces = new TmUp.Collections.Workspaces();
 
     var router = new TmUp.Routers.Router({
-      $rootEl: $("#main"),
+      $landingEl: ("#landing-page"),
+      $sideEl: $("#sidebar"),
+      $leftMainEl: $("#left-main"),
+      $rightMainEl: $("#right-main"),
       workspaces: workspaces
     });
 
