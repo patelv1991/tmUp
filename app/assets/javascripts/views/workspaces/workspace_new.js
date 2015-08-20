@@ -142,6 +142,8 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
   },
 
   throwSelfEmailError: function () {
+    this.$el.find('textarea').val("");
+    this.$el.find('.alert-warning').remove();
     var $errorDiv = $('<div class="alert alert-warning" role="alert">');
     $errorDiv.append("<p> You don't need to include your own email.</p>");
     this.$el.find('form').prepend($errorDiv);
