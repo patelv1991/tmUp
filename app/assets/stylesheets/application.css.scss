@@ -91,7 +91,7 @@ input[type="submit"] {
 
 
 .m-content {
-  color: #9fa5ab;
+  color: #798086;
   z-index: 10;
   position: absolute;
   top: 150px;
@@ -114,18 +114,6 @@ input[type="submit"] {
 
 .m-content > form {
   padding: 1pc;
-}
-
-.m-content > table tr > th:first-child {
-  padding-left: 13px;
-}
-
-.m-content > table tr:not(.column-names) > {
-  padding-left: 13px;
-}
-
-.m-content > table tr td {
-  vertical-align: middle;
 }
 
 .m-content > header > button.close {

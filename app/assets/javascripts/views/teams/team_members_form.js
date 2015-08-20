@@ -198,11 +198,11 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
       var $secondTd = $('<td>');
       var $thirdTd;
       if (member.id === TmUp.CURRENT_USER.id) {
-        $thirdTd = $('<td><button type="button" class="btn btn-xs ' +
+        $thirdTd = $('<td align="center"><button type="button" class="btn btn-xs ' +
                      'btn-danger" data-user-id=' + member.id +
                      ' data-workspace-id=' + this.model.id + '>Leave Workspace</button></td>');
       } else {
-        $thirdTd = $('<td><button type="button" class="btn btn-xs ' +
+        $thirdTd = $('<td align="center"><button type="button" class="btn btn-xs ' +
                      'btn-danger" data-user-id=' + member.id +
                      ' data-workspace-id=' + this.model.id + '>Remove</button></td>');
       }
