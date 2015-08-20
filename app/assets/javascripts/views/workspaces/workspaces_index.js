@@ -11,6 +11,7 @@ TmUp.Views.WorkspacesIndex = Backbone.View.extend({
 
   render: function () {
     var content = this.template({ workspaces: this.collection });
+    this.removeWorkspaceTitle();
     this.$el.html(content);
     return this;
   },
@@ -22,6 +23,10 @@ TmUp.Views.WorkspacesIndex = Backbone.View.extend({
     });
     $('body').append(modal.$el);
     modal.render();
+  },
+
+  removeWorkspaceTitle: function () {
+    $('.nav-current-workspace-title').empty();
   }
 
   // fetchWorkspaces: function (callback) {
