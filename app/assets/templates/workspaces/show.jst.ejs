@@ -1,16 +1,22 @@
 <div id="wrapper">
   <div id="sidebar-wrapper">
-    <div id="workspace-title">
+    <!-- <div id="workspace-title">
       <%= workspace.escape("title") %>
-    </div>
-    <div id="my-tasks-heading">
-      <a href="#/workspaces/<%= workspace.id %>"><strong>MY TASKS</strong></a>
-    </div>
+    </div> -->
+    <div class="sidebar-nav">
+      <div id="my-tasks-heading">
+        <div>
+          <div>
+            <a href="#/workspaces/<%= workspace.id %>"><strong>MY TASKS</strong></a>
+          </div>
+        </div>
+      </div>
 
-    <div id="work-team-container">
-    </div>
+      <div id="work-team-container">
+      </div>
 
-    <div id="projects-container">
+      <div id="projects-container">
+      </div>
     </div>
   </div>
 

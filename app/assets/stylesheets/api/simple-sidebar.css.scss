@@ -54,17 +54,40 @@
 /* Sidebar Styles */
 
 .sidebar-nav {
-    position: absolute;
-    top: 0;
-    width: 250px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  position: absolute;
+  top: 0;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.sidebar-nav li {
-    text-indent: 20px;
+.sidebar-nav > #my-tasks-heading * {
+  text-decoration: none;
+  color: black;
+}
+
+.sidebar-nav #my-tasks-heading {
+  padding-top: 20px;
+  color: black;
+}
+
+
+.sidebar-nav > div > div > div {
+    padding-left: 5px;
     line-height: 40px;
+}
+
+.sidebar-nav .glyphicon {
+  position: relative;
+  top: -2px;
+}
+
+.sidebar-nav .glyphicon:hover {
+  cursor: pointer;
+  // top: -2px;
+  border: #e7e7e7 solid 1px;
+  border-radius: 4px;
 }
 
 .sidebar-nav li a {
@@ -79,24 +102,10 @@
     background: rgba(255,255,255,0.2);
 }
 
+
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
     text-decoration: none;
-}
-
-.sidebar-nav > .sidebar-brand {
-    height: 65px;
-    font-size: 18px;
-    line-height: 60px;
-}
-
-.sidebar-nav > .sidebar-brand a {
-    color: #999999;
-}
-
-.sidebar-nav > .sidebar-brand a:hover {
-    color: #fff;
-    background: none;
 }
 
 @media(min-width:768px) {
