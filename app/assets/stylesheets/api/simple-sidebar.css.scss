@@ -80,8 +80,8 @@
 }
 
 .sidebar-nav > div > div > div {
-    padding-left: 5px;
-    line-height: 40px;
+  padding-left: 5px;
+  line-height: 40px;
 }
 
 .sidebar-nav > #my-tasks-heading > a:hover {
@@ -102,22 +102,51 @@
   border-radius: 4px;
 }
 
-.sidebar-nav li a {
-    display: block;
-    text-decoration: none;
-    color: #999999;
+.sidebar-nav div > div ul.team-members li a {
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50%;
+  padding: 8px;
+  float: left;
+  position: relative;
+  left: -25px;
+  margin: 1px;
 }
 
-.sidebar-nav li a:hover {
-    text-decoration: none;
-    color: #fff;
-    background: rgba(0,0,0,0.2);
+.sidebar-nav #projects-container {
+  position: relative;
+  top: 50px;
+}
+
+.sidebar-nav #projects-container span,
+.sidebar-nav #projects-container strong {
+  position: relative;
+  left: -104px;
+}
+
+.sidebar-nav div > div ul.projects li a {
+  display: block;
+  padding-left: 15px;
+  line-height: 30px;
+  font-weight: 300;
+  text-decoration: none;
+  color: rgba(39, 19, 19, 0.57);
+  position: relative;
+  left: -40px;
+  top: -5px;
+  width: 250px;
+}
+// .sidebar-nav li a
+.sidebar-nav div > div ul.projects li a:hover {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(0,0,0,0.2);
 }
 
 
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 @media(min-width:768px) {
