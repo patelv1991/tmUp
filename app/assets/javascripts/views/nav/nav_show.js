@@ -73,13 +73,12 @@ TmUp.Views.NavShow = Backbone.View.extend({
   },
 
   addRandomColorToInitials: function () {
-    var x = Math.round(0xffffff * Math.random()).toString(16);
-    var y = (6-x.length);
-    var z = '000000';
-    var z1 = z.substring(0,y);
-    var randomColor = "#" + z1 + x;
-
-    this.$('.user-initials').css({"background-color": randomColor});
+    var randomColor = this.collection.get(382).workTeam().findWhere({
+      id: TmUp.CURRENT_USER.id
+    }).color;
+    if (randomColor) {
+      this.$('.user-initials').css({"background-color": randomColor});
+    }
   }
   // renderActiveWorkspaceTitle: function () {
   //   if (this.collection.length > 0) {
