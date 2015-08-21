@@ -12,7 +12,8 @@ TmUp.Views.NavShow = Backbone.View.extend({
 
   events: {
     'click .log-out':'logOut',
-    'click .new-workspace': 'createNewWorkspace'
+    'click .new-workspace': 'createNewWorkspace',
+    'click .menu-toggle': 'handleToggle'
   },
 
   ActiveWorkspaceTitle: function (workspace) {
@@ -26,6 +27,20 @@ TmUp.Views.NavShow = Backbone.View.extend({
 
     if (routeName === "show" && params[0] !== null) {
       this.collection.getOrFetch(params[0], this.ActiveWorkspaceTitle.bind(this));
+    }
+  },
+
+  handleToggle: function (e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+    // debugger
+    var dataTag = this.$el.find('.hidden').data('toggle');
+    if (dataTag === "open") {
+      this.$el.find('#toggle-close').addClass('hidden');
+      this.$el.find('#toggle-open').removeClass('hidden');
+    } else {
+      this.$el.find('#toggle-open').addClass('hidden');
+      this.$el.find('#toggle-close').removeClass('hidden');
     }
   },
   // handleRoute: function (routeName, params) {
@@ -73,10 +88,12 @@ TmUp.Views.NavShow = Backbone.View.extend({
   },
 
   addRandomColorToInitials: function () {
-    var randomColor = this.collection.get(382).workTeam().findWhere({
+    var user = this.collection.get(382).workTeam().findWhere({
       id: TmUp.CURRENT_USER.id
-    }).color;
-    if (randomColor) {
+    });
+
+    if (user) {
+      var randomColor = user.color;
       this.$('.user-initials').css({"background-color": randomColor});
     }
   }

@@ -27,6 +27,18 @@
   margin-right: -10px;
   color: #777;
 }
+//
+.navbar-brand #toggle-open {
+//   font-size: 60px;
+//   font-weight: lighter;
+  margin-top: -26px;
+//   margin-right: -30px;
+//   color: #777;
+}
+
+.navbar-brand button.close:focus {
+  outline: none;
+}
 
 .navbar .navbar-header a {
   color: #777;
