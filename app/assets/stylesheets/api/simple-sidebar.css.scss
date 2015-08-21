@@ -64,18 +64,30 @@
 
 .sidebar-nav > #my-tasks-heading * {
   text-decoration: none;
-  color: black;
+  color: #333333;
+  padding-left: 5px;
+  line-height: 40px;
+}
+
+.sidebar-nav > #my-tasks-heading > a {
+  font-weight: bold;
+  width: 250px;
+  display: block;
 }
 
 .sidebar-nav #my-tasks-heading {
   padding-top: 20px;
-  color: black;
 }
-
 
 .sidebar-nav > div > div > div {
     padding-left: 5px;
     line-height: 40px;
+}
+
+.sidebar-nav > #my-tasks-heading > a:hover {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(0,0,0,0.2);
 }
 
 .sidebar-nav .glyphicon {
@@ -85,8 +97,8 @@
 
 .sidebar-nav .glyphicon:hover {
   cursor: pointer;
-  // top: -2px;
-  border: #e7e7e7 solid 1px;
+  color: #fff;
+  background: rgba(0,0,0,0.2);
   border-radius: 4px;
 }
 
@@ -99,7 +111,7 @@
 .sidebar-nav li a:hover {
     text-decoration: none;
     color: #fff;
-    background: rgba(255,255,255,0.2);
+    background: rgba(0,0,0,0.2);
 }
 
 

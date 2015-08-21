@@ -19,3 +19,22 @@
   font-weight: bold;
   color: #fff;
 }
+
+.navbar-brand .close {
+  font-size: 60px;
+  font-weight: lighter;
+  margin-top: -22px;
+  margin-right: -10px;
+  color: #777;
+}
+
+.navbar .navbar-header a {
+  color: #777;
+  font-weight: 300;
+  text-decoration: none;
+}
+
+.navbar .navbar-header a:hover {
+  color: #777;
+  text-decoration: none;
+}
