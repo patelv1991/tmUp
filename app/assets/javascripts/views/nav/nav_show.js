@@ -13,7 +13,7 @@ TmUp.Views.NavShow = Backbone.View.extend({
   events: {
     'click .log-out':'logOut',
     'click .new-workspace': 'createNewWorkspace',
-    'click .menu-toggle': 'handleToggle'
+    'click .menu-toggle': 'handleToggle',
   },
 
   ActiveWorkspaceTitle: function (workspace) {
@@ -24,24 +24,36 @@ TmUp.Views.NavShow = Backbone.View.extend({
     if (params[0] == this._workspaceId) { return; }
     this._routeName = routeName;
     this._workspaceId = parseInt(params[0]);
-
-    if (routeName === "show" && params[0] !== null) {
+    if (routeName === "index") {
+      this.removeSidebarButton();
+    } else if (params[0] !== null && routeName !== "index") {
       this.collection.getOrFetch(params[0], this.ActiveWorkspaceTitle.bind(this));
+    }
+  },
+
+  removeSidebarButton: function () {
+    this.$el.find('#toggle-close').addClass('hidden');
+    this.$el.find('#toggle-open').addClass('hidden');
+  },
+
+  renderSbButtonToOpen: function () {
+    this.$el.find('#toggle-close').addClass('hidden');
+    this.$el.find('#toggle-open').removeClass('hidden');
+  },
+
+  renderSbButtonToClose: function () {
+    if (this._routeName !== "index") {
+      this.$el.find('#toggle-close').removeClass('hidden');
+      this.$el.find('#toggle-open').addClass('hidden');
     }
   },
 
   handleToggle: function (e) {
     e.preventDefault();
     $("#wrapper").toggleClass("toggled");
-    // debugger
+
     var dataTag = this.$el.find('.hidden').data('toggle');
-    if (dataTag === "open") {
-      this.$el.find('#toggle-close').addClass('hidden');
-      this.$el.find('#toggle-open').removeClass('hidden');
-    } else {
-      this.$el.find('#toggle-open').addClass('hidden');
-      this.$el.find('#toggle-close').removeClass('hidden');
-    }
+    (dataTag === "closed") ? this.renderSbButtonToOpen() : this.renderSbButtonToClose();
   },
   // handleRoute: function (routeName, params) {
   //   debugger
@@ -78,6 +90,7 @@ TmUp.Views.NavShow = Backbone.View.extend({
       workspaces: this.collection
     });
     this.$el.html(content);
+    this.renderSbButtonToClose();
     this.renderActiveWorkspaceTitle();
     // this.addRandomColorToInitials();
     return this;
@@ -88,14 +101,18 @@ TmUp.Views.NavShow = Backbone.View.extend({
   },
 
   addRandomColorToInitials: function () {
-    var user = this.collection.get(382).workTeam().findWhere({
-      id: TmUp.CURRENT_USER.id
-    });
+    var workspace = this.collection.get(this._workspaceId);
 
-    if (user) {
-      var randomColor = user.color;
-      this.$('.user-initials').css({"background-color": randomColor});
+    if (workspace) {
+      var user = workspace.workTeam().findWhere({ id: TmUp.CURRENT_USER.id });
+      if (user) {
+        var randomColor = user.color;
+        this.$('.user-initials').css({"background-color": randomColor});
+      }
+    } else {
+      this.$('.user-initials').css({"background-color": "#E18303" });
     }
+
   }
   // renderActiveWorkspaceTitle: function () {
   //   if (this.collection.length > 0) {
