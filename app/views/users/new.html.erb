@@ -7,13 +7,15 @@
 
   <ul>
     <% flash[:errors].try(:each) do |error| %>
-      <% if error == "Fname can't be blank" %>
-        <li><%= "First Name can't be blank" %></li>
-      <% elsif error == "Lname can't be blank" %>
-        <li><%= "Last Name can't be blank" %></li>
-      <% else %>
-        <li><%= error %></li>
-      <% end %>
+      <div class="alert alert-danger" role="alert">
+        <% if error == "Fname can't be blank" %>
+          <li><%= "First Name can't be blank" %></li>
+        <% elsif error == "Lname can't be blank" %>
+          <li><%= "Last Name can't be blank" %></li>
+        <% else %>
+          <li><%= error %></li>
+        <% end %>
+      </div>
     <% end %>
   </ul>
 
