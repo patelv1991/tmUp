@@ -1,15 +1,40 @@
-<h1>Sign In</h1>
+<div class="log-in-out-background"></div>
 
-<%= flash[:errors].join("<br>").html_safe if flash[:errors] %><br>
+<div class="log-in-out m-content">
+  <header class="heading">
+    <strong>Sign In</strong>
+  </header>
 
-<form action="/session" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <label>Email<br>
-    <input name="user[email]" type="text"><br>
-  </label><br>
-  <label>Password<br>
-    <input name="user[password]" type="password"><br>
-  </label><br>
-  <input type="submit" value="Log In" class="btn btn-primary"><br>
-</form><br>
-<div>Don't have an account? <a href="<%= new_user_url %>">Sign Up</a></div>
+  <% if flash[:errors] %>
+    <div class="alert alert-danger" role="alert">
+      <%= flash[:errors].join("<br>").html_safe %>
+    </div>
+  <% end %>
+
+  <form class="form-horizontal" action="/session" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+    <div class="form-group">
+      <label for="email-input" class="col-sm-3 control-label">Email</label>
+      <div class="col-sm-9">
+        <input type="email" name="user[email]" class="form-control" id="email-input">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password" class="col-sm-3 control-label">Password</label>
+      <div class="col-sm-9">
+        <input type="password" name="user[password]" class="form-control" id="password">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
+        <input type="submit" value="Sign In" class="btn btn-default">
+      </div>
+    </div>
+
+    <div>Don't have an account? <a href="<%= new_user_url %>">Sign Up</a></div>
+  </form>
+
+</div>
