@@ -117,9 +117,17 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
     if (serverResp.status === 422 && this.$el.find(".alert-danger").length === 0) {
       var $errorDiv = $('<div class="alert alert-danger" role="alert">');
       var failedEmails = serverResp.responseJSON.join(", ");
-      $errorDiv.append("<p><strong>" + failedEmails + "</strong> could " +
-                       "not be found. Please make sure that user(s) have" +
-                       "TmUp account(s). </p>");
+      
+      if (serverResp.responseJSON.length === 1) {
+        $errorDiv.append("<p><strong>" + failedEmails + "</strong> could " +
+                         "not be found. Please make sure that user has " +
+                         "TmUp account. </p>");
+      } else if (serverResp.responseJSON.length > 1) {
+        $errorDiv.append("<p><strong>" + failedEmails + "</strong> could " +
+                         "not be found. Please make sure that users have " +
+                         "TmUp account. </p>");
+      }
+
       $errorDiv.append("<p>Try using <strong>example@example.com</strong>" +
                        " for testing purposes.</p>");
       this.$el.find('form').prepend($errorDiv);

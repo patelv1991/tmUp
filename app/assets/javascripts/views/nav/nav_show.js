@@ -42,7 +42,7 @@ TmUp.Views.NavShow = Backbone.View.extend({
   },
 
   renderSbButtonToClose: function () {
-    if (this._routeName !== "index") {
+    if (this._routeName !== "index" && this._routeName !== undefined) {
       this.$el.find('#toggle-close').removeClass('hidden');
       this.$el.find('#toggle-open').addClass('hidden');
     }
