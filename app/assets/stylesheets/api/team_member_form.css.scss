@@ -1,21 +1,41 @@
-.m-content > table tr > th:first-child {
-  padding-left: 13px;
-}
-
 // .m-content > table tr:not(.column-names) > {
 //   padding-left: 13px;
 // }
-.m-content > table {
+.m-content table {
   color: rgb(105, 93, 93);
 }
-.m-content > table tr td {
+
+.m-content .table-striped tbody > tr:nth-of-type(odd) {
+  background-color: #ECECEC;
+}
+
+.m-content table thead {
+  overflow: auto;
+  display: block;
+}
+
+.m-content table tbody {
+  overflow: auto;
+  display: block;
+  height: 300px;
+}
+
+.m-content table tr td {
   vertical-align: middle;
 }
 
-.m-content > .table > tbody > tr > td:first-child {
-  padding-left: 13px
+.m-content table thead tr th:first-child,
+.m-content table tbody tr td:first-child {
+  padding-left: 13px;
+  width: 180px;
 }
 
-.m-content .table-striped > tbody > tr:nth-of-type(odd) {
-    background-color: #ECECEC;
+.m-content table thead tr th:nth-child(2),
+.m-content table tbody tr td:nth-child(2) {
+  width: 280px;
+}
+
+.m-content table thead tr th:nth-child(3),
+.m-content table tbody tr td:nth-child(3) {
+  width: 140px;
 }

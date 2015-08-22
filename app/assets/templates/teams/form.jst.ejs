@@ -1,6 +1,6 @@
 <div class="m-background"></div>
 
-<div class="m-content">
+<div class="team-member-form m-content">
 
   <header class="heading">
     <strong>Manage Workspace: <%= workspace.escape('title') %></strong><button class="close">&times;</button>
@@ -8,11 +8,13 @@
 
   <!-- Table -->
   <table class="table table-striped">
-    <tr class="column-names">
-      <th>Name</th>
-      <th>Email</th>
-      <th></th>
-    </tr>
+    <thead>
+      <tr class="column-names">
+        <th>Name</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+    </thead>
   </table>
 
   <form class="form-group">

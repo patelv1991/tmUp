@@ -83,12 +83,10 @@ input[type="submit"] {
   color: #798086;
   z-index: 10000;
   position: absolute;
-  top: 150px;
+  top: 50%;
   left: 50%;
-  margin-left: -220px;
-  min-width: 400px;
-  width: 500px;
-  max-width: 600px;
+  min-width: 500px;
+  transform: translate(-50%, -50%);
   background: #fff;
   border-radius: 5px;
 }
@@ -118,4 +116,9 @@ input[type="submit"] {
 
 .m-content > .form-horizontal .control-label {
   font-size: 12px
+}
+
+.team-member-form {
+  min-width: 600px;
+  max-height: 600px;
 }
