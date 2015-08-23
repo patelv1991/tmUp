@@ -1,5 +1,5 @@
 TmUp.Models.TeamMember = Backbone.Model.extend({
-  url: 'api/users',
+  urlRoot: 'api/users',
 
   initialize: function () {
     this.color = this.randomColor();

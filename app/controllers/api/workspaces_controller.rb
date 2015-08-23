@@ -53,7 +53,7 @@ class Api::WorkspacesController < ApplicationController
 
   end
   # Destroy event is being handled from the workspace_membership_controller
-  
+
   # def destroy
   #   @workspace = current_user.workspaces.includes(:users).find(params[:id])
   #   if @workspace.users.length <= 1

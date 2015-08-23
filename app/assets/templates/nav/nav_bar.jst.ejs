@@ -25,14 +25,14 @@
 
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="nav-current-workspace-title"></span> <span class="user-initials"><%= TmUp.CURRENT_USER.initials %></span></a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu scrollbar-menu">
             <% workspaces.each(function (workspace) { %>
               <li><a href="#/workspaces/<%= workspace.id %>" class=dropdown-item><%= workspace.escape("title") %></a></li>
             <% }) %>
-            <li role="separator" class="divider"></li>
-            <li class='new-workspace'><a>Create New Workspace</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a class='log-out'>Log Out</a></li>
+            <li role="separator" class="divider no-scroll"></li>
+            <li class='new-workspace no-scroll'><a>Create New Workspace</a></li>
+            <li role="separator" class="divider no-scroll"></li>
+            <li><a class='log-out no-scroll'>Log Out</a></li>
           </ul>
         </li>
       </ul>
