@@ -1,3 +1,19 @@
+.navbar {
+  opacity: 0.8;
+  box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.71);
+  background-clip: padding-box;
+  z-index: 6000;
+}
+
+div > .toggled-sidebar {
+  opacity: 0.8;
+  box-shadow: 250px 6px 30px rgba(0, 0, 0, 0.71);
+  background-clip: padding-box;
+  z-index: 6000;
+}
+
+
+
 .container-fluid .navbar-brand {
     width: 250px;
     border-right: #e7e7e7 solid 1px;

@@ -34,6 +34,9 @@
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
+    opacity: 0.8;
+    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.71);
+    background-clip: padding-box;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -86,7 +89,7 @@
 
 .sidebar-nav > #my-tasks-heading > a:hover {
   text-decoration: none;
-  color: #fff;
+  color: black;
   background: rgba(0,0,0,0.2);
 }
 
@@ -133,7 +136,7 @@
   line-height: 30px;
   font-weight: 300;
   text-decoration: none;
-  color: rgba(39, 19, 19, 0.57);
+  color: rgba(0, 0, 0, 0.84);
   position: relative;
   left: -40px;
   top: -5px;
@@ -142,7 +145,7 @@
 // .sidebar-nav li a
 .sidebar-nav div > div ul.projects li a:hover {
   text-decoration: none;
-  color: #fff;
+  color: black;
   background: rgba(0,0,0,0.2);
 }
 

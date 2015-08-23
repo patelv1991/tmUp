@@ -34,17 +34,20 @@ TmUp.Views.NavShow = Backbone.View.extend({
   removeSidebarButton: function () {
     this.$el.find('#toggle-close').addClass('hidden');
     this.$el.find('#toggle-open').addClass('hidden');
+    // $('.navbar').removeClass('toggled-sidebar');
   },
 
   renderSbButtonToOpen: function () {
     this.$el.find('#toggle-close').addClass('hidden');
     this.$el.find('#toggle-open').removeClass('hidden');
+    $('.navbar').removeClass('toggled-sidebar');
   },
 
   renderSbButtonToClose: function () {
     if (this._routeName !== "index" && this._routeName !== undefined) {
       this.$el.find('#toggle-close').removeClass('hidden');
       this.$el.find('#toggle-open').addClass('hidden');
+      $('.navbar').addClass('toggled-sidebar');
     }
   },
 
