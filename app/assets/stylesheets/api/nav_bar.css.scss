@@ -1,5 +1,5 @@
 .container-fluid .navbar-brand {
-    width: 249px;
+    width: 250px;
     border-right: #e7e7e7 solid 1px;
     font-size: 32px;
 }
@@ -9,6 +9,7 @@
 }
 
 .navbar-default .navbar-nav > li > a {
+    padding-right: 25px;
     font-size: 16px;
 }
 
@@ -30,14 +31,11 @@
   margin-top: -22px;
   margin-right: -10px;
   color: #777;
+  padding-left: 30px;
 }
-//
+
 .navbar-brand #toggle-open {
-//   font-size: 60px;
-//   font-weight: lighter;
   margin-top: -26px;
-//   margin-right: -30px;
-//   color: #777;
 }
 
 .navbar-brand button.close:focus {
