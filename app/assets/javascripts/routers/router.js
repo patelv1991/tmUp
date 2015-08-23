@@ -5,12 +5,13 @@ TmUp.Routers.Router = Backbone.Router.extend({
     // this.$leftMainEl = options.$leftMainEl;
     // this.$rightMainEl = options.$rightMainEl;
     this.workspaces = options.workspaces;
-    window.testingSpace = this.workspaces;
+    // window.testingSpace = this.workspaces;
   },
 
   routes: {
     "": "index",
     "workspaces/:id": "show",
+    "workspaces/:workspaceId/user/:userId": "userTaskIndex",
     // "workspaces": "index"
   },
 
@@ -59,6 +60,15 @@ TmUp.Routers.Router = Backbone.Router.extend({
     });
     this.currentLandingView && this.currentLandingView.remove();
     this._swapMainView(WorkspacesShowView);
+  },
+
+  userTaskIndex: function (workspaceId, userId) {
+    var workspace = this.workspaces.getOrFetch(workspaceId);
+    $('#tasks-index-container').empty();
+    $('#task-show-container').empty();
+    var view = new TmUp.Views.TaskIndex({
+      model: workspace
+    });
   },
 
   _swapLandingView: function (view) {

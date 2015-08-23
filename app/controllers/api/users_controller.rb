@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  def show
+  def index
     @users = User.where(email: params[:emails])
     if @users.length < 1
       render json: params[:emails], status: 422
@@ -16,7 +16,7 @@ class Api::UsersController < ApplicationController
     #   @users << {emails: non_existant_emails}
     #   render json: @users
     else
-      render :show
+      render :index
     end
 
   end
