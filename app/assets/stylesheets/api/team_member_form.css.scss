@@ -1,6 +1,23 @@
 // .m-content > table tr:not(.column-names) > {
 //   padding-left: 13px;
 // }
+
+div.team-member-form > header > strong.team-header {
+  font-weight: bold;
+  overflow: hidden;
+  display: block;
+  min-width: 550px;
+  max-width: 550px;
+  float: left;
+}
+
+div.team-member-form > header button.team-close {
+  position: fixed;
+  float: left;
+  padding-left: 15px;
+  padding-bottom: 5px;
+}
+
 .m-content table {
   color: rgb(105, 93, 93);
 }

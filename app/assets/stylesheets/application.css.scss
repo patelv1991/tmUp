@@ -89,7 +89,6 @@ input[type="submit"] {
   transform: translate(-50%, -50%);
   background: #fff;
   border-radius: 5px;
-  opacity: 0.9;
 }
 
 .m-content > header {
@@ -98,13 +97,14 @@ input[type="submit"] {
   background: #f6f7f7;
   border-radius: inherit;
   padding: 12px;
+  max-width: 600px;
 }
 
 .m-content > form {
   padding: 1pc;
 }
 
-.m-content > header > button.close {
+.m-content > header button.close {
   color: #2375ab;
   font-size: 25px;
 }
