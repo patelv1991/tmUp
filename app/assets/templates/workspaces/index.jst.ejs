@@ -1,11 +1,28 @@
-<h3>All Workspaces</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header"><%= TmUp.CURRENT_USER.fname %>'s Workspaces</h1>
+    </div>
+  </div>
 
-<ul>
-  <% workspaces.each(function (workspace) { %>
-    <li><a href="#/workspaces/<%= workspace.id %>"><%= workspace.escape("title") %></a></li>
-  <% }) %>
-</ul>
+  <div class="row">
+    <ul>
+      <div class="col-md-3 portfolio-item new-workspace">
+        <a class="img-responsive">
+          <h2>&plus;</h2>
+        </a>
+      </div>
+      <% workspaces.each(function (workspace) { %>
+        <div class="col-md-3 portfolio-item">
+          <a class="img-responsive" href="#/workspaces/<%= workspace.id %>">
+            <h2><%= workspace.escape("title") %></h2>
+          </a>
+        </div>
+      <% }) %>
+    </ul>
+  </div>
 
-<div class="new-workspace">
-  <a>Create New Workspace</a>
+  <div class="row text-center new-workspace">
+    <a>Create New Workspace</a>
+  </div>
 </div>
