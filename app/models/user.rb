@@ -21,10 +21,17 @@ class User < ActiveRecord::Base
   after_initialize :ensure_session_token
 
   has_many :user_workspaces, dependent: :destroy
-  has_many :team_assignments
+
   has_many :projects, through: :team_assignments, source: :project
   has_many :workspaces, through: :user_workspaces, dependent: :destroy
 
+  has_many(
+    :team_assignments,
+    class_name: "TeamAssignment",
+    foreign_key: :member_id,
+    primary_key: :id
+  )
+  
   has_many(
     :tasks,
     class_name: "Task",
