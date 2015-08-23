@@ -4,6 +4,12 @@
 
 div.log-in-out {
   border: 1px solid #ccc;
+  opacity: 0.9;
+  color: #353F46
+}
+
+div.log-in-out > header {
+  color: #353F46;
 }
 
 .log-in-out-background {
@@ -25,8 +31,9 @@ div.log-in-out {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
 }
+
 .log-in-out ul div.alert {
-  padding: 2px;
+  padding: 4px 8px;
   position: relative;
   left: -15px;
   top: 12px;
@@ -34,4 +41,17 @@ div.log-in-out {
   border-radius: 0%;
   width: 99%;
   margin-bottom: 0px;
+
+}
+
+.log-in-out ul div.alert:first-child {
+  padding-top: 8px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.log-in-out ul div.alert:last-child {
+  padding-bottom: 8px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
