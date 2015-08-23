@@ -80,7 +80,7 @@ input[type="submit"] {
 
 
 .m-content {
-  color: #798086;
+  color: #353F46;
   z-index: 10000;
   position: fixed;
   top: 50%;
@@ -89,6 +89,7 @@ input[type="submit"] {
   transform: translate(-50%, -50%);
   background: #fff;
   border-radius: 5px;
+  opacity: 0.9;
 }
 
 .m-content > header {
