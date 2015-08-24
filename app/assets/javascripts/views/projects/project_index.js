@@ -1,7 +1,9 @@
 TmUp.Views.ProjectIndex = Backbone.CompositeView.extend({
   template: JST['projects/index'],
 
-  initialize: function () {
+  initialize: function (options) {
+    this.workspace = options.workspace;
+
     this.listenTo(this.collection, 'add', this.addProject);
     this.listenTo(this.collection, 'sync', this.render);
 
@@ -16,7 +18,8 @@ TmUp.Views.ProjectIndex = Backbone.CompositeView.extend({
 
   addProject: function (project) {
     var view = new TmUp.Views.ProjectIndexItem({
-      model: project
+      model: project, 
+      workspace: this.workspace
     });
     this.addSubview('.projects', view);
   },

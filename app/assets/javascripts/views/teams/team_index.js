@@ -5,7 +5,8 @@ TmUp.Views.TeamIndex = Backbone.CompositeView.extend({
     'click .glyphicon-user': 'showWorkTeamForm'
   },
 
-  initialize: function () {
+  initialize: function (options) {
+    this.workspace = options.workspace;
     this.listenTo(this.collection, 'sync add', this.render);
     this.listenTo(this.collection, 'add', this.addMemberSubView);
     // this.listenTo(this.workspace, 'sync', this.render);
@@ -17,7 +18,7 @@ TmUp.Views.TeamIndex = Backbone.CompositeView.extend({
   addMemberSubView: function (member) {
     var view = new TmUp.Views.TeamIndexItem({
       model: member,
-      workspace: this.model
+      workspace: this.workspace
     });
     this.addSubview('.team-members', view);
   },

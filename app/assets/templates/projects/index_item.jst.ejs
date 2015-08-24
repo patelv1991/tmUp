@@ -1,3 +1,4 @@
 <div class="project-item" data-project-id="<%= project.id %>">
-  <a href="#"><%= project.escape('title') %></a>
+  <a href="<%= '#/workspaces/' + workspaceId + '/project/' + project.id %>">
+    <%= project.escape('title') %></a>
 </div>

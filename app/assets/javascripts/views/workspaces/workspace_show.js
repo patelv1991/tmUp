@@ -16,7 +16,8 @@ TmUp.Views.WorkspacesShow = Backbone.CompositeView.extend({
 
   renderProjectIndexSubview: function () {
     var view = new TmUp.Views.ProjectIndex({
-      collection: this.projects
+      collection: this.projects,
+      workspace: this.model
     });
     this.addSubview('#projects-container', view);
   },
@@ -24,7 +25,7 @@ TmUp.Views.WorkspacesShow = Backbone.CompositeView.extend({
   renderTeamMembers: function () {
     var view = new TmUp.Views.TeamIndex({
       collection: this.workTeam,
-      model: this.model
+      workspace: this.model
     });
     this.addSubview('#work-team-container', view);
   },
