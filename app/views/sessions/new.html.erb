@@ -32,7 +32,8 @@
 
     <div class="form-group">
       <div class="col-sm-offset-3 col-sm-9">
-        <input type="submit" value="Sign In" class="btn btn-default">
+        <input type="submit" value="Sign In" class="btn btn-default login-button">
+        <input type="submit" value="Guest Sign In" class="btn btn-default guest-login">
       </div>
     </div>
 
@@ -40,3 +41,9 @@
   </form>
 
 </div>
+
+<script>
+  $(document).ready(function(){
+    Guest.initialize();
+  });
+</script>
