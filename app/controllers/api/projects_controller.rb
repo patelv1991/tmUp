@@ -1,5 +1,7 @@
 class Api::ProjectsController < ApplicationController
 
+  before_action :require_signed_in!
+
   def index
   end
 
@@ -15,6 +17,9 @@ class Api::ProjectsController < ApplicationController
   end
 
   def show
+    @project = Project.find(params[:id])
+    @tasks = @project.tasks
+    render :show
   end
 
   def destroy
