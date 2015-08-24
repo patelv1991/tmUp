@@ -60,7 +60,19 @@ tbody.tasks > tr td > div.dropdown ul {
 }
 
 // formating overall tasks container
-div#page-content-wrapper > div#tasks-index-container {
+
+div#tasks-index-container {
+  max-width: 1250px;
+  position: relative;
+  top: -10px;
+  left: 5px;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+div#page-content-wrapper > div.sidebar-toggled {
   max-width: 1000px;
   position: relative;
   top: -10px;

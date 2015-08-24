@@ -40,14 +40,20 @@ TmUp.Views.NavShow = Backbone.View.extend({
   renderSbButtonToOpen: function () {
     this.$el.find('#toggle-close').addClass('hidden');
     this.$el.find('#toggle-open').removeClass('hidden');
+    // this handles box-shadow for navbar when sidebar is hidden
     $('.navbar').removeClass('toggled-sidebar');
+    // this handles size of task index container when sidebar is hidden
+    $('#tasks-index-container').removeClass('sidebar-toggled');
   },
 
   renderSbButtonToClose: function () {
     if (this._routeName !== "index" && this._routeName !== undefined) {
       this.$el.find('#toggle-close').removeClass('hidden');
       this.$el.find('#toggle-open').addClass('hidden');
+      // this handles box-shadow for navbar when sidebar is toggled
       $('.navbar').addClass('toggled-sidebar');
+      // this handles size of task index container when sidebar is toggled
+      $('#tasks-index-container').addClass('sidebar-toggled');
     }
   },
 
