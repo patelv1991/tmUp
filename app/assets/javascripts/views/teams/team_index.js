@@ -36,7 +36,7 @@ TmUp.Views.TeamIndex = Backbone.CompositeView.extend({
   showWorkTeamForm: function () {
     modal = new TmUp.Views.TeamMemberForm({
       collection: this.collection,
-      model: this.model
+      workspace: this.workspace
     });
     $('body').append(modal.$el);
     modal.render();

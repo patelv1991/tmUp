@@ -13,7 +13,8 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
     'click .btn-danger': 'removeFromWorkspace'
   },
 
-  initialize: function () {
+  initialize: function (options) {
+    this.workspace = options.workspace;
     $(document).on('keyup', this.handleKey.bind(this));
     // this.listenTo(this.collection, 'remove', this.collection.fetch);
   },
@@ -88,11 +89,11 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
     users.forEach(function (user) {
       var workspaceMembership = new TmUp.Models.workspaceMembership({
         user_id: user.id,
-        workspace_id: this.model.id
+        workspace_id: this.workspace.id
       });
       workspaceMemberships.add(workspaceMembership);
     }.bind(this));
-    this.model.allMemberships().add(workspaceMemberships.models);
+    this.workspace.allMemberships().add(workspaceMemberships.models);
     this.saveWorkspaceMemberships(users, workspaceMemberships);
   },
 
@@ -100,8 +101,8 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
     Backbone.sync('create', objects, {
       success: function () {
         users.forEach(function (user) {
-          this.model.workTeam().add(user);
-          this.model.fetch();
+          this.workspace.workTeam().add(user);
+          this.workspace.fetch();
           // that.collection.add(user);
         }.bind(this));
         this.remove();
@@ -117,7 +118,7 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
     if (serverResp.status === 422 && this.$el.find(".alert-danger").length === 0) {
       var $errorDiv = $('<div class="alert alert-danger" role="alert">');
       var failedEmails = serverResp.responseJSON.join(", ");
-      
+
       if (serverResp.responseJSON.length === 1) {
         $errorDiv.append("<p><strong>" + failedEmails + "</strong> could " +
                          "not be found. Please make sure that user has " +
@@ -155,11 +156,11 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
     var workspaceId = $(event.currentTarget).data('workspace-id');
     var userId = $(event.currentTarget).data('user-id');
 
-    var membership = this.model.allMemberships().findWhere({
+    var membership = this.workspace.allMemberships().findWhere({
       user_id: userId,
       workspace_id: workspaceId
     });
-    var member = this.model.workTeam().findWhere({
+    var member = this.workspace.workTeam().findWhere({
       id: userId
     });
     var route;
@@ -169,14 +170,14 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
 
     membership.destroy({
       success: function () {
-        this.model.workTeam().remove(member);
-        this.model.allMemberships().remove(membership);
+        this.workspace.workTeam().remove(member);
+        this.workspace.allMemberships().remove(membership);
         this.$el.find('tr#' + userId).remove();
         if (route) {
           Backbone.history.navigate('', { trigger: true });
           this.remove();
         }
-        // if (this.model.allMemberships().length === 0) {
+        // if (this.workspace.allMemberships().length === 0) {
         //   // Cookies.remove('current-workspace-id');
         // }
       }.bind(this)
@@ -188,12 +189,12 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
   },
 
   checkUser: function (userId) {
-    u = this.model.workTeam().findWhere({id: userId});
+    u = this.workspace.workTeam().findWhere({id: userId});
     return u.id == TmUp.CURRENT_USER.id;
   },
 
   render: function () {
-    this.$el.html(this.template({ workspace: this.model }));
+    this.$el.html(this.template({ workspace: this.workspace }));
     this.renderTeamMembers();
     this.onRender();
     return this;
@@ -208,11 +209,11 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
       if (member.id === TmUp.CURRENT_USER.id) {
         $thirdTd = $('<td align="center"><button type="button" class="btn btn-xs ' +
                      'btn-danger" data-user-id=' + member.id +
-                     ' data-workspace-id=' + this.model.id + '>Leave Workspace</button></td>');
+                     ' data-workspace-id=' + this.workspace.id + '>Leave Workspace</button></td>');
       } else {
         $thirdTd = $('<td align="center"><button type="button" class="btn btn-xs ' +
                      'btn-danger" data-user-id=' + member.id +
-                     ' data-workspace-id=' + this.model.id + '>Remove</button></td>');
+                     ' data-workspace-id=' + this.workspace.id + '>Remove</button></td>');
       }
       $tr.append($firstTd.html(member.escape('fname') + " " + member.escape('lname')));
       $tr.append($secondTd.html(member.escape('email')));
