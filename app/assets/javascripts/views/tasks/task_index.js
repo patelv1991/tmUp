@@ -17,6 +17,7 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
 
   addTask: function (task) {
     var view = new TmUp.Views.TaskIndexItem({
+      workspace: this.workspace,
       model: task
     });
     this.addSubview('.tasks', view);

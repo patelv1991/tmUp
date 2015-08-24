@@ -1,2 +1,13 @@
-<input type="checkbox" data-task-id="<%= task.id %>">
-<%= task.escape('title') %>
+<td class="bs-checkbox"><input data-index="<%= task.id %>" name="btSelectItem" type="checkbox"></td>
+
+<td></td>
+
+<td></td>
+
+<td>
+  <%= task.escape('title') %>
+</td>
+
+<td>
+  <span data-index="<%= task.id %>" class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+</td>
