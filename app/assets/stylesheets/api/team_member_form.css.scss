@@ -34,7 +34,7 @@ div.team-member-form > header button.team-close {
 .m-content table tbody {
   overflow: auto;
   display: block;
-  height: 300px;
+  max-height: 250px;
 }
 
 .m-content table tr td {

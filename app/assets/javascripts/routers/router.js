@@ -12,6 +12,7 @@ TmUp.Routers.Router = Backbone.Router.extend({
     "": "index",
     "workspaces/:id": "show",
     "workspaces/:workspaceId/user/:userId": "userTaskIndex",
+    "workspaces/:workspaceId/project/:projectId": "projectTaskIndex"
     // "workspaces": "index"
   },
 
@@ -75,8 +76,30 @@ TmUp.Routers.Router = Backbone.Router.extend({
       success: function (user) {
         var view = new TmUp.Views.TaskIndex({
           collection: user.tasks(),
-          model: workspace,
+          workspace: workspace,
           user: user
+        });
+        $('#tasks-index-container').html(view.$el);
+        view.render();
+      }
+    });
+    this.currentLandingView && this.currentLandingView.remove();
+  },
+
+  projectTaskIndex: function (workspaceId, projectId) {
+    var workspace = this.workspaces.getOrFetch(workspaceId);
+    $('#tasks-index-container').empty();
+    $('#task-show-container').empty();
+    var project = new TmUp.Models.Project({
+      id: projectId,
+      workspace_id: workspaceId
+    });
+    project.fetch({
+      data: { workspace_id: workspaceId },
+      success: function (project) {
+        var view = new TmUp.Views.TaskIndex({
+          collection: project.tasks(),
+          workspace: workspace
         });
         $('#tasks-index-container').html(view.$el);
         view.render();
