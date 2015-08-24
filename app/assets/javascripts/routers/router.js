@@ -99,7 +99,8 @@ TmUp.Routers.Router = Backbone.Router.extend({
       success: function (project) {
         var view = new TmUp.Views.TaskIndex({
           collection: project.tasks(),
-          workspace: workspace
+          workspace: workspace,
+          project: project
         });
         $('#tasks-index-container').html(view.$el);
         view.render();

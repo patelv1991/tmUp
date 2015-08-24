@@ -24,13 +24,27 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    var name = this.user ? this.user.escape('fname') : TmUp.CURRENT_USER.fname;
-    name = this.project ? this.project.escape('title') + 'all ' : name;
     this.$el.html(this.template({
       workspace: this.workspace,
-      name: name
+      header: this.renderHeader()
     }));
     this.attachSubviews();
     return this;
+  },
+
+  renderHeader: function () {
+    var name;
+    if (this.project) {
+      name = this.project.escape('title') + "'s Tasks";
+      return name;
+    }
+
+    if (this.user) {
+      name = this.user.escape('fname') + "'s " + this.workspace.escape('title') + " Tasks";
+      return name;
+    } else {
+      name = TmUp.CURRENT_USER.fname + "'s " + this.workspace.escape('title') + " Tasks";
+      return name;
+    }
   }
 });
