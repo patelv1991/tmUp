@@ -2757,3 +2757,4 @@
 [08/24/15 01:12:50 -0700 varun-X502CA (11429)] INFO : Doing deferred dependency-detection before Rack startup
 [08/24/15 01:18:01 -0700 varun-X502CA (11429)] ERROR : Invalid license key, please contact support@newrelic.com
 [08/24/15 01:18:01 -0700 varun-X502CA (11429)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[08/24/15 02:21:46 -0700 varun-X502CA (11429)] INFO : Starting Agent shutdown
