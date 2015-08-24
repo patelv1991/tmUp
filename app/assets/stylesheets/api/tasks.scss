@@ -15,6 +15,29 @@ tbody.tasks > tr > td:nth-child(2) {
   padding: 0px;
 }
 
+tbody.tasks > tr > td.task-calendar {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  width: 120px;
+}
+
+tbody.tasks > tr > td.task-calendar > div.date {
+  width: 100px;
+  border: 0px;
+}
+
+tbody.tasks > tr > td.task-calendar > div.date > input.date-input {
+  border: none;
+  background-color: transparent;
+  padding: 0px;
+  padding-left: 2px;
+}
+
+tbody.tasks > tr > td.task-calendar > div.date span {
+  border: none;
+  background-color: transparent;
+}
+
 tbody.tasks > tr td > div.dropdown ul li a {
   width: 150px;
   height: 30px;

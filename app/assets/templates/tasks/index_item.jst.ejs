@@ -1,6 +1,6 @@
 <td class="bs-checkbox"><input data-index="<%= task.id %>" name="btSelectItem" type="checkbox"></td>
 
-<td>
+<td class="task-dropdown">
   <div class="dropdown">
     <button style="<%= 'background-color:' + randomColor %>" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <%= assignment %>
@@ -14,7 +14,11 @@
   </div>
 </td>
 
-<td></td>
+<td class="task-calendar">
+  <div class="input-group date">
+    <input type="text" class="form-control date-input"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+  </div>
+</td>
 
 <td>
   <%= task.escape('title') %>
