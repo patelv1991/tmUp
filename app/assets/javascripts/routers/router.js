@@ -73,7 +73,6 @@ TmUp.Routers.Router = Backbone.Router.extend({
     user.fetch({
       data: { workspace_id: workspaceId },
       success: function (user) {
-        debugger
         var view = new TmUp.Views.TaskIndex({
           collection: user.tasks(),
           model: workspace,
@@ -83,7 +82,6 @@ TmUp.Routers.Router = Backbone.Router.extend({
         view.render();
       }
     });
-    debugger
     this.currentLandingView && this.currentLandingView.remove();
   },
 

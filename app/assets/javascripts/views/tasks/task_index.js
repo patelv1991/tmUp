@@ -20,7 +20,6 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    debugger
     var name = this.user ? this.user.escape('fname') : TmUp.CURRENT_USER.fname;
     this.$el.html(this.template({
       workspace: this.model,
