@@ -34,6 +34,7 @@ TmUp.Models.TeamMember = Backbone.Model.extend({
     }
 
     if (response.tasks) {
+      debugger
       this.tasks().set(response.tasks, { parse: true });
       delete response.tasks;
     }
