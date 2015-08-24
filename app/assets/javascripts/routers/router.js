@@ -65,8 +65,7 @@ TmUp.Routers.Router = Backbone.Router.extend({
 
   userTaskIndex: function (workspaceId, userId) {
     var workspace = this.workspaces.getOrFetch(workspaceId);
-    $('#tasks-index-container').empty();
-    $('#task-show-container').empty();
+    this.changeSubviews();
     var user = new TmUp.Models.TeamMember({
       id: userId,
       workspace_id: workspaceId
@@ -83,13 +82,13 @@ TmUp.Routers.Router = Backbone.Router.extend({
         view.render();
       }
     });
+    // debugger
     this.currentLandingView && this.currentLandingView.remove();
   },
 
   projectTaskIndex: function (workspaceId, projectId) {
     var workspace = this.workspaces.getOrFetch(workspaceId);
-    $('#tasks-index-container').empty();
-    $('#task-show-container').empty();
+    this.changeSubviews();
     var project = new TmUp.Models.Project({
       id: projectId,
       workspace_id: workspaceId
@@ -106,7 +105,15 @@ TmUp.Routers.Router = Backbone.Router.extend({
         view.render();
       }
     });
+    // debugger
     this.currentLandingView && this.currentLandingView.remove();
+  },
+
+  changeSubviews: function () {
+    $('#tasks-index-container').remove();
+    $('#task-show-container').remove();
+    $('#page-content-wrapper').append('<div id="tasks-index-container"></div>');
+    $('#page-content-wrapper').append('<div id="task-show-container"></div>');
   },
 
   _swapLandingView: function (view) {

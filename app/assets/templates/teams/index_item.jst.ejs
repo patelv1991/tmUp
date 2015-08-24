@@ -1,6 +1,6 @@
-<div class="team-index-item" data-project-id="<%= team_member.id %>">
+<div id="<%= team_member.id %>" class="team-index-item" data-member-id="<%= team_member.id %>">
   <a
-      href="<%= '#/workspaces/' + workspaceId + '/user/' + team_member.id %>" 
+      href="<%= '#/workspaces/' + workspaceId + '/user/' + team_member.id %>"
       style="<%= 'background-color:' + randomColor %>">
       <%= team_member.escape('fname')[0].toUpperCase() +
                   team_member.escape('lname')[0].toUpperCase() %></a>
