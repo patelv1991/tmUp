@@ -43,7 +43,7 @@ TmUp.Views.NavShow = Backbone.View.extend({
     // this handles box-shadow for navbar when sidebar is hidden
     $('.navbar').removeClass('toggled-sidebar');
     // this handles size of task index container when sidebar is hidden
-    $('#tasks-index-container').removeClass('sidebar-toggled');
+    $('#page-content-wrapper').removeClass('sidebar-toggled');
   },
 
   renderSbButtonToClose: function () {
@@ -53,7 +53,7 @@ TmUp.Views.NavShow = Backbone.View.extend({
       // this handles box-shadow for navbar when sidebar is toggled
       $('.navbar').addClass('toggled-sidebar');
       // this handles size of task index container when sidebar is toggled
-      $('#tasks-index-container').addClass('sidebar-toggled');
+      $('#page-content-wrapper').addClass('sidebar-toggled');
     }
   },
 
