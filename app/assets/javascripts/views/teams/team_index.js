@@ -16,7 +16,8 @@ TmUp.Views.TeamIndex = Backbone.CompositeView.extend({
 
   addMemberSubView: function (member) {
     var view = new TmUp.Views.TeamIndexItem({
-      model: member
+      model: member,
+      workspace: this.model
     });
     this.addSubview('.team-members', view);
   },

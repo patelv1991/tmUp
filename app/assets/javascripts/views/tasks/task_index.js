@@ -1,7 +1,12 @@
 TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
   template: JST['tasks/index'],
 
-  initialize: function () {
+  initialize: function (options) {
+    this.user = options.user;
+    if (this.user) {
+      this.listenTo(this.user, 'sync', this.render);
+    }
+
     this.listenTo(this.collection, 'sync add', this.render);
     this.listenTo(this.collection, 'add', this.addTask);
 
@@ -18,9 +23,10 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
   },
 
   render: function () {
+    var name = this.user ? this.user.fname : TmUp.CURRENT_USER.fname;
     this.$el.html(this.template({
       workspace: this.model,
-      name: TmUp.CURRENT_USER.fname 
+      name: name
     }));
     this.attachSubviews();
     return this;

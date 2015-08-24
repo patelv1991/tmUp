@@ -18,7 +18,14 @@ class Api::UsersController < ApplicationController
     else
       render :index
     end
+  end
 
+  def show
+    @user = User.find(params[:id])
+    @projects = @user.projects.includes(:tasks).where({
+      workspace_id: params[:workspace_id]
+    })
+    render :show
   end
 
 end

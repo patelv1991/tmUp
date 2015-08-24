@@ -1,5 +1,8 @@
 <div class="team-index-item" data-project-id="<%= team_member.id %>">
-  <a style="<%= 'background-color:' + randomColor %>"><%= team_member.escape('fname')[0].toUpperCase() +
+  <a
+      href="<%= '#/workspaces/' + workspaceId + '/user/' + team_member.id %>" 
+      style="<%= 'background-color:' + randomColor %>">
+      <%= team_member.escape('fname')[0].toUpperCase() +
                   team_member.escape('lname')[0].toUpperCase() %></a>
 </div>
 <style media="screen">

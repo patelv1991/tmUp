@@ -64,11 +64,22 @@ TmUp.Routers.Router = Backbone.Router.extend({
 
   userTaskIndex: function (workspaceId, userId) {
     var workspace = this.workspaces.getOrFetch(workspaceId);
-    $('#tasks-index-container').empty();
-    $('#task-show-container').empty();
-    var view = new TmUp.Views.TaskIndex({
-      model: workspace
+    $('#tasks-index-container').remove();
+    $('#task-show-container').remove();
+    var user = new TmUp.Models.TeamMember({
+      id: userId,
+      workspace_id: workspaceId
     });
+    user.fetch({
+      data: { workspace_id: workspaceId },
+    });
+
+    var view = new TmUp.Views.TaskIndex({
+      collection: user.tasks(),
+      model: workspace,
+      user: user
+    });
+    this.currentLandingView && this.currentLandingView.remove();
   },
 
   _swapLandingView: function (view) {
