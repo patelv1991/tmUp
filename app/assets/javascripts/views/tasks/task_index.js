@@ -9,11 +9,9 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
     // this.listenTo(this.user, 'sync', this.render);
     this.listenTo(this.collection, 'sync add', this.render);
     this.listenTo(this.collection, 'add', this.addTask);
-    $('.update-project').prop('disabled', true);
     // This makes sure that project title is updated when project is updated
     if (this.project) {
       this.listenTo(this.project, 'change', this.render);
-      $('.update-project').prop('disabled', false);
     }
     // debugger
     this.collection.each(function (task) {
@@ -45,10 +43,18 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
     modal.render();
   },
 
-  destroyProject: function () {
+  destroyProject: function (event) {
+    event.preventDefault();
+    this.project.destroy({
+      success: function (project) {
+        this.collection.remove(project);
+        var route = '#/workspaces/' + this.workspace.id;
+        Backbone.history.navigate(route, { trigger: true });
+      }.bind(this)
+    });
 
   },
-  
+
   render: function () {
     this.$el.html(this.template({
       workspace: this.workspace,
