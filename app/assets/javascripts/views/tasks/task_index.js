@@ -9,7 +9,12 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
     // this.listenTo(this.user, 'sync', this.render);
     this.listenTo(this.collection, 'sync add', this.render);
     this.listenTo(this.collection, 'add', this.addTask);
-    // this.listenTo(this.project, 'change', this.render);
+
+    // This makes sure that project title is updated when project is updated
+    if (this.project) {
+      this.listenTo(this.project, 'change', this.render);
+    }
+
     this.collection.each(function (task) {
       this.addTask(task);
     }.bind(this));
@@ -39,6 +44,7 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
   },
 
   render: function () {
+    // debugger
     this.$el.html(this.template({
       workspace: this.workspace,
       header: this.renderHeader()
