@@ -82,6 +82,7 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
       '<button type="button" class="btn btn-default btn-xs update-project">Edit Project</button> ' +
       '<button type="button" class="btn btn-danger btn-xs delete-project">Delete Project</button> ');
       this.$el.find('.button-space').html($buttons);
+      this.$el.find('.new-task').html('Create a New Task');
     } else {
       this.$el.find('.button-space').empty();
     }

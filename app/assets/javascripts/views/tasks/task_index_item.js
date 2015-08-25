@@ -42,7 +42,8 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
       workspace: this.workspace,
       assignment: this.renderAssignee(),
       randomColor: this.assigneeColor,
-      projectName: this.renderProjectName()
+      projectName: this.renderProjectName(),
+      newTask: this.newTask
     });
     this.$el.html(content);
     if (this.newTask) {
