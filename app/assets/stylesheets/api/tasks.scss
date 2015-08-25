@@ -18,25 +18,28 @@ tbody.tasks > tr > td:nth-child(2) {
 tbody.tasks > tr > td.task-calendar {
   padding-top: 0px;
   padding-bottom: 0px;
-  width: 120px;
+  width: 125px;
 }
 
 tbody.tasks > tr > td.task-calendar > div.date {
-  width: 90px;
+  width: 100px;
   border: 0px;
 }
 
 tbody.tasks > tr > td.task-calendar > div.date > input.date-input {
   border: none;
   background-color: transparent;
-  padding: 0px;
-  padding-left: 2px;
+  padding: 0px 5px 0px 5px;
 }
+//
+// tbody.tasks > tr > td.task-calendar > div.date > input.date-input:hover {
+//   border: 1px blue solid;
+// }
 
 tbody.tasks > tr > td.task-calendar > div.date span {
   border: none;
   background-color: transparent;
-  padding-left: 0px
+  padding-left: 6px
 }
 
 .datepicker table tr td.active:hover.active,
@@ -103,4 +106,25 @@ div#tasks-index-container header strong {
 
 div#tasks-index-container header div {
   float: right;
+}
+
+// setting table column width
+table > thead > tr > th.status {
+  width: 45px;
+}
+
+table > thead > tr > th.assignee {
+  width: 51px;
+}
+
+table > thead > tr > th.due-date {
+  width: 110px;
+}
+
+table > thead > tr > th.task-title {
+  width: auto;
+}
+
+table > thead > tr > th.delete-task {
+  width: 45px;
 }
