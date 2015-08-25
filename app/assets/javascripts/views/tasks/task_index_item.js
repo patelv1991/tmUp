@@ -8,6 +8,10 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     this.renderingAllTasks = options.renderingAllTasks;
   },
 
+  events: {
+    'click .delete-new-task': 'remove'
+  },
+
   renderAssignee: function () {
     var assigneeId = parseInt(this.model.escape('assignee_id'));
     var assignee = this.workspace.workTeam().findWhere({ id: assigneeId });
@@ -41,6 +45,9 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
       projectName: this.renderProjectName()
     });
     this.$el.html(content);
+    if (this.newTask) {
+      this.$el.find('.glyphicon-trash').addClass('delete-new-task');
+    }
     return this;
   }
 });
