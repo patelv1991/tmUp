@@ -9,10 +9,15 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
   renderAssignee: function () {
     var assigneeId = parseInt(this.model.escape('assignee_id'));
     var assignee = this.workspace.workTeam().findWhere({ id: assigneeId });
-    this.assigneeColor = assignee.color;
-    return assignee.escape('fname')[0].toUpperCase() +
-                assignee.escape('lname')[0].toUpperCase();
+    if (assignee === undefined) {
+      this.assigneeColor = 'rgba(93, 86, 86, 0.14)';
+      return '__';
+    } else {
+      this.assigneeColor = assignee.color;
+      return assignee.escape('fname')[0].toUpperCase() +
+                  assignee.escape('lname')[0].toUpperCase();
 
+    }
   },
 
   render: function () {

@@ -5,6 +5,8 @@
 
 td > div.dropdown > button {
   border-radius: 50%;
+  width: 36px;
+  height: 36px;
   padding: 8px;
   border: none;
   opacity: 0.8;
@@ -123,6 +125,10 @@ table > thead > tr > th.due-date {
 
 table > thead > tr > th.task-title {
   width: auto;
+}
+
+table tbody tr td:nth-child(4):hover {
+  cursor: pointer;
 }
 
 table > thead > tr > th.delete-task {
