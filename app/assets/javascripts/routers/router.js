@@ -102,8 +102,14 @@ TmUp.Routers.Router = Backbone.Router.extend({
           workspace: workspace,
           project: project
         });
+        // debugger
         $('#tasks-index-container').html(view.$el);
+        // this.$el.find('.delete-project').remove();
         view.render();
+        // var $buttons = $('<button type="button" class="btn btn-default btn-xs show-completed-tasks">Show Completed Tasks</button>' +
+        // '<button type="button" class="btn btn-default btn-xs update-project">Edit Project</button>' +
+        // '<button type="button" class="btn btn-danger btn-xs delete-project">Delete Project</button>');
+        // view.$el.find('.button-space').html($buttons);
       }
     });
     // debugger

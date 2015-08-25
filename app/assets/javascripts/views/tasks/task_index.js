@@ -9,19 +9,21 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
     // this.listenTo(this.user, 'sync', this.render);
     this.listenTo(this.collection, 'sync add', this.render);
     this.listenTo(this.collection, 'add', this.addTask);
-
+    $('.update-project').prop('disabled', true);
     // This makes sure that project title is updated when project is updated
     if (this.project) {
       this.listenTo(this.project, 'change', this.render);
+      $('.update-project').prop('disabled', false);
     }
-
+    // debugger
     this.collection.each(function (task) {
       this.addTask(task);
     }.bind(this));
   },
 
   events: {
-    'click .update-project': 'updateProject'
+    'click .update-project': 'updateProject',
+    'click .delete-project': 'destroyProject'
   },
 
   addTask: function (task) {
@@ -43,14 +45,29 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
     modal.render();
   },
 
+  destroyProject: function () {
+
+  },
+  
   render: function () {
-    // debugger
     this.$el.html(this.template({
       workspace: this.workspace,
-      header: this.renderHeader()
+      header: this.renderHeader(),
     }));
+    this.toggleButtons();
     this.attachSubviews();
     return this;
+  },
+
+  toggleButtons: function () {
+    if (!this.renderingAllTasks) {
+      var $buttons = $('<button type="button" class="btn btn-default btn-xs show-completed-tasks">Show Completed Tasks</button> ' +
+      '<button type="button" class="btn btn-default btn-xs update-project">Edit Project</button> ' +
+      '<button type="button" class="btn btn-danger btn-xs delete-project">Delete Project</button> ');
+      this.$el.find('.button-space').html($buttons);
+    } else {
+      this.$el.find('.button-space').empty();
+    }
   },
 
   renderHeader: function () {
