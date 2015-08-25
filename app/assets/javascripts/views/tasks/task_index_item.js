@@ -4,6 +4,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
 
   initialize: function (options) {
     this.workspace = options.workspace;
+    this.newTask = options.newTask;
     this.renderingAllTasks = options.renderingAllTasks;
   },
 
