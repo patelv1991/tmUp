@@ -13,7 +13,7 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
     if (this.project) {
       this.listenTo(this.project, 'change', this.render);
     }
-    // debugger
+
     this.collection.each(function (task) {
       this.addTask(task);
     }.bind(this));
@@ -25,6 +25,7 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
   },
 
   addTask: function (task) {
+    // debugger
     var view = new TmUp.Views.TaskIndexItem({
       workspace: this.workspace,
       model: task,

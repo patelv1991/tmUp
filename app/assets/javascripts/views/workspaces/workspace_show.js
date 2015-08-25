@@ -34,6 +34,7 @@ TmUp.Views.WorkspacesShow = Backbone.CompositeView.extend({
   },
 
   renderMyTasks: function () {
+    // debugger
     var view = new TmUp.Views.TaskIndex({
       collection: this.myTasks,
       workspace: this.model,
@@ -46,7 +47,7 @@ TmUp.Views.WorkspacesShow = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    // this.remove();
+    // debugger
     var content = this.template({ workspace: this.model });
     this.$el.html(content);
     this.renderProjectIndexSubview();

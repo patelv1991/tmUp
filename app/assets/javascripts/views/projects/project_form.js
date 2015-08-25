@@ -56,6 +56,7 @@ TmUp.Views.ProjectForm = Backbone.View.extend({
     } else {
       this.$el.html(this.templateNew({ project: this.model }));
     }
+    this.editting && this.$el.find('button.btn-default').prop('disabled', false);
     this.onRender();
     return this;
   },
