@@ -121,11 +121,11 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
 
       if (serverResp.responseJSON.length === 1) {
         $errorDiv.append("<p><strong>" + failedEmails + "</strong> could " +
-                         "not be found. Please make sure that user has " +
+                         "not be found. Please make sure that user has a " +
                          "TmUp account. </p>");
       } else if (serverResp.responseJSON.length > 1) {
         $errorDiv.append("<p><strong>" + failedEmails + "</strong> could " +
-                         "not be found. Please make sure that users have " +
+                         "not be found. Please make sure that each user has a " +
                          "TmUp account. </p>");
       }
 
