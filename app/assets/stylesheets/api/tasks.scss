@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// tasks header
+div#tasks-index-container > div > header > strong {
+  font-size: 30px;
+  padding-bottom: 15px;
+  font-weight: lighter;
+}
 
 td > div.dropdown > button {
   border-radius: 50%;

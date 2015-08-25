@@ -22,7 +22,8 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
   events: {
     'click .update-project': 'updateProject',
     'click .delete-project': 'destroyProject',
-    'click .new-task': 'addNewTask'
+    'click .new-task': 'addNewTask',
+    'dblclick .editable': 'editTask'
   },
 
   addTask: function (task) {
@@ -42,6 +43,15 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
       newTask: true
     });
     this.addSubview('.tasks', view);
+  },
+
+  editTask: function (event) {
+    event.preventDefault();
+    debugger
+    var view = new TmUp.Views.TaskIndexItem({
+      workspace: this.workspace,
+
+    });
   },
 
   updateProject: function () {

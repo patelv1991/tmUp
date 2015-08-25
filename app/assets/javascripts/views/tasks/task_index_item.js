@@ -1,10 +1,12 @@
 TmUp.Views.TaskIndexItem = Backbone.View.extend({
   template: JST['tasks/index_item'],
-  tagName: 'tr',
+  // tagName: 'tr',
 
   initialize: function (options) {
+    this.$el = $('<tr data-index=' + this.model.id + '></tr>');
     this.workspace = options.workspace;
     this.newTask = options.newTask;
+    this.edittingTask = options.edittingTask;
     this.renderingAllTasks = options.renderingAllTasks;
   },
 
@@ -43,7 +45,8 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
       assignment: this.renderAssignee(),
       randomColor: this.assigneeColor,
       projectName: this.renderProjectName(),
-      newTask: this.newTask
+      newTask: this.newTask,
+      edittingTask: this.edittingTask
     });
     this.$el.html(content);
     if (this.newTask) {
