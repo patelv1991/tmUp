@@ -48,7 +48,13 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     this.$el.html(content);
     if (this.newTask) {
       this.$el.find('.glyphicon-trash').addClass('delete-new-task');
+      this.$el.find('.task-title').addClass('new-task-cell');
+      this.onRender();
     }
     return this;
+  },
+
+  onRender: function () {
+    $('#new-task').focus();
   }
 });

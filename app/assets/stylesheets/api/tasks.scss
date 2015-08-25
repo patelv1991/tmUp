@@ -154,3 +154,28 @@ h3 > a.new-task:hover {
   text-decoration: none;
   font-size: 20px;
 }
+
+// new task form
+td.task-title > div.container {
+  width: auto;
+  padding: 0px;
+}
+
+td.task-title > div.container > form > div.add-on {
+  width: 400px;
+}
+
+td.task-title > div.container > form > div.add-on button,
+td.task-title > div.container > form > div.add-on > input {
+  border: none;
+  background-color: transparent;
+}
+
+td.task-title > div.container > form > div.add-on button {
+  font-size: 20px;
+}
+
+table tbody.tasks tr td.new-task-cell {
+  padding: 0px;
+  vertical-align: top;
+}
