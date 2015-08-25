@@ -18,7 +18,7 @@ TmUp.Views.ProjectIndex = Backbone.CompositeView.extend({
 
   addProject: function (project) {
     var view = new TmUp.Views.ProjectIndexItem({
-      model: project, 
+      model: project,
       workspace: this.workspace
     });
     this.addSubview('.projects', view);
@@ -32,7 +32,7 @@ TmUp.Views.ProjectIndex = Backbone.CompositeView.extend({
 
   addNewProject: function () {
     $('.glyphicon-plus').prop('disabled', true);
-    modal = new TmUp.Views.NewProjectForm({
+    modal = new TmUp.Views.ProjectForm({
       collection: this.collection,
       model: new TmUp.Models.Project()
     });

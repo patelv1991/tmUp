@@ -1,0 +1,29 @@
+<div class="m-background"></div>
+
+<div class="m-content">
+  <header class="heading">
+    <strong>New Project </strong><button class="close">&times;</button>
+  </header>
+
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label for="project-title" class="col-sm-3 control-label">Project Title</label>
+      <div class="col-sm-9">
+        <input type="text" name="project[title]" class="form-control" id="project-title" placeholder="Project Title">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="project-des" class="col-sm-3 control-label">Project Description</label>
+      <div class="col-sm-9">
+        <textarea class="form-control" rows="3" placeholder="Project Description" name="project[description]"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
+        <button disabled type="submit" class="btn btn-default">Create Project</button>
+      </div>
+    </div>
+  </form>
+</div>

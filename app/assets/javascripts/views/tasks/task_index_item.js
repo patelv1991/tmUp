@@ -22,7 +22,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
   },
 
   renderProjectName: function () {
-    if (this.renderingAllTasks) {
+    if (!this.renderingAllTasks) {
       return "";
     } else {
       var projectId = parseInt(this.model.escape('project_id'));

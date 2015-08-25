@@ -2,7 +2,6 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
   template: JST['tasks/index'],
 
   initialize: function (options) {
-    // debugger
     this.user = options.user;
     this.workspace = options.workspace;
     this.project = options.project;

@@ -4,6 +4,7 @@ TmUp.Views.ProjectIndexItem = Backbone.View.extend({
 
   initialize: function (options) {
       this.workspaceId = options.workspace.id;
+      this.listenTo(this.model, 'change', this.render);
   },
 
   render: function () {
