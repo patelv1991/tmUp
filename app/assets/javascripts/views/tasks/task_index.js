@@ -47,11 +47,17 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
 
   editTask: function (event) {
     event.preventDefault();
+    var title = $(event.currentTarget).text().trim();
+    var due_date = this.$el.find('.input-group.date').datepicker('getDate');
+    var project_id = this.$el.find('.project').data('project-id');
+    var creator_id = this.CURRENT_USER.id;
+    var assignee_id
     debugger
-    var view = new TmUp.Views.TaskIndexItem({
-      workspace: this.workspace,
 
-    });
+    // var view = new TmUp.Views.TaskIndexItem({
+    //   workspace: this.workspace,
+    //
+    // });
   },
 
   updateProject: function () {

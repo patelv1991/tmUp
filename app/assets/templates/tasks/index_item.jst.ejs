@@ -44,8 +44,8 @@
   <% } %>
 </td>
 
-<td data-index="<%= task.id %>">
-  <%= projectName %>
+<td class="project" data-project-id="<%= project.id %>" data-index="<%= task.id %>">
+  <%= project.escape('title') %>
 </td>
 
 <td data-index="<%= task.id %>">
@@ -53,9 +53,12 @@
 </td>
 
 <script>
-$('.input-group.date').datepicker({
-  format: "mm/dd/yy",
-  clearBtn: true,
-  orientation: "top auto"
-});
+  $('.input-group.date').datepicker({
+    format: "mm/dd/yy",
+    clearBtn: true,
+    orientation: "top auto",
+    autoclose: true,
+    startDate: new Date,
+    zIndexOffset: 10000
+  });
 </script>

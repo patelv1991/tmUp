@@ -28,13 +28,13 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     }
   },
 
-  renderProjectName: function () {
+  findProject: function () {
     if (!this.renderingAllTasks) {
       return "";
     } else {
       var projectId = parseInt(this.model.escape('project_id'));
       var project = this.workspace.projects().findWhere({ id: projectId });
-      return project.escape('title');
+      return project;
     }
   },
 
@@ -44,11 +44,12 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
       workspace: this.workspace,
       assignment: this.renderAssignee(),
       randomColor: this.assigneeColor,
-      projectName: this.renderProjectName(),
+      project: this.findProject(),
       newTask: this.newTask,
       edittingTask: this.edittingTask
     });
     this.$el.html(content);
+
     if (this.newTask) {
       this.$el.find('.glyphicon-trash').addClass('delete-new-task');
       this.$el.find('.task-title').addClass('new-task-cell');
