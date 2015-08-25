@@ -131,6 +131,17 @@ table tbody tr td:nth-child(4):hover {
   cursor: pointer;
 }
 
+table > thead > tr > th.project-title {
+  width: 100px;
+}
+
+table tbody tr td:nth-child(5) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
 table > thead > tr > th.delete-task {
   width: 45px;
 }

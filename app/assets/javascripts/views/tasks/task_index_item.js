@@ -4,6 +4,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
 
   initialize: function (options) {
     this.workspace = options.workspace;
+    this.renderingAllTasks = options.renderingAllTasks;
   },
 
   renderAssignee: function () {
@@ -20,12 +21,23 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     }
   },
 
+  renderProjectName: function () {
+    if (this.renderingAllTasks) {
+      return "";
+    } else {
+      var projectId = parseInt(this.model.escape('project_id'));
+      var project = this.workspace.projects().findWhere({ id: projectId });
+      return project.escape('title');
+    }
+  },
+
   render: function () {
     var content = this.template({
       task: this.model,
       workspace: this.workspace,
       assignment: this.renderAssignee(),
-      randomColor: this.assigneeColor
+      randomColor: this.assigneeColor,
+      projectName: this.renderProjectName()
     });
     this.$el.html(content);
     return this;
