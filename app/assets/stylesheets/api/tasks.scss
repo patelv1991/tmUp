@@ -9,6 +9,10 @@ div#tasks-index-container > div > header > strong {
   font-weight: lighter;
 }
 
+div#tasks-index-container > div > header div.button-space {
+  margin: 12px 0px;
+}
+
 td > div.dropdown > button {
   border-radius: 50%;
   width: 36px;
