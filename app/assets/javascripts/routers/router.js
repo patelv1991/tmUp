@@ -81,7 +81,7 @@ TmUp.Routers.Router = Backbone.Router.extend({
         });
         $('#tasks-index-container').html(view.$el);
         view.render();
-      }
+      }.bind(this)
     });
     // debugger
     this.currentLandingView && this.currentLandingView.remove();
