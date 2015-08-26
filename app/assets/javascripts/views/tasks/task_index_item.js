@@ -22,9 +22,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
       return '__';
     } else {
       this.assigneeColor = assignee.color;
-      return assignee.escape('fname')[0].toUpperCase() +
-                  assignee.escape('lname')[0].toUpperCase();
-
+      return assignee;
     }
   },
 
@@ -42,7 +40,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     var content = this.template({
       task: this.model,
       workspace: this.workspace,
-      assignment: this.renderAssignee(),
+      assignee: this.renderAssignee(),
       randomColor: this.assigneeColor,
       project: this.findProject(),
       newTask: this.newTask,

@@ -1,21 +1,30 @@
 <td class="bs-checkbox"><input data-index="<%= task.id %>" name="btSelectItem" type="checkbox"></td>
 
-<td data-index="<%= task.id %>" class="task-dropdown">
+<td class="task-dropdown">
   <div class="dropdown">
-    <button style="<%= 'background-color:' + randomColor %>" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <%= assignment %>
+    <button data-index="<%= task.id %>"
+            data-assignee-id="<%= assignee.id %>"
+            style="<%= 'background-color:' + randomColor %>"
+            id="dLabel" type="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+      <% if (assignee === "__") { %>
+        <%= assignee %>
+      <% } else { %>
+        <%= assignee.escape('fname')[0].toUpperCase() +
+                    assignee.escape('lname')[0].toUpperCase() %>
+      <% } %>
       <!-- <span class="caret"></span> -->
     </button>
     <ul class="dropdown-menu scrollbar-menu" aria-labelledby="dLabel">
       <% workspace.workTeam().each(function (member) { %>
-        <li><a><%= member.escape('fname') + " " + member.escape('lname') %></a></li>
+        <li><a data-team-member-id="<%= member.id %>"><%= member.escape('fname') + " " + member.escape('lname') %></a></li>
       <% }) %>
     </ul>
   </div>
 </td>
 
-<td data-index="<%= task.id %>" class="task-calendar">
-  <div class="input-group date">
+<td class="task-calendar">
+  <div data-index="<%= task.id %>" class="input-group date">
     <input type="text" class="form-control date-input"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
   </div>
 </td>
@@ -45,7 +54,11 @@
 </td>
 
 <td class="project" data-project-id="<%= project.id %>" data-index="<%= task.id %>">
-  <%= project.escape('title') %>
+  <% if (project) { %>
+    <%= project.escape('title') %>
+  <% } else { %>
+    <%= "" %>
+  <% } %>
 </td>
 
 <td data-index="<%= task.id %>">

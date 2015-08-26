@@ -48,11 +48,13 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
   editTask: function (event) {
     event.preventDefault();
     var title = $(event.currentTarget).text().trim();
-    var due_date = this.$el.find('.input-group.date').datepicker('getDate');
-    var project_id = this.$el.find('.project').data('project-id');
-    var creator_id = this.CURRENT_USER.id;
-    var assignee_id
+    var taskIndex = $(event.currentTarget).data('index');
+    var due_date = $('.input-group.date[data-index="' + taskIndex + '"]').datepicker('getDate');
+    var project_id = $('tr td.project[data-index="' + taskIndex + '"]').data('project-id');
+    var assignee_id = $('td.task-dropdown div button[data-index="' + taskIndex + '"]').data('assignee-id');
+    // var creator_id = TmUp.CURRENT_USER.id; // don't need this for editing a task
     debugger
+
 
     // var view = new TmUp.Views.TaskIndexItem({
     //   workspace: this.workspace,
