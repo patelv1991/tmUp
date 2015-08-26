@@ -47,8 +47,20 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
       if (this.newTask) {
         this.selectedAssignee = selectedAssignee;
         return;
+      } else {
+        if (selectedAssigneeId != this.model.escape('assignee_id')) {
+          this.model.save({ assignee_id: selectedAssigneeId }, {
+            success: function (task) {
+              this.newTask = false;
+              this.remove();
+              // this.collection.add(task, { merge: true }, { remove: true });
+              // this.stopListening();
+              // this.$el.find('.task-title div.task-title-container').toggleClass('hiding');
+              // this.$el.find('.task-title > div.container').toggleClass('hiding');
+            }.bind(this),
+          });
+        }
       }
-      debugger
     }.bind(this));
   },
 
