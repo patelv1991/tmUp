@@ -63,6 +63,8 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     if (this.newTask) {
       this.$el.find('.glyphicon-trash').addClass('delete-new-task');
       this.$el.find('.task-title').addClass('new-task-cell');
+      this.$el.find('.task-title > div.container').toggleClass('hiding');
+      this.$el.find('.task-title div.task-title-container').toggleClass('hiding');
       this.onRender();
     }
     return this;

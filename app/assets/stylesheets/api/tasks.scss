@@ -167,6 +167,11 @@ td.task-title > div.container {
   padding: 0px;
 }
 
+td.task-title div.task-title-container.hiding,
+td.task-title > div.container.hiding {
+  display: none;
+}
+
 td.task-title > div.container > form > div.add-on {
   width: 400px;
 }
