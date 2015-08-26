@@ -3,7 +3,7 @@ TmUp.Models.Project = Backbone.Model.extend({
 
   tasks: function () {
     if (!this._tasks) {
-      this._tasks = new TmUp.Collections.Tasks([], { user: this });
+      this._tasks = new TmUp.Collections.Tasks([], { project: this });
     }
     return this._tasks;
   },

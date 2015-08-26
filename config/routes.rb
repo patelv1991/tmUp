@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     resources :workspaces
     resources :projects
     resources :workspace_memberships, only: [:create, :destroy]
+    resources :tasks
   end
 end

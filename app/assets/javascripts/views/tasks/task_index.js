@@ -7,8 +7,8 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
     this.project = options.project;
     this.renderingAllTasks = options.renderingAllTasks;
     // this.listenTo(this.user, 'sync', this.render);
-    this.listenTo(this.collection, 'sync add', this.render);
     this.listenTo(this.collection, 'add', this.addTask);
+    this.listenTo(this.collection, 'sync', this.render);
     // This makes sure that project title is updated when project is updated
     if (this.project) {
       this.listenTo(this.project, 'change', this.render);
@@ -31,6 +31,7 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
     var view = new TmUp.Views.TaskIndexItem({
       workspace: this.workspace,
       model: task,
+      project: this.project,
       renderingAllTasks: this.renderingAllTasks
     });
     this.addSubview('.tasks', view);
@@ -38,29 +39,15 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
 
   addNewTask: function () {
     var view = new TmUp.Views.TaskIndexItem({
-      workspace: this.workspace,
+      collection: this.collection,
       model: new TmUp.Models.Task(),
+      workspace: this.workspace,
+      project: this.project,
       newTask: true
     });
     this.addSubview('.tasks', view);
   },
 
-  editTask: function (event) {
-    event.preventDefault();
-    var title = $(event.currentTarget).text().trim();
-    var taskIndex = $(event.currentTarget).data('index');
-    var due_date = $('.input-group.date[data-index="' + taskIndex + '"]').datepicker('getDate');
-    var project_id = $('tr td.project[data-index="' + taskIndex + '"]').data('project-id');
-    var assignee_id = $('td.task-dropdown div button[data-index="' + taskIndex + '"]').data('assignee-id');
-    // var creator_id = TmUp.CURRENT_USER.id; // don't need this for editing a task
-    debugger
-
-
-    // var view = new TmUp.Views.TaskIndexItem({
-    //   workspace: this.workspace,
-    //
-    // });
-  },
 
   updateProject: function () {
     modal = new TmUp.Views.ProjectForm({

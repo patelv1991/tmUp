@@ -4,6 +4,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
 
   initialize: function (options) {
     this.$el = $('<tr data-index=' + this.model.id + '></tr>');
+    this.project = options.project;
     this.workspace = options.workspace;
     this.newTask = options.newTask;
     this.edittingTask = options.edittingTask;
@@ -38,6 +39,34 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     }
   },
 
+  // editTask: function (event) {
+  //   event.preventDefault();
+  //   var title = $(event.currentTarget).text().trim();
+  //   var taskIndex = $(event.currentTarget).data('index');
+  //   var due_date = $('.input-group.date[data-index="' + taskIndex + '"]').datepicker('getDate');
+  //   var project_id = $('tr td.project[data-index="' + taskIndex + '"]').data('project-id');
+  //   var assignee_id = $('td.task-dropdown div button[data-index="' + taskIndex + '"]').data('assignee-id');
+  //   var creator_id = TmUp.CURRENT_USER.id; // don't need this for editing a task
+  //   debugger
+  //
+  //
+  //   var view = new TmUp.Views.TaskIndexItem({
+  //     workspace: this.workspace,
+  //
+  //   });
+  // },
+
+  getFormDataForNewTask: function () {
+    var formData = {
+      title: this.$el.find('td.editable input').val(),
+      due_date: this.$el.find('td.task-calendar').datepicker('getUTCDate'),
+      creator_id: TmUp.CURRENT_USER.id,
+      project_id: this.project.id
+    };
+
+    return formData;
+  },
+
   editTask: function (event) {
     event.preventDefault();
     debugger
@@ -45,7 +74,15 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
 
   saveTask: function (event) {
     event.preventDefault();
-    debugger
+    var formData = this.getFormDataForNewTask();
+    this.model.save(formData, {
+      success: function (task) {
+        this.remove();
+        this.collection.add(task);
+        this.$el.find('.task-title div.task-title-container').toggleClass('hiding');
+        this.$el.find('.task-title > div.container').toggleClass('hiding');
+      }.bind(this)
+    });
   },
 
   render: function () {
