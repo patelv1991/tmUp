@@ -23,7 +23,7 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
     'click .update-project': 'updateProject',
     'click .delete-project': 'destroyProject',
     'click .new-task': 'addNewTask',
-    'dblclick .editable': 'editTask'
+    // 'dblclick .editable': 'editTask'
   },
 
   addTask: function (task) {

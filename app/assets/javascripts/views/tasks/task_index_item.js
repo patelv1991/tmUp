@@ -11,10 +11,12 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
   },
 
   events: {
-    'click .delete-new-task': 'remove'
+    'click .delete-new-task': 'remove',
+    'click .glyphicon-floppy-disk': 'saveTask',
+    'dblclick .editable': 'editTask'
   },
 
-  renderAssignee: function () {
+  findAssignee: function () {
     var assigneeId = parseInt(this.model.escape('assignee_id'));
     var assignee = this.workspace.workTeam().findWhere({ id: assigneeId });
     if (assignee === undefined) {
@@ -36,11 +38,21 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     }
   },
 
+  editTask: function (event) {
+    event.preventDefault();
+    debugger
+  },
+
+  saveTask: function (event) {
+    event.preventDefault();
+    debugger
+  },
+
   render: function () {
     var content = this.template({
       task: this.model,
       workspace: this.workspace,
-      assignee: this.renderAssignee(),
+      assignee: this.findAssignee(),
       randomColor: this.assigneeColor,
       project: this.findProject(),
       newTask: this.newTask,
