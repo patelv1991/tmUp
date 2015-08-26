@@ -77,11 +77,13 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     var formData = this.getFormDataForNewTask();
     this.model.save(formData, {
       success: function (task) {
+        this.newTask = false;
         this.remove();
-        this.collection.add(task);
-        this.$el.find('.task-title div.task-title-container').toggleClass('hiding');
-        this.$el.find('.task-title > div.container').toggleClass('hiding');
-      }.bind(this)
+        this.collection.add(task, { merge: true }, { remove: true });
+        // this.stopListening();
+        // this.$el.find('.task-title div.task-title-container').toggleClass('hiding');
+        // this.$el.find('.task-title > div.container').toggleClass('hiding');
+      }.bind(this),
     });
   },
 
@@ -96,7 +98,6 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
       edittingTask: this.edittingTask
     });
     this.$el.html(content);
-
     if (this.newTask) {
       this.$el.find('.glyphicon-trash').addClass('delete-new-task');
       this.$el.find('.task-title').addClass('new-task-cell');
