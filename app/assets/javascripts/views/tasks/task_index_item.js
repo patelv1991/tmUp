@@ -13,8 +13,9 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
 
   events: {
     'click .delete-new-task': 'remove',
-    'click .glyphicon-floppy-disk': 'saveTask',
-    'dblclick .editable': 'editTask'
+    'click .task-save-btn': 'saveTask',
+    'dblclick .editable': 'editTask',
+    'shown.bs.dropdown div.dropdown': 'changeAssignee'
   },
 
   findAssignee: function () {
@@ -27,6 +28,28 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
       this.assigneeColor = assignee.color;
       return assignee;
     }
+  },
+
+  changeAssignee: function () {
+    this.$el.find('.dropdown-menu').on('click', function (event) {
+      var selectedAssigneeId = $(event.target).data('team-member-id');
+      var selectedAssignee = this.workspace.workTeam().findWhere({
+        id: selectedAssigneeId
+      });
+      var backgroundColor = selectedAssignee.color;
+      var initials = selectedAssignee.escape('fname')[0].toUpperCase() +
+                     selectedAssignee.escape('lname')[0].toUpperCase();
+      this.$el.find('div.dropdown > button').text(initials);
+      this.$el.find('div.dropdown > button').css({
+        "background-color": backgroundColor
+      });
+
+      if (this.newTask) {
+        this.selectedAssignee = selectedAssignee;
+        return;
+      }
+      debugger
+    }.bind(this));
   },
 
   findProject: function () {
@@ -61,7 +84,8 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
       title: this.$el.find('td.editable input').val(),
       due_date: this.$el.find('td.task-calendar').datepicker('getUTCDate'),
       creator_id: TmUp.CURRENT_USER.id,
-      project_id: this.project.id
+      project_id: this.project.id,
+      assignee_id: this.selectedAssignee.id
     };
 
     return formData;
@@ -87,9 +111,19 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     });
   },
 
+  parsedDate: function () {
+    if (this.model.escape('due_date')) {
+      var date = this.model.escape('due_date').split("-");
+      return date[1] + '/' + date[2] + '/' + date[0];
+    } else {
+      return;
+    }
+  },
+
   render: function () {
     var content = this.template({
       task: this.model,
+      due_date: this.parsedDate(),
       workspace: this.workspace,
       assignee: this.findAssignee(),
       randomColor: this.assigneeColor,
@@ -100,7 +134,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     this.$el.html(content);
     // $('td.task-calendar > div.date').datepicker('setDate', this.model.escape('due_date'));
     if (this.newTask) {
-      this.$el.find('.glyphicon-trash').addClass('delete-new-task');
+      this.$el.find('td.delete-task').addClass('delete-new-task');
       this.$el.find('.task-title').addClass('new-task-cell');
       this.$el.find('.task-title > div.container').toggleClass('hiding');
       this.$el.find('.task-title div.task-title-container').toggleClass('hiding');

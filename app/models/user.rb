@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
 
   has_many :user_workspaces, dependent: :destroy
 
-  has_many :projects, through: :team_assignments, source: :project
+  has_many :projects, through: :workspaces, source: :projects
   has_many :workspaces, through: :user_workspaces, dependent: :destroy
 
   has_many(
@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
     foreign_key: :member_id,
     primary_key: :id
   )
-  
+
   has_many(
     :tasks,
     class_name: "Task",

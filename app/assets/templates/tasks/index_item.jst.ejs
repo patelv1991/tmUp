@@ -27,8 +27,8 @@
   <div data-index="<%= task.id %>" class="input-group date">
     <input type="text"
            class="form-control date-input"
-           value="<%= task.escape('due_date') %>"
-           placeholder="yyyy-mm-dd">
+           value="<%= due_date %>"
+           placeholder="mm/dd/yyyy">
            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
   </div>
 </td>
@@ -46,7 +46,7 @@
                  name="task[title]"
                  id="new-task">
           <div class="input-group-btn">
-            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-floppy-disk"></i></button>
+            <button class="task-save-btn btn btn-default" type="submit"><i class="glyphicon glyphicon-floppy-disk"></i></button>
           </div>
         </div>
       </form>
@@ -67,13 +67,13 @@
   <% } %>
 </td>
 
-<td data-index="<%= task.id %>">
+<td class="delete-task" data-index="<%= task.id %>">
   <span data-index="<%= task.id %>" class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 </td>
 
 <script>
   $('.input-group.date').datepicker({
-    format: "yyyy-mm-dd",
+    format: "mm/dd/yyyy",
     clearBtn: true,
     orientation: "top auto",
     autoclose: true,
