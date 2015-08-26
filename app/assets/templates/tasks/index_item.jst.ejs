@@ -25,7 +25,11 @@
 
 <td class="task-calendar">
   <div data-index="<%= task.id %>" class="input-group date">
-    <input type="text" class="form-control date-input"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+    <input type="text"
+           class="form-control date-input"
+           value="<%= task.escape('due_date') %>"
+           placeholder="yyyy-mm-dd">
+           <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
   </div>
 </td>
 
@@ -69,7 +73,7 @@
 
 <script>
   $('.input-group.date').datepicker({
-    format: "mm/dd/yyyy",
+    format: "yyyy-mm-dd",
     clearBtn: true,
     orientation: "top auto",
     autoclose: true,

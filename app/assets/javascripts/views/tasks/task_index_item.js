@@ -98,6 +98,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
       edittingTask: this.edittingTask
     });
     this.$el.html(content);
+    // $('td.task-calendar > div.date').datepicker('setDate', this.model.escape('due_date'));
     if (this.newTask) {
       this.$el.find('.glyphicon-trash').addClass('delete-new-task');
       this.$el.find('.task-title').addClass('new-task-cell');
