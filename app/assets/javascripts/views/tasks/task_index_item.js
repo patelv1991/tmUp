@@ -17,7 +17,8 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     'click .delete-task': 'deleteTask',
     'click .task-save-btn': 'saveTask',
     'dblclick .editable': 'editTask',
-    'shown.bs.dropdown div.dropdown': 'changeAssignee'
+    'shown.bs.dropdown div.dropdown': 'changeAssignee',
+    'show .input-group.date': 'changeDate'
   },
 
   findAssignee: function () {
@@ -63,6 +64,15 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
         }
       }
     }.bind(this));
+  },
+
+  changeDate: function () {
+    if (!this.newTask) {
+      this.$el.find('.input-group.date').on('changeDate', function (event) {
+        var selectedDate = this.$el.find('td.task-calendar').datepicker('getUTCDate');
+        this.model.save({ due_date: selectedDate });
+      }.bind(this));
+    }
   },
 
   findProject: function () {
