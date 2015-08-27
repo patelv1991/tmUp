@@ -36,34 +36,59 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
   changeAssignee: function () {
     this.$el.find('.dropdown-menu').on('click', function (event) {
       var selectedAssigneeId = $(event.target).data('team-member-id');
-      var selectedAssignee = this.workspace.workTeam().findWhere({
-        id: selectedAssigneeId
-      });
-      var backgroundColor = selectedAssignee.color;
-      var initials = selectedAssignee.escape('fname')[0].toUpperCase() +
-                     selectedAssignee.escape('lname')[0].toUpperCase();
-      this.$el.find('div.dropdown > button').text(initials);
-      this.$el.find('div.dropdown > button').data('assignee-id', selectedAssigneeId);
-      this.$el.find('div.dropdown > button').css({
-        "background-color": backgroundColor
-      });
+      var backgroundColor;
+      var initials;
+      if (selectedAssigneeId === undefined) {
+        selectedAssigneeId = null;
+        selectedAssignee = '_';
+        backgroundColor = 'rgba(93, 86, 86, 0.14)';
+        initials = "__";
 
-      if (this.newTask) {
-        this.selectedAssignee = selectedAssignee;
-        return;
+        this.renderTemporaryChangesToScreen(
+          initials, backgroundColor, selectedAssignee, selectedAssigneeId
+        );
       } else {
-        if (selectedAssigneeId != this.model.escape('assignee_id')) {
-          this.model.save({ assignee_id: selectedAssigneeId }, {
-            success: function (task) {
-              // this.newTask = false;
-              if (this.project === undefined) {
-                this.remove();
-              }
-            }.bind(this),
-          });
-        }
+        var selectedAssignee = this.workspace.workTeam().findWhere({
+          id: selectedAssigneeId
+        });
+        backgroundColor = selectedAssignee.color;
+        initials = selectedAssignee.escape('fname')[0].toUpperCase() +
+                       selectedAssignee.escape('lname')[0].toUpperCase();
+
+        this.renderTemporaryChangesToScreen(
+          initials, backgroundColor, selectedAssignee, selectedAssigneeId
+        );
       }
     }.bind(this));
+  },
+
+  renderTemporaryChangesToScreen: function (initials, backgroundColor, selectedAssignee, selectedAssigneeId) {
+    this.$el.find('div.dropdown > button').text(initials);
+    this.$el.find('div.dropdown > button').data('assignee-id', selectedAssigneeId);
+    this.$el.find('div.dropdown > button').css({
+      "background-color": backgroundColor
+    });
+
+    this.saveChangedAssignee(selectedAssignee, selectedAssigneeId);
+  },
+
+  saveChangedAssignee: function (selectedAssignee, selectedAssigneeId) {
+    if (this.newTask) {
+      // this allows this.selectedAssignee to be used later when creating a task
+      this.selectedAssignee = selectedAssignee;
+      return;
+    } else {
+      if (selectedAssigneeId != this.model.escape('assignee_id')) {
+        this.model.save({ assignee_id: selectedAssigneeId }, {
+          success: function (task) {
+            // this.newTask = false;
+            if (this.project === undefined) {
+              this.remove();
+            }
+          }.bind(this),
+        });
+      }
+    }
   },
 
   changeDate: function () {
