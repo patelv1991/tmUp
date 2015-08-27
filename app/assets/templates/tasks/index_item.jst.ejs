@@ -1,4 +1,11 @@
-<td class="bs-checkbox"><input data-index="<%= task.id %>" name="btSelectItem" type="checkbox"></td>
+<td class="bs-checkbox">
+  <input data-index="<%= task.id %>"
+  name="btSelectItem"
+  type="checkbox"
+  <% if (task.escape('completed') === "true") { %>
+    checked
+  <% } %>>
+</td>
 
 <td class="task-dropdown">
   <div class="dropdown">
