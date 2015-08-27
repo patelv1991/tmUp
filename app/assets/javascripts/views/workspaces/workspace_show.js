@@ -14,7 +14,7 @@ TmUp.Views.WorkspacesShow = Backbone.CompositeView.extend({
     this.listenTo(this.model.workTeam(), 'remove', this.render);
     this.listenTo(this.model.projects(), 'remove', this.render);
     // this.listenTo(this.model.projects(), 'change remove', this.render);
-    // this.listenTo(this.myTasks, 'add', this.renderMyTasks);
+    this.listenTo(this.myTasks, 'add sync', this.render);
   },
 
   renderProjectIndexSubview: function () {

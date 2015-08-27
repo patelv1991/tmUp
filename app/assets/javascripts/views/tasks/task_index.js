@@ -15,7 +15,10 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
     }
 
     this.collection.each(function (task) {
-      this.addTask(task);
+      // debugger
+      if (!task.get('completed')) {
+        this.addTask(task);
+      }
     }.bind(this));
   },
 
@@ -23,7 +26,8 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
     'click .update-project': 'updateProject',
     'click .delete-project': 'destroyProject',
     'click .new-task': 'addNewTask',
-    // 'dblclick .editable': 'editTask'
+    'click .show-completed-tasks': 'showCompletedTasks',
+    'click .hide-completed-tasks': 'hideCompletedTasks'
   },
 
   addTask: function (task) {
@@ -49,6 +53,27 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
     this.addSubview('.tasks', view);
   },
 
+  showCompletedTasks: function (event) {
+    event.preventDefault();
+    this.hideBtnsAndRemoveSubviews();
+    this.collection.each(function (task) { this.addTask(task); }.bind(this));
+  },
+
+  hideCompletedTasks: function (event) {
+    event.preventDefault();
+    this.hideBtnsAndRemoveSubviews();
+    this.collection.each(function (task) {
+      if (!task.get('completed')) {
+        this.addTask(task);
+      }
+    }.bind(this));
+  },
+
+  hideBtnsAndRemoveSubviews: function () {
+    $('.hide-completed-tasks').toggleClass('hidden');
+    $('.show-completed-tasks').toggleClass('hidden');
+    this.subviews('.tasks').each(function(sub) { sub.remove(); });
+  },
 
   updateProject: function () {
     modal = new TmUp.Views.ProjectForm({
@@ -84,7 +109,9 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
 
   toggleButtons: function () {
     if (!this.renderingAllTasks) {
-      var $buttons = $('<button type="button" class="btn btn-default btn-xs show-completed-tasks">Show Completed Tasks</button> ' +
+      var $buttons = $(
+      '<button type="button" class="hidden btn btn-default btn-xs hide-completed-tasks">Hide Completed Tasks</button> ' +
+      '<button type="button" class="btn btn-default btn-xs show-completed-tasks">Show All Tasks</button> ' +
       '<button type="button" class="btn btn-default btn-xs update-project">Edit Project</button> ' +
       '<button type="button" class="btn btn-danger btn-xs delete-project">Delete Project</button> ');
       this.$el.find('.button-space').html($buttons);
