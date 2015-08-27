@@ -34,7 +34,6 @@
 </td>
 
 <td data-index="<%= task.id %>" class="task-title editable">
-  <!-- <% if (newTask || edittingTask) { %> -->
     <div class="container hiding">
 
       <form class="form-inline">
@@ -52,11 +51,9 @@
       </form>
 
     </div>
-  <!-- <% } else { %> -->
   <div class="task-title-container">
     <%= task.escape('title') %>
   </div>
-  <!-- <% } %> -->
 </td>
 
 <td class="project" data-project-id="<%= project.id %>" data-index="<%= task.id %>">

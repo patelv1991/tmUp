@@ -41,6 +41,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
       var initials = selectedAssignee.escape('fname')[0].toUpperCase() +
                      selectedAssignee.escape('lname')[0].toUpperCase();
       this.$el.find('div.dropdown > button').text(initials);
+      this.$el.find('div.dropdown > button').data('assignee-id', selectedAssigneeId);
       this.$el.find('div.dropdown > button').css({
         "background-color": backgroundColor
       });
@@ -90,13 +91,21 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
   //   });
   // },
 
+  getTaskAssignee: function () {
+    if (this.selectedAssignee === undefined) {
+      return this.$el.find('div.dropdown > button').data('assignee-id');
+    } else {
+      return this.selectedAssignee.id;
+    }
+  },
+
   getFormDataForNewTask: function () {
     var formData = {
       title: this.$el.find('td.editable input').val(),
       due_date: this.$el.find('td.task-calendar').datepicker('getUTCDate'),
       creator_id: TmUp.CURRENT_USER.id,
       project_id: this.project.id,
-      assignee_id: this.selectedAssignee.id
+      assignee_id: this.getTaskAssignee()
     };
 
     return formData;
@@ -107,19 +116,26 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     var formData = this.getFormDataForNewTask();
     this.model.save(formData, {
       success: function (task) {
-        this.newTask = false;
-        this.remove();
-        this.collection.add(task, { merge: true }, { remove: true });
+        // this.newTask = false;
+        if (this.newTask) {
+          this.collection.add(task, { merge: true }, { remove: true });
+          this.remove();
+        } else {
+          this.$el.find('.task-title.editable').toggleClass('currently-being-edited');
+          this.$el.find('.task-title div.task-title-container').toggleClass('hiding');
+          this.$el.find('.task-title > div.container').toggleClass('hiding');
+        }
         // this.stopListening();
-        // this.$el.find('.task-title div.task-title-container').toggleClass('hiding');
-        // this.$el.find('.task-title > div.container').toggleClass('hiding');
       }.bind(this),
     });
   },
 
   editTask: function (event) {
     event.preventDefault();
-    debugger
+    this.$el.find('.task-title.editable').toggleClass('currently-being-edited');
+    this.$el.find('.task-title > div.container').toggleClass('hiding');
+    this.$el.find('.task-title div.task-title-container').toggleClass('hiding');
+    $('#new-task').select();
   },
 
   deleteTask: function (event) {
@@ -160,12 +176,8 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
       this.$el.find('.task-title').addClass('new-task-cell');
       this.$el.find('.task-title > div.container').toggleClass('hiding');
       this.$el.find('.task-title div.task-title-container').toggleClass('hiding');
-      this.onRender();
+      $('.task-title > div.container input#new-task').focus();
     }
     return this;
   },
-
-  onRender: function () {
-    $('#new-task').focus();
-  }
 });

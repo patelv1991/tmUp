@@ -184,6 +184,7 @@ td.task-title > div.container > form > div.add-on button,
 td.task-title > div.container > form > div.add-on > input {
   border: none;
   background-color: transparent;
+  height: 39px;
 }
 
 td.task-title > div.container > form > div.add-on button {
@@ -193,4 +194,8 @@ td.task-title > div.container > form > div.add-on button {
 table tbody.tasks tr td.new-task-cell {
   padding: 0px;
   vertical-align: top;
+}
+
+.table > tbody tr td.currently-being-edited {
+  padding: 0px;
 }
