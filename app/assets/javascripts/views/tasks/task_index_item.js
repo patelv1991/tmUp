@@ -55,7 +55,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
         if (selectedAssigneeId != this.model.escape('assignee_id')) {
           this.model.save({ assignee_id: selectedAssigneeId }, {
             success: function (task) {
-              this.newTask = false;
+              // this.newTask = false;
               if (this.project === undefined) {
                 this.remove();
               }

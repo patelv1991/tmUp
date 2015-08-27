@@ -16,6 +16,7 @@
       <!-- <span class="caret"></span> -->
     </button>
     <ul class="dropdown-menu scrollbar-menu" aria-labelledby="dLabel">
+      <li><a>__</a></li>
       <% workspace.workTeam().each(function (member) { %>
         <li><a data-team-member-id="<%= member.id %>"><%= member.escape('fname') + " " + member.escape('lname') %></a></li>
       <% }) %>
