@@ -17,6 +17,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     'click .delete-task': 'deleteTask',
     'click .task-save-btn': 'saveTask',
     'dblclick .editable': 'editTask',
+    'click .bs-checkbox > input': 'completeTask',
     'shown.bs.dropdown div.dropdown': 'changeAssignee',
     'show .input-group.date': 'changeDate'
   },
@@ -180,6 +181,16 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     this.$el.find('.task-title > div.container').toggleClass('hiding');
     this.$el.find('.task-title div.task-title-container').toggleClass('hiding');
     $('#new-task').select();
+  },
+
+  completeTask: function (event) {
+    this.model.save({ completed: (!this.model.get('completed')) }, {
+      success: function (task) {
+        if (task.get('completed')) {
+          this.remove();
+        }
+      }.bind(this)
+    });
   },
 
   deleteTask: function (event) {
