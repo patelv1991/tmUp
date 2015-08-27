@@ -113,7 +113,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
       title: this.$el.find('td.editable input').val(),
       due_date: this.$el.find('td.task-calendar').datepicker('getUTCDate'),
       creator_id: TmUp.CURRENT_USER.id,
-      project_id: this.getProjectId,
+      project_id: this.getProjectId(),
       assignee_id: this.getTaskAssignee()
     };
 
