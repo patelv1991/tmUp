@@ -9,6 +9,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     this.newTask = options.newTask;
     this.edittingTask = options.edittingTask;
     this.renderingAllTasks = options.renderingAllTasks;
+    this.listenTo(this.model, 'sync', this.render);
   },
 
   events: {
@@ -91,6 +92,14 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
   //   });
   // },
 
+  getProjectId: function () {
+    if (this.newTask) {
+      return this.project.id;
+    } else {
+      return this.model.project_id;
+    }
+  },
+
   getTaskAssignee: function () {
     if (this.selectedAssignee === undefined) {
       return this.$el.find('div.dropdown > button').data('assignee-id');
@@ -104,7 +113,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
       title: this.$el.find('td.editable input').val(),
       due_date: this.$el.find('td.task-calendar').datepicker('getUTCDate'),
       creator_id: TmUp.CURRENT_USER.id,
-      project_id: this.project.id,
+      project_id: this.getProjectId,
       assignee_id: this.getTaskAssignee()
     };
 
@@ -117,8 +126,8 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     this.model.save(formData, {
       success: function (task) {
         // this.newTask = false;
-        if (this.newTask) {
           this.collection.add(task, { merge: true }, { remove: true });
+        if (this.newTask) {
           this.remove();
         } else {
           this.$el.find('.task-title.editable').toggleClass('currently-being-edited');
