@@ -56,15 +56,18 @@ TmUp.Routers.Router = Backbone.Router.extend({
   show: function (id) {
     var workspace = this.workspaces.getOrFetch(id);
     TmUp.CURRENT_WORKSPACE = parseInt(workspace.id);
-    var WorkspacesShowView = new TmUp.Views.WorkspacesShow({
+    this._workspacesShowView = new TmUp.Views.WorkspacesShow({
       model: workspace,
     });
     this.currentLandingView && this.currentLandingView.remove();
-    this._swapMainView(WorkspacesShowView);
+    this._swapMainView(this._workspacesShowView);
   },
 
   userTaskIndex: function (workspaceId, userId) {
     var workspace = this.workspaces.getOrFetch(workspaceId);
+    if (this._workspacesShowView === undefined) {
+      this.show(workspaceId);
+    }
     this.changeSubviews();
     var user = new TmUp.Models.TeamMember({
       id: userId,
@@ -89,6 +92,10 @@ TmUp.Routers.Router = Backbone.Router.extend({
 
   projectTaskIndex: function (workspaceId, projectId) {
     var workspace = this.workspaces.getOrFetch(workspaceId);
+    if (this._workspacesShowView === undefined) {
+      this.show(workspaceId);
+    }
+    
     this.changeSubviews();
     var project = new TmUp.Models.Project({
       id: projectId,
