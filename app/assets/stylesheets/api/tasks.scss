@@ -43,6 +43,11 @@ tbody.tasks > tr > td.task-calendar > div.date > input.date-input {
   background-color: transparent;
   padding: 0px;
 }
+
+tbody.tasks > tr > td.task-calendar > div.date > input.date-input.past-due {
+  color: red;
+}
+
 //
 // tbody.tasks > tr > td.task-calendar > div.date > input.date-input:hover {
 //   border: 1px blue solid;

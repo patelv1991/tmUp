@@ -213,6 +213,18 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     }
   },
 
+  isPastDue: function (dueDate) {
+    // dueDate = this.model.get('due_date');
+    currentDay = new Date().getDate().toString();
+    currentMonth = (new Date().getMonth() + 1).toString();
+    currentMonth = currentMonth.length === 1 ? '0' + currentMonth : currentMonth;
+    currentYear = new Date().getFullYear().toString();
+    currentDate = currentYear + '-' + currentMonth + '-' + currentDay;
+    if (dueDate < currentDate) {
+      this.$el.find('td.task-calendar div input').addClass('past-due');
+    }
+  },
+
   render: function () {
     var content = this.template({
       task: this.model,
@@ -225,7 +237,9 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
       edittingTask: this.edittingTask
     });
     this.$el.html(content);
-    // $('td.task-calendar > div.date').datepicker('setDate', this.model.escape('due_date'));
+
+    this.isPastDue(this.model.get('due_date')); // Renders tasks that are past due in red
+
     if (this.newTask) {
       this.$el.find('td.delete-task').addClass('delete-new-task');
       this.$el.find('.task-title').addClass('new-task-cell');
