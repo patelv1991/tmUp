@@ -10,6 +10,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     this.edittingTask = options.edittingTask;
     this.renderingAllTasks = options.renderingAllTasks;
     this.listenTo(this.model, 'sync', this.render);
+    // this.listenTo(this.model, 'change', this.render);
   },
 
   events: {
@@ -83,6 +84,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
         this.model.save({ assignee_id: selectedAssigneeId }, {
           success: function (task) {
             // this.newTask = false;
+            // debugger
             if (this.project === undefined) {
               this.remove();
             }
