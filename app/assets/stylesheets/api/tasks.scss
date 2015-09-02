@@ -158,6 +158,8 @@ table tbody tr td:nth-child(5) {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  word-wrap: break-word;
+  max-width: 150px;
   cursor: pointer;
 }
 

@@ -159,6 +159,12 @@
   text-decoration: none;
 }
 
+.sidebar-nav div > div ul.projects li a:active, 
+.sidebar-nav > #my-tasks-heading > a:active {
+  color: black;
+  background: rgba(0,0,0,0.2);
+}
+
 @media(min-width:0px) {
     #wrapper {
         padding-left: 250px;

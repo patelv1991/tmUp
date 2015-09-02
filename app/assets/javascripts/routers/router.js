@@ -61,6 +61,7 @@ TmUp.Routers.Router = Backbone.Router.extend({
     });
     this.currentLandingView && this.currentLandingView.remove();
     this._swapMainView(this._workspacesShowView);
+    this.highlightActivePageOnSidebar(id);
   },
 
   userTaskIndex: function (workspaceId, userId) {
@@ -95,7 +96,7 @@ TmUp.Routers.Router = Backbone.Router.extend({
     if (this._workspacesShowView === undefined) {
       this.show(workspaceId);
     }
-    
+
     this.changeSubviews();
     var project = new TmUp.Models.Project({
       id: projectId,
@@ -121,6 +122,15 @@ TmUp.Routers.Router = Backbone.Router.extend({
     });
     // debugger
     this.currentLandingView && this.currentLandingView.remove();
+    this.highlightActivePageOnSidebar(workspaceId, projectId);
+  },
+
+  highlightActivePageOnSidebar: function (workspaceId, projectId) {
+    
+    // if (workspaceId && projectId) {
+    //
+    // }
+    // debugger
   },
 
   changeSubviews: function () {
