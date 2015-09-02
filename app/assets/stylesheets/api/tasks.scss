@@ -214,3 +214,18 @@ table tbody.tasks tr td.new-task-cell {
 .table > tbody tr td.currently-being-edited {
   padding: 0px;
 }
+
+.table > tbody tr td.task-title {
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+td.task-title div.task-title-container {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}

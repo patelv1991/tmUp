@@ -101,6 +101,12 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
       workspace: this.workspace,
       header: this.renderHeader(),
     }));
+
+    // removes project title if it's already on the project page
+    if (this.project) {
+      $('tr th.project-title').html("");
+    }
+
     this.toggleButtons();
     this.attachSubviews();
     return this;
