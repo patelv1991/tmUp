@@ -141,6 +141,11 @@
   left: -40px;
   top: -5px;
   width: 250px;
+  // handles longer titles
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: break-word;
 }
 // .sidebar-nav li a
 .sidebar-nav div > div ul.projects li a:hover {

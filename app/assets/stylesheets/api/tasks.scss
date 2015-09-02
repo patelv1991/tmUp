@@ -7,10 +7,15 @@ div#tasks-index-container > div > header > strong {
   font-size: 30px;
   padding-bottom: 15px;
   font-weight: lighter;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: inherit;
+  width: 65%;
 }
 
 div#tasks-index-container > div > header div.button-space {
-  margin: 12px 0px;
+  margin: 12px 5px;
 }
 
 td > div.dropdown > button {
@@ -81,7 +86,10 @@ tbody.tasks > tr td > div.dropdown ul {
 
 // formating overall tasks container
 div#tasks-index-container {
-  max-width: 1250px;
+  border: #fff solid 1px;
+  border-radius: 5px;
+  padding: 5px;
+  // max-width: 1250px;
   position: relative;
   top: -10px;
   left: 5px;
@@ -91,7 +99,7 @@ div#tasks-index-container {
   transition: all 0.5s ease;
 }
 div.sidebar-toggled > div#tasks-index-container {
-  max-width: 1000px;
+  // max-width: 1000px;
   position: relative;
   top: -10px;
   left: 5px;
