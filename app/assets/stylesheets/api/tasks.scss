@@ -192,7 +192,11 @@ td.task-title > div.container.hiding {
 }
 
 td.task-title > div.container > form > div.add-on {
-  width: 400px;
+  width: 100%;
+}
+
+table tbody tr td.task-title > div.container form div div.input-group-btn {
+  width: 40px;
 }
 
 td.task-title > div.container > form > div.add-on button,

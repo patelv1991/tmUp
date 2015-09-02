@@ -218,6 +218,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
   isPastDue: function (dueDate) {
     // dueDate = this.model.get('due_date');
     currentDay = new Date().getDate().toString();
+    currentDay = currentDay.length === 1 ? '0' + currentDay : currentDay;
     currentMonth = (new Date().getMonth() + 1).toString();
     currentMonth = currentMonth.length === 1 ? '0' + currentMonth : currentMonth;
     currentYear = new Date().getFullYear().toString();
