@@ -9,13 +9,12 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
     // this.listenTo(this.user, 'sync', this.render);
     this.listenTo(this.collection, 'add', this.addTask);
     // this.listenTo(this.collection, 'sync add change', this.render);
-    // This makes sure that project title is updated when project is updated
-    if (this.project) {
-      this.listenTo(this.project, 'change', this.render);
-    }
 
+    // This makes sure that project title is updated when project is updated
+    this.project && this.listenTo(this.project, 'change', this.render);
+
+    // only adds subviews for tasks that are not completed
     this.collection.each(function (task) {
-      // debugger
       if (!task.get('completed')) {
         this.addTask(task);
       }

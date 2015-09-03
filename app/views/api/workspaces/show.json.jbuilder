@@ -26,7 +26,7 @@ json.projects @workspace.projects do |project|
 end
 
 json.my_tasks @workspace.projects.map(&:tasks).flatten do |task|
-  if task.assignee_id == current_user.id
+  if task.assignee_id == current_user.id && !task.completed
     json.partial! 'api/tasks/task', task: task
   end
 end
