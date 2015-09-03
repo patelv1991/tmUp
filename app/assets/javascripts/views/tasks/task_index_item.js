@@ -17,7 +17,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     'click .delete-new-task': 'remove',
     'click .delete-task': 'deleteTask',
     'click .task-save-btn': 'saveTask',
-    'dblclick .editable': 'editTask',
+    'dblclick .task-title-container': 'editTask',
     'click .bs-checkbox > input': 'completeTask',
     'shown.bs.dropdown div.dropdown': 'changeAssignee',
     'show .input-group.date': 'changeDate'
@@ -181,6 +181,10 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
   },
 
   editTask: function (event) {
+    // debugger
+    // this.events['dblclick .editable'] = undefined;
+    // this.delegateEvents(this.events);
+    // $('.editable').off('dblclick');
     event.preventDefault();
     this.$el.find('.task-title.editable').toggleClass('currently-being-edited');
     this.$el.find('.task-title > div.container').toggleClass('hiding');
