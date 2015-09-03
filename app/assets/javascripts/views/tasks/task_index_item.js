@@ -104,6 +104,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
   },
 
   findProject: function () {
+    // debugger
     if (!this.renderingAllTasks) {
       return "";
     } else {
@@ -131,10 +132,11 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
   // },
 
   getProjectId: function () {
+    // debugger
     if (this.newTask) {
       return this.project.id;
     } else {
-      return this.model.project_id;
+      return this.model.escape('project_id');
     }
   },
 
