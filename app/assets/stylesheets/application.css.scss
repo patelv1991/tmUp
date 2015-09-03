@@ -100,6 +100,22 @@ input[type="submit"] {
   border-radius: inherit;
   padding: 12px;
   max-width: 600px;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-wrap: break-word;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.m-content > header > strong {
+  width: 95%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  display: block;
+  float: left;
 }
 
 .m-content > form {
@@ -109,6 +125,8 @@ input[type="submit"] {
 .m-content > header button.close {
   color: #2375ab;
   font-size: 25px;
+  float: right;
+  display: block;
 }
 
 .m-content > form button.btn-default {

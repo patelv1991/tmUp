@@ -11,7 +11,7 @@ div#tasks-index-container > div > header > strong {
   text-overflow: ellipsis;
   white-space: nowrap;
   word-wrap: inherit;
-  width: 65%;
+  max-width: 65%;
 }
 
 div#tasks-index-container > div > header div.button-space {

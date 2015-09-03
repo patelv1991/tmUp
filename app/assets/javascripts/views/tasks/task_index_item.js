@@ -86,6 +86,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
             // this.newTask = false;
             // debugger
             if (this.project === undefined) {
+              this.collection.remove(this.model, { merge: true });
               this.remove();
             }
           }.bind(this),
