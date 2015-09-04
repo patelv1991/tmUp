@@ -2,7 +2,7 @@ TmUp.Views.TeamIndex = Backbone.CompositeView.extend({
   template: JST['teams/index'],
 
   events: {
-    'click .glyphicon-user': 'showWorkTeamForm'
+    'click .glyphicon-pencil': 'showWorkTeamForm'
   },
 
   initialize: function (options) {

@@ -62,6 +62,6 @@ TmUp.Views.ProjectForm = Backbone.View.extend({
   },
 
   onRender: function () {
-    $('#project-title').focus();
+    $('#project-title').select();
   }
 });

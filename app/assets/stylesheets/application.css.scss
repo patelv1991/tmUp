@@ -33,8 +33,13 @@ ul {
 //   -moz-appearance: none;
 // }
 
+html {
+  min-width: 1000px;
+}
+
 body {
   font-family: "proxima-nova", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  width: 100%
 }
 
 button,
@@ -81,7 +86,7 @@ input[type="submit"] {
 
 
 .m-content {
-  color: #353F46;
+  color: #55585A;
   z-index: 10000;
   position: fixed;
   top: 50%;
