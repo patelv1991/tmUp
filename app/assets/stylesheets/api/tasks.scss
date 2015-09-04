@@ -86,9 +86,9 @@ tbody.tasks > tr td > div.dropdown ul {
 
 // formating overall tasks container
 div#tasks-index-container {
-  border: #fff solid 1px;
-  border-radius: 5px;
-  padding: 5px;
+  // border: #fff solid 1px;
+  // border-radius: 5px;
+  // padding: 5px;
   // max-width: 1250px;
   position: relative;
   top: -10px;
@@ -192,7 +192,7 @@ td.task-title > div.container.hiding {
 }
 
 td.task-title > div.container > form > div.add-on {
-  width: 100%;
+  width: 70%;
 }
 
 table tbody tr td.task-title > div.container form div div.input-group-btn {

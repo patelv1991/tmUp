@@ -35,7 +35,7 @@
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
     opacity: 0.8;
-    box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.71);
+    box-shadow: 6px 4px 30px rgba(0, 0, 0, 0.71);
     background-clip: padding-box;
 }
 
@@ -159,7 +159,7 @@
   text-decoration: none;
 }
 
-.sidebar-nav div > div ul.projects li a:active, 
+.sidebar-nav div > div ul.projects li a:active,
 .sidebar-nav > #my-tasks-heading > a:active {
   color: black;
   background: rgba(0,0,0,0.2);
