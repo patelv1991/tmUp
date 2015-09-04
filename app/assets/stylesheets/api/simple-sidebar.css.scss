@@ -159,8 +159,8 @@
   text-decoration: none;
 }
 
-.sidebar-nav div > div ul.projects li a:active,
-.sidebar-nav > #my-tasks-heading > a:active {
+.sidebar-nav div > div ul.projects li div a.highlighted,
+.sidebar-nav > #my-tasks-heading > a.highlighted {
   color: black;
   background: rgba(0,0,0,0.2);
 }

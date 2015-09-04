@@ -87,8 +87,8 @@ TmUp.Routers.Router = Backbone.Router.extend({
         view.render();
       }.bind(this)
     });
-    // debugger
     this.currentLandingView && this.currentLandingView.remove();
+    this.removeHighlightedTabs();
   },
 
   projectTaskIndex: function (workspaceId, projectId) {
@@ -126,11 +126,21 @@ TmUp.Routers.Router = Backbone.Router.extend({
   },
 
   highlightActivePageOnSidebar: function (workspaceId, projectId) {
-    
-    // if (workspaceId && projectId) {
-    //
-    // }
-    // debugger
+    $('.sidebar-nav div > div ul.projects li div a').removeClass('highlighted');
+    if (workspaceId && projectId) {
+      $('.sidebar-nav > #my-tasks-heading > a').removeClass('highlighted');
+      $projectContainer = $('.sidebar-nav div > div ul.projects li')
+                          .find('div[data-project-id="' + projectId + '"]');
+      $projectContainer.find('a').addClass('highlighted');
+    } else if (workspaceId) {
+      $myTasksContainer = $('.sidebar-nav > #my-tasks-heading > a')
+                          .addClass('highlighted');
+    }
+  },
+
+  removeHighlightedTabs: function () {
+    $('.sidebar-nav div > div ul.projects li div a').removeClass('highlighted');
+    $('.sidebar-nav > #my-tasks-heading > a').removeClass('highlighted');
   },
 
   changeSubviews: function () {
