@@ -28,6 +28,7 @@ TmUp.Views.ProjectForm = Backbone.View.extend({
   },
 
   enableSubmitButton: function (event) {
+    this.$el.find('.m-content .alert-danger').addClass('hidden');
     var inputLength = $(event.currentTarget).serializeJSON().project.title.length;
     if (inputLength > 0) {
       this.$el.find('button.btn-default').prop('disabled', false);
@@ -46,6 +47,12 @@ TmUp.Views.ProjectForm = Backbone.View.extend({
         this.collection.add(project, { merge: true });
         this.remove();
         $('.glyphicon-plus').prop('disabled', false);
+      }.bind(this),
+
+      error: function (project) {
+        var $alert = this.$el.find('.m-content .alert-danger');
+        $alert.html('Project with entered name already exists. Please change the name.');
+        $alert.removeClass('hidden');
       }.bind(this)
     });
   },
