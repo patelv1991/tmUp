@@ -128,15 +128,15 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
   renderHeader: function () {
     var name;
     if (this.project) {
-      name = this.project.escape('title') + "'s Tasks";
+      name = this.project.escape('title') + " Tasks";
       return name;
     }
 
     if (this.user) {
-      name = this.user.escape('fname') + "'s " + this.workspace.escape('title') + " Tasks";
+      name = this.user.escape('fname') + "'s Tasks";
       return name;
     } else {
-      name = TmUp.CURRENT_USER.fname + "'s " + this.workspace.escape('title') + " Tasks";
+      name = TmUp.CURRENT_USER.fname + "'s Tasks";
       return name;
     }
   }
