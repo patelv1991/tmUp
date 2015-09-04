@@ -47,6 +47,9 @@ TmUp.Views.ProjectForm = Backbone.View.extend({
         this.collection.add(project, { merge: true });
         this.remove();
         $('.glyphicon-plus').prop('disabled', false);
+        var route = '#/workspaces/' + project.escape('workspace_id') +
+                    '/project/' + project.id;
+        Backbone.history.navigate(route, { trigger: true });
       }.bind(this),
 
       error: function (project) {

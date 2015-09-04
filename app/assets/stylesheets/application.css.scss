@@ -33,13 +33,13 @@ ul {
 //   -moz-appearance: none;
 // }
 
-html {
-  min-width: 1000px;
-}
+// html {
+//   min-width: 1000px;
+// }
 
 body {
   font-family: "proxima-nova", "Helvetica Neue", "Helvetica", Arial, sans-serif;
-  width: 100%
+  // width: 100%
 }
 
 button,
@@ -94,6 +94,7 @@ input[type="submit"] {
   min-width: 500px;
   max-width: 600px;
   transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
   background: #fff;
   border-radius: 5px;
 }
