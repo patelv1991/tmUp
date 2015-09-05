@@ -82,3 +82,15 @@ div > .toggled-sidebar {
   max-height: 500px;
   overflow-x: hidden;
 }
+
+div.navbar-collapse ul li > a#tmup-tour:hover,
+div.navbar-collapse ul li > a#tmup-tour {
+  cursor: pointer;
+  height: 40px;
+  padding: 10px;
+  vertical-align: middle;
+  margin-top: 5px;
+  border-radius: 25px;
+  background-color: #449D44;
+  color: white;
+}
