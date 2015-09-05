@@ -23,11 +23,11 @@ by Asana and built using Rails and Backbone.
 - [x] View all tasks assigned to anyone else in your team by visiting their page
 
 ## Features under Development
-- [] Implement a search feature
-- [] Add task show page
-- [] Allow users to create nested subtasks
-- [] Use ActionMailer to send welcome email
-- [] Calendar view of all tasks
+- [ ] Implement a search feature
+- [ ] Add task show page
+- [ ] Allow users to create nested subtasks
+- [ ] Use ActionMailer to send welcome email
+- [ ] Calendar view of all tasks
 
 ## Technical Details
 ### Software Specs
