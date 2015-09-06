@@ -6,7 +6,7 @@ TmUp.Views.WorkspacesIndex = Backbone.View.extend({
   },
 
   events: {
-    'click .new-workspace': "createNewWorkspace"
+    'click .new-workspace': "createNewWorkspace",
   },
 
   render: function () {
