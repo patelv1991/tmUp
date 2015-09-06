@@ -14,6 +14,57 @@ TmUp.Views.NavShow = Backbone.View.extend({
     'click .log-out':'logOut',
     'click .new-workspace': 'createNewWorkspace',
     'click .menu-toggle': 'handleToggle',
+    'click #tmup-tour': 'startTour'
+  },
+
+  startTour: function () {
+    // e.preventDefault();
+    var tour;
+    if (this._routeName === undefined || this._routeName === 'index') {
+      tour = introJs().setOptions({
+        'showStepNumbers': false,
+        'doneLabel': 'Next page',
+        'disableInteraction': true
+      }).start();
+
+      tour.oncomplete(function() {
+        window._resumeTour = true;
+        var workspaceId = this.collection.at(1).id;
+        var route = "#/workspaces/" + workspaceId;
+        window.location.href = route + '?multipage=true';
+      }.bind(this));
+    } else {
+      tour = introJs().setOptions({
+        'showStepNumbers': false,
+        'disableInteraction': true
+      }).start();
+      tour.onchange(function (nextStep) {
+        this.goToProjectShowPage(nextStep);
+      }.bind(this));
+    }
+  },
+
+  resumeTour: function () {
+    var tour;
+    tour = introJs().setOptions({
+      'showStepNumbers': false,
+      'disableInteraction': true
+    }).start();
+    tour.onchange(function (nextStep) {
+      this.goToProjectShowPage(nextStep);
+    }.bind(this));
+    window._resumeTour = false;
+  },
+
+  goToProjectShowPage: function (nextStep) {
+    var nextStepId = $(nextStep).data('step');
+    if (nextStepId === 3) {
+      var currentWorkspaceId = Cookies.get('current-workspace-id');
+      var w = this.collection.get(currentWorkspaceId);
+      var projectId = w.projects().first().id;
+      var route = "#/workspaces/" + currentWorkspaceId + '/project/' + projectId;
+      window.location.href = route;
+    }
   },
 
   ActiveWorkspaceTitle: function (workspace) {
@@ -28,6 +79,10 @@ TmUp.Views.NavShow = Backbone.View.extend({
       this.removeSidebarButton();
     } else if (params[0] !== null && routeName !== "index") {
       this.collection.getOrFetch(params[0], this.ActiveWorkspaceTitle.bind(this));
+    }
+
+    if (window._resumeTour) {
+      this.resumeTour();
     }
   },
 

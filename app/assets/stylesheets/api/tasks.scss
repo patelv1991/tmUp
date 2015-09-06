@@ -233,3 +233,8 @@ td.task-title div.task-title-container {
   text-overflow: ellipsis;
   word-wrap: break-word;
 }
+
+table tbody.tasks tr td.task-dropdown,
+table tbody.tasks tr td.bs-checkbox {
+  text-align: center;
+}

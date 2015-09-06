@@ -6,18 +6,37 @@
     </div> -->
     <div class="sidebar-nav">
       <div id="my-tasks-heading">
-        <a href="#/workspaces/<%= workspace.id %>">MY TASKS</a>
+        <a href="#/workspaces/<%= workspace.id %>"
+          data-step="1"
+          data-intro="This is your workspace homepage. You are currently looking at the tasks assigned to you"
+          data-position="right">
+          MY TASKS</a>
       </div>
 
-      <div id="work-team-container">
+      <div id="work-team-container"
+           data-step="2"
+           data-intro="You can add or remove people from this workspace by clicking on the pencil. You can also see the tasks assigned to other team members by clicking on the circles with their initials."
+           data-position="right">
       </div>
 
-      <div id="projects-container">
+      <div id="projects-container"
+           data-step="3"
+           data-intro="Add new projects by clicking on the plus sign or visit one of the existing projects by clicking on the project name. "
+           data-position="right">
       </div>
     </div>
   </div>
 
-  <div id="page-content-wrapper" class="sidebar-toggled">
+  <div id="page-content-wrapper" class="sidebar-toggled"
+      data-step="4"
+      data-intro="Listed above are all the tasks for current project. Double click on any task title to edit it or create a new task by clicking on the 'Create a New Task' button. Also, feel free to change the due date or assignee by clicking on them."
+      data-position="bottom">
+
+    <div id="end-tour"
+         data-step="5"
+         data-intro="Click on the workspace title above to change workspace or logout. You're all set. Thanks for checking out my project! Now, go ahead and explore TmUp!!!"
+         data-position="left"></div>
+
     <div id="tasks-index-container"></div>
 
     <div id="task-show-container"></div>

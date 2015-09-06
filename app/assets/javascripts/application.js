@@ -17,6 +17,7 @@
 //= require backbone
 //= require bootstrap
 //= require tm_up
+//= require intro.min
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections
