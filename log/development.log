@@ -48622,3 +48622,89 @@ Processing by Api::WorkspacesController#index as JSON
   [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "SGOA4izC8cMrjy8Ic_MHFg"]]
   [1m[35mWorkspace Load (1.2ms)[0m  SELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1  [["user_id", 22]]
 Completed 200 OK in 9ms (Views: 4.5ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-09-05 20:33:13 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (1.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "SGOA4izC8cMrjy8Ic_MHFg"]]
+  Rendered static_pages/root.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 913ms (Views: 834.5ms | ActiveRecord: 6.9ms)
+
+
+Started GET "/api/workspaces" for 127.0.0.1 at 2015-09-05 20:33:14 -0700
+Processing by Api::WorkspacesController#index as JSON
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "SGOA4izC8cMrjy8Ic_MHFg"]]
+  [1m[35mWorkspace Load (1.2ms)[0m  SELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1  [["user_id", 22]]
+Completed 200 OK in 89ms (Views: 20.1ms | ActiveRecord: 5.7ms)
+
+
+Started GET "/api/workspaces" for 127.0.0.1 at 2015-09-05 20:33:14 -0700
+Processing by Api::WorkspacesController#index as JSON
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "SGOA4izC8cMrjy8Ic_MHFg"]]
+  [1m[35mWorkspace Load (0.6ms)[0m  SELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1  [["user_id", 22]]
+Completed 200 OK in 5ms (Views: 1.5ms | ActiveRecord: 1.2ms)
+
+
+Started DELETE "/session" for 127.0.0.1 at 2015-09-05 20:33:19 -0700
+Processing by SessionsController#destroy as */*
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "SGOA4izC8cMrjy8Ic_MHFg"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.8ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'guest@tmup.work' AND "users"."id" != 22) LIMIT 1[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = '0hBrqcVDQAeQHkLjemS7fQ' AND "users"."id" != 22) LIMIT 1
+  [1m[36mSQL (1.0ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "0hBrqcVDQAeQHkLjemS7fQ"], ["updated_at", "2015-09-06 03:33:19.433289"], ["id", 22]]
+  [1m[35m (22.2ms)[0m  COMMIT
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 47ms (ActiveRecord: 25.6ms)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2015-09-05 20:33:19 -0700
+Processing by SessionsController#new as */*
+  Rendered sessions/new.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 266ms (Views: 265.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2015-09-05 20:33:19 -0700
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 452ms (Views: 451.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2015-09-05 20:33:26 -0700
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 280ms (Views: 280.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for 127.0.0.1 at 2015-09-05 20:33:30 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"ZXmrQH3ew0cd4ktYv33XjW3LW7gv8Args/u2dDQDB23026X6JT3BHi1c45NRmqvH0NwVvA4+c29mqtesG3cyfQ==", "user"=>{"email"=>"guest@tmup.work", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "guest@tmup.work"]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'guest@tmup.work' AND "users"."id" != 22) LIMIT 1[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = '_tTPMYFUHEgVIRy__PU8Cw' AND "users"."id" != 22) LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "_tTPMYFUHEgVIRy__PU8Cw"], ["updated_at", "2015-09-06 03:33:30.435677"], ["id", 22]]
+  [1m[35m (19.9ms)[0m  COMMIT
+Redirected to http://localhost:3000/
+Completed 302 Found in 148ms (ActiveRecord: 21.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-09-05 20:33:30 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "_tTPMYFUHEgVIRy__PU8Cw"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 313ms (Views: 309.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/workspaces" for 127.0.0.1 at 2015-09-05 20:33:31 -0700
+Processing by Api::WorkspacesController#index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "_tTPMYFUHEgVIRy__PU8Cw"]]
+  [1m[36mWorkspace Load (0.7ms)[0m  [1mSELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1[0m  [["user_id", 22]]
+Completed 200 OK in 7ms (Views: 2.4ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/workspaces" for 127.0.0.1 at 2015-09-05 20:33:31 -0700
+Processing by Api::WorkspacesController#index as JSON
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "_tTPMYFUHEgVIRy__PU8Cw"]]
+  [1m[36mWorkspace Load (0.7ms)[0m  [1mSELECT "workspaces".* FROM "workspaces" INNER JOIN "user_workspaces" ON "workspaces"."id" = "user_workspaces"."workspace_id" WHERE "user_workspaces"."user_id" = $1[0m  [["user_id", 22]]
+Completed 200 OK in 6ms (Views: 2.1ms | ActiveRecord: 1.1ms)
