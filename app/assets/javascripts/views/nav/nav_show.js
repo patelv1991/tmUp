@@ -14,7 +14,8 @@ TmUp.Views.NavShow = Backbone.View.extend({
     'click .log-out':'logOut',
     'click .new-workspace': 'createNewWorkspace',
     'click .menu-toggle': 'handleToggle',
-    'click #tmup-tour': 'startTour'
+    'click #tmup-tour': 'startTour',
+    'click #about-me': 'showAboutMePage'
   },
 
   startTour: function () {
@@ -65,6 +66,12 @@ TmUp.Views.NavShow = Backbone.View.extend({
       var route = "#/workspaces/" + currentWorkspaceId + '/project/' + projectId;
       window.location.href = route;
     }
+  },
+
+  showAboutMePage: function () {
+    var aboutView = new TmUp.Views.About();
+    $('body').append(aboutView.$el);
+    aboutView.render();
   },
 
   ActiveWorkspaceTitle: function (workspace) {

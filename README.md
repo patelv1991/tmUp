@@ -6,7 +6,6 @@
 tmUp is a full stack, collaborative project management web application inspired
 by Asana and built using Rails and Backbone.
 
-<!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 ## Current Features
 - [x] Create new workspaces / teams
 - [x] Invite team members via email (Invite multiple people simultaneously)
@@ -31,13 +30,18 @@ by Asana and built using Rails and Backbone.
 
 ## Technical Details
 ### Software Specs
-* [Ruby 2.1.2](https://www.ruby-lang.org/en/)
-* [Rails 4.2.3](http://rubyonrails.org/)
-* [JavaScript6 (ES6)](https://www.javascript.com/)
-* [Backbone.js 1.2.3](http://backbonejs.org/)
-* [Bootstrap 3.3.5](http://getbootstrap.com/)
-* [PostresSQL 9.4.4.0](http://www.postgresql.org/)
-* Deployed on [Heroku](https://www.heroku.com/home)
+- [Ruby 2.1.2](https://www.ruby-lang.org/en/)
+- [Rails 4.2.3](http://rubyonrails.org/)
+- [JavaScript6 (ES6)](https://www.javascript.com/)
+- [Backbone.js 1.2.3](http://backbonejs.org/)
+- [Bootstrap 3.3.5](http://getbootstrap.com/)
+- [PostresSQL 9.4.4.0](http://www.postgresql.org/)
+- Deployed on [Heroku](https://www.heroku.com/home)
+
+### JavaScript Plug-ins
+- [Bootstrap-datepicker](https://bootstrap-datepicker.readthedocs.org/en/latest/#)
+- [Cookies.JS](https://github.com/js-cookie/js-cookie)
+- [IntroJS](http://usablica.github.io/intro.js/)
 
 ## Database Schema
 - Users

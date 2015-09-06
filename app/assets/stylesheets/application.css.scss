@@ -153,3 +153,17 @@ input[type="submit"] {
 .m-content .alert-danger {
   padding: 10px;
 }
+
+.m-content.about {
+  max-width: 500px;
+}
+
+.m-content.about div {
+  padding: 12px;
+}
+
+.m-content.about div p a:hover,
+.m-content.about div p a {
+  text-decoration: none;
+
+}
