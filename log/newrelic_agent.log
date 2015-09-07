@@ -4477,3 +4477,197 @@
 [09/06/15 20:21:49 -0700 varun-X502CA (11140)] ERROR : Invalid license key, please contact support@newrelic.com
 [09/06/15 20:21:49 -0700 varun-X502CA (11140)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
 [09/06/15 20:22:26 -0700 varun-X502CA (11140)] INFO : Starting Agent shutdown
+[09/06/15 21:59:03 -0700 varun-X502CA (5546)] INFO : Starting the New Relic agent in "development" environment.
+[09/06/15 21:59:03 -0700 varun-X502CA (5546)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[09/06/15 21:59:03 -0700 varun-X502CA (5546)] WARN : No configuration file found. Working directory = /home/varun/Documents/app_academy_course/capstone-project
+[09/06/15 21:59:03 -0700 varun-X502CA (5546)] WARN : Looked in these locations (based on defaults): /home/varun/Documents/app_academy_course/capstone-project/config/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/config/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/newrelic.yml, /home/varun/.newrelic/newrelic.yml, /home/varun/newrelic.yml
+[09/06/15 21:59:03 -0700 varun-X502CA (5546)] INFO : Environment: development
+[09/06/15 21:59:03 -0700 varun-X502CA (5546)] INFO : Dispatcher: webrick
+[09/06/15 21:59:03 -0700 varun-X502CA (5546)] INFO : Application: development
+[09/06/15 21:59:03 -0700 varun-X502CA (5546)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[09/06/15 21:59:03 -0700 varun-X502CA (5546)] INFO : Installing deferred Rack instrumentation
+[09/06/15 21:59:03 -0700 varun-X502CA (5546)] INFO : Installing Rack::Builder middleware instrumentation
+[09/06/15 21:59:03 -0700 varun-X502CA (5546)] INFO : Installing ActiveRecord 4 instrumentation
+[09/06/15 21:59:03 -0700 varun-X502CA (5546)] INFO : Installing Net instrumentation
+[09/06/15 21:59:03 -0700 varun-X502CA (5546)] INFO : Installing ActiveJob instrumentation
+[09/06/15 21:59:03 -0700 varun-X502CA (5546)] INFO : Installing Rails 3+ middleware instrumentation
+[09/06/15 21:59:03 -0700 varun-X502CA (5546)] INFO : Installing Rails 4 view instrumentation
+[09/06/15 21:59:03 -0700 varun-X502CA (5546)] INFO : Installing Rails 4 Controller instrumentation
+[09/06/15 21:59:03 -0700 varun-X502CA (5546)] INFO : Installing Rails 4 Error instrumentation
+[09/06/15 21:59:03 -0700 varun-X502CA (5546)] INFO : Finished instrumentation
+[09/06/15 21:59:04 -0700 varun-X502CA (5546)] INFO : Doing deferred dependency-detection before Rack startup
+[09/06/15 21:59:16 -0700 varun-X502CA (5546)] ERROR : Invalid license key, please contact support@newrelic.com
+[09/06/15 21:59:16 -0700 varun-X502CA (5546)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[09/06/15 22:30:07 -0700 varun-X502CA (5546)] INFO : Starting Agent shutdown
+[09/06/15 22:30:28 -0700 varun-X502CA (7134)] INFO : Starting the New Relic agent in "development" environment.
+[09/06/15 22:30:28 -0700 varun-X502CA (7134)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[09/06/15 22:30:28 -0700 varun-X502CA (7134)] WARN : No configuration file found. Working directory = /home/varun/Documents/app_academy_course/capstone-project
+[09/06/15 22:30:28 -0700 varun-X502CA (7134)] WARN : Looked in these locations (based on defaults): /home/varun/Documents/app_academy_course/capstone-project/config/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/config/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/newrelic.yml, /home/varun/.newrelic/newrelic.yml, /home/varun/newrelic.yml
+[09/06/15 22:30:28 -0700 varun-X502CA (7134)] INFO : Environment: development
+[09/06/15 22:30:28 -0700 varun-X502CA (7134)] INFO : Dispatcher: webrick
+[09/06/15 22:30:28 -0700 varun-X502CA (7134)] INFO : Application: development
+[09/06/15 22:30:28 -0700 varun-X502CA (7134)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[09/06/15 22:30:28 -0700 varun-X502CA (7134)] INFO : Installing deferred Rack instrumentation
+[09/06/15 22:30:28 -0700 varun-X502CA (7134)] INFO : Installing Rack::Builder middleware instrumentation
+[09/06/15 22:30:28 -0700 varun-X502CA (7134)] INFO : Installing ActiveRecord 4 instrumentation
+[09/06/15 22:30:28 -0700 varun-X502CA (7134)] INFO : Installing Net instrumentation
+[09/06/15 22:30:28 -0700 varun-X502CA (7134)] INFO : Installing ActiveJob instrumentation
+[09/06/15 22:30:28 -0700 varun-X502CA (7134)] INFO : Installing Rails 3+ middleware instrumentation
+[09/06/15 22:30:28 -0700 varun-X502CA (7134)] INFO : Installing Rails 4 view instrumentation
+[09/06/15 22:30:28 -0700 varun-X502CA (7134)] INFO : Installing Rails 4 Controller instrumentation
+[09/06/15 22:30:28 -0700 varun-X502CA (7134)] INFO : Installing Rails 4 Error instrumentation
+[09/06/15 22:30:28 -0700 varun-X502CA (7134)] INFO : Finished instrumentation
+[09/06/15 22:30:29 -0700 varun-X502CA (7134)] INFO : Doing deferred dependency-detection before Rack startup
+[09/06/15 22:30:33 -0700 varun-X502CA (7134)] ERROR : Invalid license key, please contact support@newrelic.com
+[09/06/15 22:30:33 -0700 varun-X502CA (7134)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[09/06/15 22:31:53 -0700 varun-X502CA (7275)] INFO : Starting the New Relic agent in "development" environment.
+[09/06/15 22:31:53 -0700 varun-X502CA (7275)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[09/06/15 22:31:53 -0700 varun-X502CA (7275)] WARN : No configuration file found. Working directory = /home/varun/Documents/app_academy_course/capstone-project
+[09/06/15 22:31:53 -0700 varun-X502CA (7275)] WARN : Looked in these locations (based on defaults): /home/varun/Documents/app_academy_course/capstone-project/config/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/config/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/newrelic.yml, /home/varun/.newrelic/newrelic.yml, /home/varun/newrelic.yml
+[09/06/15 22:31:53 -0700 varun-X502CA (7275)] INFO : Environment: development
+[09/06/15 22:31:53 -0700 varun-X502CA (7275)] INFO : No known dispatcher detected.
+[09/06/15 22:31:53 -0700 varun-X502CA (7275)] INFO : Application: development
+[09/06/15 22:31:53 -0700 varun-X502CA (7275)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[09/06/15 22:31:53 -0700 varun-X502CA (7275)] INFO : Installing deferred Rack instrumentation
+[09/06/15 22:31:53 -0700 varun-X502CA (7275)] INFO : Installing Rack::Builder middleware instrumentation
+[09/06/15 22:31:53 -0700 varun-X502CA (7275)] INFO : Installing ActiveRecord 4 instrumentation
+[09/06/15 22:31:53 -0700 varun-X502CA (7275)] INFO : Installing Net instrumentation
+[09/06/15 22:31:53 -0700 varun-X502CA (7275)] INFO : Installing ActiveJob instrumentation
+[09/06/15 22:31:53 -0700 varun-X502CA (7275)] INFO : Installing Rails 3+ middleware instrumentation
+[09/06/15 22:31:53 -0700 varun-X502CA (7275)] INFO : Installing Rails 4 view instrumentation
+[09/06/15 22:31:53 -0700 varun-X502CA (7275)] INFO : Installing Rails 4 Controller instrumentation
+[09/06/15 22:31:53 -0700 varun-X502CA (7275)] INFO : Installing Rails 4 Error instrumentation
+[09/06/15 22:31:53 -0700 varun-X502CA (7275)] INFO : Finished instrumentation
+[09/06/15 22:36:50 -0700 varun-X502CA (7134)] INFO : Starting Agent shutdown
+[09/06/15 22:37:28 -0700 varun-X502CA (7521)] INFO : Starting the New Relic agent in "development" environment.
+[09/06/15 22:37:28 -0700 varun-X502CA (7521)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[09/06/15 22:37:28 -0700 varun-X502CA (7521)] WARN : No configuration file found. Working directory = /home/varun/Documents/app_academy_course/capstone-project
+[09/06/15 22:37:28 -0700 varun-X502CA (7521)] WARN : Looked in these locations (based on defaults): /home/varun/Documents/app_academy_course/capstone-project/config/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/config/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/newrelic.yml, /home/varun/.newrelic/newrelic.yml, /home/varun/newrelic.yml
+[09/06/15 22:37:28 -0700 varun-X502CA (7521)] INFO : Environment: development
+[09/06/15 22:37:28 -0700 varun-X502CA (7521)] INFO : Dispatcher: webrick
+[09/06/15 22:37:28 -0700 varun-X502CA (7521)] INFO : Application: development
+[09/06/15 22:37:28 -0700 varun-X502CA (7521)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[09/06/15 22:37:28 -0700 varun-X502CA (7521)] INFO : Installing deferred Rack instrumentation
+[09/06/15 22:37:28 -0700 varun-X502CA (7521)] INFO : Installing Rack::Builder middleware instrumentation
+[09/06/15 22:37:28 -0700 varun-X502CA (7521)] INFO : Installing ActiveRecord 4 instrumentation
+[09/06/15 22:37:28 -0700 varun-X502CA (7521)] INFO : Installing Net instrumentation
+[09/06/15 22:37:28 -0700 varun-X502CA (7521)] INFO : Installing ActiveJob instrumentation
+[09/06/15 22:37:28 -0700 varun-X502CA (7521)] INFO : Installing Rails 3+ middleware instrumentation
+[09/06/15 22:37:28 -0700 varun-X502CA (7521)] INFO : Installing Rails 4 view instrumentation
+[09/06/15 22:37:28 -0700 varun-X502CA (7521)] INFO : Installing Rails 4 Controller instrumentation
+[09/06/15 22:37:28 -0700 varun-X502CA (7521)] INFO : Installing Rails 4 Error instrumentation
+[09/06/15 22:37:28 -0700 varun-X502CA (7521)] INFO : Finished instrumentation
+[09/06/15 22:37:28 -0700 varun-X502CA (7521)] INFO : Doing deferred dependency-detection before Rack startup
+[09/06/15 22:37:35 -0700 varun-X502CA (7521)] ERROR : Invalid license key, please contact support@newrelic.com
+[09/06/15 22:37:35 -0700 varun-X502CA (7521)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[09/06/15 22:50:09 -0700 varun-X502CA (7521)] INFO : Starting Agent shutdown
+[09/06/15 22:50:28 -0700 varun-X502CA (8256)] INFO : Starting the New Relic agent in "development" environment.
+[09/06/15 22:50:28 -0700 varun-X502CA (8256)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[09/06/15 22:50:28 -0700 varun-X502CA (8256)] WARN : No configuration file found. Working directory = /home/varun/Documents/app_academy_course/capstone-project
+[09/06/15 22:50:28 -0700 varun-X502CA (8256)] WARN : Looked in these locations (based on defaults): /home/varun/Documents/app_academy_course/capstone-project/config/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/config/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/newrelic.yml, /home/varun/.newrelic/newrelic.yml, /home/varun/newrelic.yml
+[09/06/15 22:50:28 -0700 varun-X502CA (8256)] INFO : Environment: development
+[09/06/15 22:50:28 -0700 varun-X502CA (8256)] INFO : Dispatcher: webrick
+[09/06/15 22:50:28 -0700 varun-X502CA (8256)] INFO : Application: development
+[09/06/15 22:50:28 -0700 varun-X502CA (8256)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[09/06/15 22:50:29 -0700 varun-X502CA (8256)] INFO : Installing deferred Rack instrumentation
+[09/06/15 22:50:29 -0700 varun-X502CA (8256)] INFO : Installing Rack::Builder middleware instrumentation
+[09/06/15 22:50:29 -0700 varun-X502CA (8256)] INFO : Installing ActiveRecord 4 instrumentation
+[09/06/15 22:50:29 -0700 varun-X502CA (8256)] INFO : Installing Net instrumentation
+[09/06/15 22:50:29 -0700 varun-X502CA (8256)] INFO : Installing ActiveJob instrumentation
+[09/06/15 22:50:29 -0700 varun-X502CA (8256)] INFO : Installing Rails 3+ middleware instrumentation
+[09/06/15 22:50:29 -0700 varun-X502CA (8256)] INFO : Installing Rails 4 view instrumentation
+[09/06/15 22:50:29 -0700 varun-X502CA (8256)] INFO : Installing Rails 4 Controller instrumentation
+[09/06/15 22:50:29 -0700 varun-X502CA (8256)] INFO : Installing Rails 4 Error instrumentation
+[09/06/15 22:50:29 -0700 varun-X502CA (8256)] INFO : Finished instrumentation
+[09/06/15 22:50:29 -0700 varun-X502CA (8256)] INFO : Doing deferred dependency-detection before Rack startup
+[09/06/15 22:50:34 -0700 varun-X502CA (8256)] ERROR : Invalid license key, please contact support@newrelic.com
+[09/06/15 22:50:34 -0700 varun-X502CA (8256)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[09/06/15 22:52:57 -0700 varun-X502CA (8256)] INFO : Starting Agent shutdown
+[09/06/15 22:53:18 -0700 varun-X502CA (8440)] INFO : Starting the New Relic agent in "development" environment.
+[09/06/15 22:53:18 -0700 varun-X502CA (8440)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[09/06/15 22:53:18 -0700 varun-X502CA (8440)] WARN : No configuration file found. Working directory = /home/varun/Documents/app_academy_course/capstone-project
+[09/06/15 22:53:18 -0700 varun-X502CA (8440)] WARN : Looked in these locations (based on defaults): /home/varun/Documents/app_academy_course/capstone-project/config/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/config/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/newrelic.yml, /home/varun/.newrelic/newrelic.yml, /home/varun/newrelic.yml
+[09/06/15 22:53:18 -0700 varun-X502CA (8440)] INFO : Environment: development
+[09/06/15 22:53:18 -0700 varun-X502CA (8440)] INFO : Dispatcher: webrick
+[09/06/15 22:53:18 -0700 varun-X502CA (8440)] INFO : Application: development
+[09/06/15 22:53:18 -0700 varun-X502CA (8440)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[09/06/15 22:53:18 -0700 varun-X502CA (8440)] INFO : Installing deferred Rack instrumentation
+[09/06/15 22:53:18 -0700 varun-X502CA (8440)] INFO : Installing Rack::Builder middleware instrumentation
+[09/06/15 22:53:18 -0700 varun-X502CA (8440)] INFO : Installing ActiveRecord 4 instrumentation
+[09/06/15 22:53:18 -0700 varun-X502CA (8440)] INFO : Installing Net instrumentation
+[09/06/15 22:53:18 -0700 varun-X502CA (8440)] INFO : Installing ActiveJob instrumentation
+[09/06/15 22:53:18 -0700 varun-X502CA (8440)] INFO : Installing Rails 3+ middleware instrumentation
+[09/06/15 22:53:18 -0700 varun-X502CA (8440)] INFO : Installing Rails 4 view instrumentation
+[09/06/15 22:53:18 -0700 varun-X502CA (8440)] INFO : Installing Rails 4 Controller instrumentation
+[09/06/15 22:53:19 -0700 varun-X502CA (8440)] INFO : Installing Rails 4 Error instrumentation
+[09/06/15 22:53:19 -0700 varun-X502CA (8440)] INFO : Finished instrumentation
+[09/06/15 22:53:19 -0700 varun-X502CA (8440)] INFO : Doing deferred dependency-detection before Rack startup
+[09/06/15 22:53:22 -0700 varun-X502CA (8440)] ERROR : Invalid license key, please contact support@newrelic.com
+[09/06/15 22:53:22 -0700 varun-X502CA (8440)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[09/06/15 22:55:04 -0700 varun-X502CA (8440)] INFO : Starting Agent shutdown
+[09/06/15 22:55:21 -0700 varun-X502CA (8600)] INFO : Starting the New Relic agent in "development" environment.
+[09/06/15 22:55:21 -0700 varun-X502CA (8600)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[09/06/15 22:55:21 -0700 varun-X502CA (8600)] WARN : No configuration file found. Working directory = /home/varun/Documents/app_academy_course/capstone-project
+[09/06/15 22:55:21 -0700 varun-X502CA (8600)] WARN : Looked in these locations (based on defaults): /home/varun/Documents/app_academy_course/capstone-project/config/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/config/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/newrelic.yml, /home/varun/.newrelic/newrelic.yml, /home/varun/newrelic.yml
+[09/06/15 22:55:21 -0700 varun-X502CA (8600)] INFO : Environment: development
+[09/06/15 22:55:21 -0700 varun-X502CA (8600)] INFO : Dispatcher: webrick
+[09/06/15 22:55:21 -0700 varun-X502CA (8600)] INFO : Application: development
+[09/06/15 22:55:21 -0700 varun-X502CA (8600)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[09/06/15 22:55:21 -0700 varun-X502CA (8600)] INFO : Installing deferred Rack instrumentation
+[09/06/15 22:55:21 -0700 varun-X502CA (8600)] INFO : Installing Rack::Builder middleware instrumentation
+[09/06/15 22:55:21 -0700 varun-X502CA (8600)] INFO : Installing ActiveRecord 4 instrumentation
+[09/06/15 22:55:21 -0700 varun-X502CA (8600)] INFO : Installing Net instrumentation
+[09/06/15 22:55:21 -0700 varun-X502CA (8600)] INFO : Installing ActiveJob instrumentation
+[09/06/15 22:55:21 -0700 varun-X502CA (8600)] INFO : Installing Rails 3+ middleware instrumentation
+[09/06/15 22:55:21 -0700 varun-X502CA (8600)] INFO : Installing Rails 4 view instrumentation
+[09/06/15 22:55:21 -0700 varun-X502CA (8600)] INFO : Installing Rails 4 Controller instrumentation
+[09/06/15 22:55:21 -0700 varun-X502CA (8600)] INFO : Installing Rails 4 Error instrumentation
+[09/06/15 22:55:21 -0700 varun-X502CA (8600)] INFO : Finished instrumentation
+[09/06/15 22:55:22 -0700 varun-X502CA (8600)] INFO : Doing deferred dependency-detection before Rack startup
+[09/06/15 22:55:26 -0700 varun-X502CA (8600)] ERROR : Invalid license key, please contact support@newrelic.com
+[09/06/15 22:55:26 -0700 varun-X502CA (8600)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[09/06/15 23:03:19 -0700 varun-X502CA (8600)] INFO : Starting Agent shutdown
+[09/06/15 23:03:35 -0700 varun-X502CA (8989)] INFO : Starting the New Relic agent in "development" environment.
+[09/06/15 23:03:35 -0700 varun-X502CA (8989)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[09/06/15 23:03:35 -0700 varun-X502CA (8989)] WARN : No configuration file found. Working directory = /home/varun/Documents/app_academy_course/capstone-project
+[09/06/15 23:03:35 -0700 varun-X502CA (8989)] WARN : Looked in these locations (based on defaults): /home/varun/Documents/app_academy_course/capstone-project/config/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/config/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/newrelic.yml, /home/varun/.newrelic/newrelic.yml, /home/varun/newrelic.yml
+[09/06/15 23:03:35 -0700 varun-X502CA (8989)] INFO : Environment: development
+[09/06/15 23:03:35 -0700 varun-X502CA (8989)] INFO : Dispatcher: webrick
+[09/06/15 23:03:35 -0700 varun-X502CA (8989)] INFO : Application: development
+[09/06/15 23:03:35 -0700 varun-X502CA (8989)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[09/06/15 23:03:35 -0700 varun-X502CA (8989)] INFO : Installing deferred Rack instrumentation
+[09/06/15 23:03:35 -0700 varun-X502CA (8989)] INFO : Installing Rack::Builder middleware instrumentation
+[09/06/15 23:03:35 -0700 varun-X502CA (8989)] INFO : Installing ActiveRecord 4 instrumentation
+[09/06/15 23:03:36 -0700 varun-X502CA (8989)] INFO : Installing Net instrumentation
+[09/06/15 23:03:36 -0700 varun-X502CA (8989)] INFO : Installing ActiveJob instrumentation
+[09/06/15 23:03:36 -0700 varun-X502CA (8989)] INFO : Installing Rails 3+ middleware instrumentation
+[09/06/15 23:03:36 -0700 varun-X502CA (8989)] INFO : Installing Rails 4 view instrumentation
+[09/06/15 23:03:36 -0700 varun-X502CA (8989)] INFO : Installing Rails 4 Controller instrumentation
+[09/06/15 23:03:36 -0700 varun-X502CA (8989)] INFO : Installing Rails 4 Error instrumentation
+[09/06/15 23:03:36 -0700 varun-X502CA (8989)] INFO : Finished instrumentation
+[09/06/15 23:03:36 -0700 varun-X502CA (8989)] INFO : Doing deferred dependency-detection before Rack startup
+[09/06/15 23:03:43 -0700 varun-X502CA (8989)] ERROR : Invalid license key, please contact support@newrelic.com
+[09/06/15 23:03:43 -0700 varun-X502CA (8989)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[09/06/15 23:10:40 -0700 varun-X502CA (8989)] INFO : Starting Agent shutdown
+[09/06/15 23:10:55 -0700 varun-X502CA (9391)] INFO : Starting the New Relic agent in "development" environment.
+[09/06/15 23:10:55 -0700 varun-X502CA (9391)] INFO : To prevent agent startup add a NEWRELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[09/06/15 23:10:55 -0700 varun-X502CA (9391)] WARN : No configuration file found. Working directory = /home/varun/Documents/app_academy_course/capstone-project
+[09/06/15 23:10:55 -0700 varun-X502CA (9391)] WARN : Looked in these locations (based on defaults): /home/varun/Documents/app_academy_course/capstone-project/config/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/config/newrelic.yml, /home/varun/Documents/app_academy_course/capstone-project/newrelic.yml, /home/varun/.newrelic/newrelic.yml, /home/varun/newrelic.yml
+[09/06/15 23:10:55 -0700 varun-X502CA (9391)] INFO : Environment: development
+[09/06/15 23:10:55 -0700 varun-X502CA (9391)] INFO : Dispatcher: webrick
+[09/06/15 23:10:55 -0700 varun-X502CA (9391)] INFO : Application: development
+[09/06/15 23:10:55 -0700 varun-X502CA (9391)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[09/06/15 23:10:55 -0700 varun-X502CA (9391)] INFO : Installing deferred Rack instrumentation
+[09/06/15 23:10:55 -0700 varun-X502CA (9391)] INFO : Installing Rack::Builder middleware instrumentation
+[09/06/15 23:10:55 -0700 varun-X502CA (9391)] INFO : Installing ActiveRecord 4 instrumentation
+[09/06/15 23:10:55 -0700 varun-X502CA (9391)] INFO : Installing Net instrumentation
+[09/06/15 23:10:55 -0700 varun-X502CA (9391)] INFO : Installing ActiveJob instrumentation
+[09/06/15 23:10:55 -0700 varun-X502CA (9391)] INFO : Installing Rails 3+ middleware instrumentation
+[09/06/15 23:10:55 -0700 varun-X502CA (9391)] INFO : Installing Rails 4 view instrumentation
+[09/06/15 23:10:55 -0700 varun-X502CA (9391)] INFO : Installing Rails 4 Controller instrumentation
+[09/06/15 23:10:55 -0700 varun-X502CA (9391)] INFO : Installing Rails 4 Error instrumentation
+[09/06/15 23:10:55 -0700 varun-X502CA (9391)] INFO : Finished instrumentation
+[09/06/15 23:10:56 -0700 varun-X502CA (9391)] INFO : Doing deferred dependency-detection before Rack startup
+[09/06/15 23:11:19 -0700 varun-X502CA (9391)] ERROR : Invalid license key, please contact support@newrelic.com
+[09/06/15 23:11:19 -0700 varun-X502CA (9391)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[09/06/15 23:24:49 -0700 varun-X502CA (9391)] INFO : Starting Agent shutdown
