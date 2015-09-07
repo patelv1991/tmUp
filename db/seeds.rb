@@ -182,6 +182,14 @@ Task.create({
 
 # Add project Avengers Tower Tasks
 Task.create({
+  title: "Finish designing newest avengers tower",
+  project_id: Project.find_by_title("Avengers Tower").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Guest").id,
+  due_date: 5.days.ago.localtime
+})
+
+Task.create({
   title: "Don't mess with Hulk's cookies",
   project_id: Project.find_by_title("Avengers Tower").id,
   creator_id: 1,
@@ -220,14 +228,6 @@ Task.create({
   creator_id: 1,
   assignee_id: User.find_by_fname("Jarvis").id,
   due_date: Time.now.localtime
-})
-
-Task.create({
-  title: "Finish designing newest avengers tower",
-  project_id: Project.find_by_title("Avengers Tower").id,
-  creator_id: 1,
-  assignee_id: User.find_by_fname("Guest").id,
-  due_date: 5.days.ago
 })
 
 Task.create({
