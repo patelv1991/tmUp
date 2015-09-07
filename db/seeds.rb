@@ -405,3 +405,303 @@ Task.create({
   assignee_id: User.find_by_fname("Varun").id,
   due_date: 1.day.ago.localtime
 })
+
+# Add StartUp Data
+
+# Create Users
+User.create({ fname: "Josh", lname: "Park", email: "josh@gmail.com", password: "123456" })
+User.create({ fname: "William", lname: "Colquhoun", email: "billy@gmail.com", password: "123456" })
+User.create({ fname: "Udit", lname: "Verma", email: "udit@gmail.com", password: "123456" })
+User.create({ fname: "Dhruv", lname: "Patel", email: "dhruv@gmail.com", password: "123456" })
+User.create({ fname: "Lela", lname: "Frami", email: "lela@gmail.com", password: "123456" })
+User.create({ fname: "Sarah", lname: "Conner", email: "sarah@gmail.com", password: "123456" })
+
+# create workspace
+Workspace.create({ title: "Start Up Launch" })
+
+# Add team members
+[1, 2, 11, 12, 13, 14, 15, 16].each do |i|
+  UserWorkspace.create({ user_id: i, workspace_id: Workspace.find_by_title("Start Up Launch").id })
+end
+
+Project.create({
+  title: "Start Up",
+  description: "This projects will help us keep track of ideas and todos",
+  workspace_id: Workspace.find_by_title("Start Up Launch").id
+})
+
+Project.create({
+  title: "Online Presence",
+  description: "The goal of this project is to optimize our online presence",
+  workspace_id: Workspace.find_by_title("Start Up Launch").id
+})
+
+Project.create({
+  title: "Seed Funding",
+  description: "This project outline our funding plan",
+  workspace_id: Workspace.find_by_title("Start Up Launch").id
+})
+
+# Add tasks for project Start Up
+Task.create({
+  title: "Talk to dad about the project and see if he knows anyone who can help out",
+  project_id: Project.find_by_title("Start Up").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Dhruv").id,
+  due_date: 10.days.ago.localtime,
+  completed: true
+})
+
+Task.create({
+  title: "Finish market research",
+  project_id: Project.find_by_title("Start Up").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Guest").id,
+  due_date: Time.now.localtime + 1.days
+})
+
+Task.create({
+  title: "Figure out our go-to-market strategy before meeting with any potential investors.",
+  project_id: Project.find_by_title("Start Up").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Guest").id,
+  due_date: Time.now.localtime + 3.days
+})
+
+Task.create({
+  title: "Figure out customer acquisition costs",
+  project_id: Project.find_by_title("Start Up").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Lela").id,
+  due_date: Time.now.localtime + 3.days
+})
+
+Task.create({
+  title: "Meeting with Dr. Michelle Leff at NIH get her advice and ask for mentorship",
+  project_id: Project.find_by_title("Start Up").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Varun").id,
+  due_date: Time.now.localtime + 10.days
+})
+
+Task.create({
+  title: "Meeting with Dr. Robert Wachter at UCSF to discuss potential early stage parternership",
+  project_id: Project.find_by_title("Start Up").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Varun").id,
+  due_date: Time.now.localtime + 13.days
+})
+
+Task.create({
+  title: "Finish up the first draft of business plan",
+  project_id: Project.find_by_title("Start Up").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Sarah").id,
+  due_date: Time.now.localtime + 5.days
+})
+
+Task.create({
+  title: "Review and edit the business plan",
+  project_id: Project.find_by_title("Start Up").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Josh").id,
+  due_date: Time.now.localtime + 7.days
+})
+
+Task.create({
+  title: "Review and edit the business plan",
+  project_id: Project.find_by_title("Start Up").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Udit").id,
+  due_date: Time.now.localtime + 7.days
+})
+
+Task.create({
+  title: "Review and finalize the business plan",
+  project_id: Project.find_by_title("Start Up").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Varun").id,
+  due_date: Time.now.localtime + 9.days
+})
+
+# Add Tasks for project Seed Funding
+Task.create({
+  title: "Talk to Alex Blumberg to figure out funding plan",
+  project_id: Project.find_by_title("Seed Funding").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Varun").id,
+  due_date: 2.days.ago.localtime,
+  completed: true
+})
+
+Task.create({
+  title: "Research potential start up incubators and figure out if they would be good fit for us",
+  project_id: Project.find_by_title("Seed Funding").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Guest").id,
+  due_date: Time.now.localtime + 5.days
+})
+
+Task.create({
+  title: "Apply to Y Combinator",
+  project_id: Project.find_by_title("Seed Funding").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Josh").id,
+  due_date: Time.now.localtime + 15.days
+})
+
+Task.create({
+  title: "Apply to TechStars",
+  project_id: Project.find_by_title("Seed Funding").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("William").id,
+  due_date: Time.now.localtime + 15.days
+})
+
+Task.create({
+  title: "Apply to DreamIt Ventures",
+  project_id: Project.find_by_title("Seed Funding").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Dhruv").id,
+  due_date: Time.now.localtime + 15.days
+})
+
+Task.create({
+  title: "Apply to AngelPad",
+  project_id: Project.find_by_title("Seed Funding").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Udit").id,
+  due_date: Time.now.localtime + 15.days
+})
+
+Task.create({
+  title: "Apply to TechNexus",
+  project_id: Project.find_by_title("Seed Funding").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Sarah").id,
+  due_date: Time.now.localtime + 15.days
+})
+
+Task.create({
+  title: "Meeting with Chris Sacca. Don't forget to take final version of business plan",
+  project_id: Project.find_by_title("Seed Funding").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Varun").id,
+  due_date: Time.now.localtime + 11.days
+})
+
+Task.create({
+  title: "Meeting with Mark Cuban. Know everything there is to know about your business",
+  project_id: Project.find_by_title("Seed Funding").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Varun").id,
+  due_date: Time.now.localtime + 20.days
+})
+
+Task.create({
+  title: "Meeting with Mr. Wonderful aka Kevin O'Leary. Know your numbers",
+  project_id: Project.find_by_title("Seed Funding").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Varun").id,
+  due_date: Time.now.localtime + 15.days
+})
+
+Task.create({
+  title: "Meeting with Robert Herjavec. Remember he loves sports, figure out something to talk about",
+  project_id: Project.find_by_title("Seed Funding").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("William").id,
+  due_date: Time.now.localtime + 14.days
+})
+
+# Add tasks for Online Presence
+Task.create({
+  title: "Research online marketing avenues for our startup",
+  project_id: Project.find_by_title("Online Presence").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Guest").id,
+  due_date: Time.now.localtime + 4.days,
+  completed: true
+})
+
+Task.create({
+  title: "Set up our facebook page",
+  project_id: Project.find_by_title("Online Presence").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Dhruv").id,
+  due_date: Time.now.localtime + 4.days,
+})
+
+Task.create({
+  title: "Set up our twitter page",
+  project_id: Project.find_by_title("Online Presence").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Lela").id,
+  due_date: Time.now.localtime + 4.days,
+})
+
+Task.create({
+  title: "Finish setting up our website",
+  project_id: Project.find_by_title("Online Presence").id,
+  creator_id: 1,
+  assignee_id: User.find_by_fname("Dhruv").id,
+  due_date: Time.now.localtime + 3.days,
+})
+
+# Generate random workspace
+workspace_name = Faker::App.name
+Workspace.create({ title: workspace_name })
+
+# Create users for random workspace
+8.times do
+  User.create({
+    fname: Faker::Name.first_name,
+    lname: Faker::Name.last_name,
+    email: Faker::Internet.free_email,
+    password: "123456"
+  })
+end
+
+# Add users to random workspace
+[1, 2, 17, 18, 19, 20, 21, 22, 23, 24].each do |i|
+  UserWorkspace.create({ user_id: i, workspace_id: Workspace.find_by_title(workspace_name).id })
+end
+
+# Add projects to random workspace
+5.times do |i|
+  Project.create({
+    title: Faker::Hacker.adjective.titleize + " " + Faker::Hacker.abbreviation,
+    description: Faker::Hacker.say_something_smart,
+    workspace_id: Workspace.find_by_title(workspace_name).id
+  })
+end
+
+# Add tasks for each projects
+date = 3.days.ago.localtime
+project_id = 9
+5.times do |i|
+  date += 1.day
+  Task.create({
+    title:  Faker::Hacker.say_something_smart,
+    project_id: project_id,
+    creator_id: 1,
+    assignee_id: 1,
+    due_date: date,
+    completed: [true, false, false, false].sample
+  })
+  project_id += 1
+end
+
+5.times do |i|
+  i += 9
+  10.times do |j|
+    Task.create({
+      title:  Faker::Hacker.say_something_smart,
+      project_id: i,
+      creator_id: 1,
+      assignee_id: [2, 17, 18, 19, 20, 21, 22, 23, 24].sample,
+      due_date: Faker::Date.between(2.days.ago.localtime, Time.now.localtime + rand(3).days),
+      completed: [true, false].sample
+    })
+  end
+end
