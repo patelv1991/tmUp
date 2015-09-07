@@ -16,6 +16,7 @@ gem 'serialize_json-rails'
 gem 'newrelic_rpm'
 gem 'backbone-on-rails'
 gem 'bootstrap-sass'
+gem 'faker'
 
 group :development do
   gem 'annotate'

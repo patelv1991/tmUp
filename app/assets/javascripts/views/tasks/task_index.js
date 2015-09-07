@@ -128,7 +128,7 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
   renderHeader: function () {
     var name;
     if (this.project) {
-      name = this.project.escape('title') + " Tasks";
+      name = 'Project ' + this.project.escape('title');
       return name;
     }
 
