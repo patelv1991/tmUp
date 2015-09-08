@@ -17,7 +17,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     'click .delete-new-task': 'remove',
     'click .delete-task': 'deleteTask',
     'click .task-save-btn': 'saveTask',
-    'dblclick .task-title-container': 'editTask',
+    'click .task-title-container': 'editTask',
     'click .bs-checkbox > input': 'completeTask',
     'shown.bs.dropdown div.dropdown': 'changeAssignee',
     'show .input-group.date': 'changeDate'
@@ -166,8 +166,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     var formData = this.getFormDataForNewTask();
     this.model.save(formData, {
       success: function (task) {
-        // this.newTask = false;
-          this.collection.add(task, { merge: true }, { remove: true });
+        this.collection.add(task, { merge: true });
         if (this.newTask) {
           this.remove();
         } else {
@@ -175,21 +174,18 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
           this.$el.find('.task-title div.task-title-container').toggleClass('hiding');
           this.$el.find('.task-title > div.container').toggleClass('hiding');
         }
-        // this.stopListening();
       }.bind(this),
     });
   },
 
   editTask: function (event) {
-    // debugger
-    // this.events['dblclick .editable'] = undefined;
-    // this.delegateEvents(this.events);
-    // $('.editable').off('dblclick');
     event.preventDefault();
+    // Adds a  form to edit a task
     this.$el.find('.task-title.editable').toggleClass('currently-being-edited');
     this.$el.find('.task-title > div.container').toggleClass('hiding');
     this.$el.find('.task-title div.task-title-container').toggleClass('hiding');
-    $('#new-task').select();
+    this.$('#new-task').select();
+
   },
 
   completeTask: function (event) {

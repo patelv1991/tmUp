@@ -649,11 +649,13 @@ Task.create({
 })
 
 # Generate random workspace
-workspace_name = Faker::App.name
-Workspace.create({ title: workspace_name })
+workspace_name = [Faker::App.name, Faker::App.name]
+workspace_name.each do |name|
+  Workspace.create({ title: name })
+end
 
 # Create users for random workspace
-8.times do
+16.times do
   User.create({
     fname: Faker::Name.first_name,
     lname: Faker::Name.last_name,
@@ -664,22 +666,28 @@ end
 
 # Add users to random workspace
 [1, 2, 17, 18, 19, 20, 21, 22, 23, 24].each do |i|
-  UserWorkspace.create({ user_id: i, workspace_id: Workspace.find_by_title(workspace_name).id })
+  UserWorkspace.create({ user_id: i, workspace_id: Workspace.find_by_title(workspace_name[0]).id })
+end
+
+[1, 2, 25, 26, 27, 28, 29, 30, 31, 32].each do |i|
+  UserWorkspace.create({ user_id: i, workspace_id: Workspace.find_by_title(workspace_name[1]).id })
 end
 
 # Add projects to random workspace
-5.times do |i|
-  Project.create({
-    title: Faker::Hacker.adjective.titleize + " " + Faker::Hacker.abbreviation,
-    description: Faker::Hacker.say_something_smart,
-    workspace_id: Workspace.find_by_title(workspace_name).id
-  })
+workspace_name.each do |name|
+  5.times do |i|
+    Project.create({
+      title: Faker::Hacker.adjective.titleize + " " + Faker::Hacker.abbreviation,
+      description: Faker::Hacker.say_something_smart,
+      workspace_id: Workspace.find_by_title(name).id
+    })
+  end
 end
 
 # Add tasks for each projects
-date = 3.days.ago.localtime
+date = 5.days.ago.localtime
 project_id = 9
-5.times do |i|
+10.times do |i|
   date += 1.day
   Task.create({
     title:  Faker::Hacker.say_something_smart,
@@ -687,7 +695,7 @@ project_id = 9
     creator_id: 1,
     assignee_id: 1,
     due_date: date,
-    completed: [true, false, false, false].sample
+    completed: [true, false, false].sample
   })
   project_id += 1
 end
@@ -700,6 +708,20 @@ end
       project_id: i,
       creator_id: 1,
       assignee_id: [2, 17, 18, 19, 20, 21, 22, 23, 24].sample,
+      due_date: Faker::Date.between(2.days.ago.localtime, Time.now.localtime + rand(3).days),
+      completed: [true, false].sample
+    })
+  end
+end
+
+5.times do |i|
+  i += 14
+  10.times do |j|
+    Task.create({
+      title:  Faker::Hacker.say_something_smart,
+      project_id: i,
+      creator_id: 1,
+      assignee_id: [2, 25, 26, 27, 28, 29, 30, 31, 32].sample,
       due_date: Faker::Date.between(2.days.ago.localtime, Time.now.localtime + rand(3).days),
       completed: [true, false].sample
     })
