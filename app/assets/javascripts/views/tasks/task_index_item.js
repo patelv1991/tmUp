@@ -100,7 +100,11 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     if (!this.newTask) {
       this.$el.find('.input-group.date').on('changeDate', function (event) {
         var selectedDate = this.$el.find('td.task-calendar').datepicker('getUTCDate');
-        this.model.save({ due_date: selectedDate });
+        this.model.save({ due_date: selectedDate }, {
+          success: function (task) {
+            this.workspace.myTasks().add(task, { merge: true });
+          }.bind(this)
+        });
       }.bind(this));
     }
   },
