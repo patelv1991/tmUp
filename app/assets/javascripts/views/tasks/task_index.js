@@ -87,7 +87,8 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
     event.preventDefault();
     this.project.destroy({
       success: function (project) {
-        this.collection.remove(project);
+        this.workspace.myTasks().remove(project.tasks().toArray());
+        this.workspace.projects().remove(project);
         var route = '#/workspaces/' + this.workspace.id;
         Backbone.history.navigate(route, { trigger: true });
       }.bind(this)

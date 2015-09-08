@@ -5,7 +5,7 @@ TmUp.Views.ProjectIndex = Backbone.CompositeView.extend({
     this.workspace = options.workspace;
 
     this.listenTo(this.collection, 'add', this.addProject);
-    this.listenTo(this.collection, 'sync', this.render);
+    this.listenTo(this.collection, 'change', this.render);
 
     this.collection.each(function (project) {
       this.addProject(project);

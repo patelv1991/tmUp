@@ -4,6 +4,7 @@ TmUp.Views.TeamIndexItem = Backbone.View.extend({
 
   initialize: function (options) {
     this.workspaceId = options.workspace.id;
+    this.listenTo(this.model, 'remove', this.remove);
   },
 
   render: function () {

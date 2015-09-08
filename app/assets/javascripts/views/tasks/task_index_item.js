@@ -10,6 +10,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     this.edittingTask = options.edittingTask;
     this.renderingAllTasks = options.renderingAllTasks;
     this.listenTo(this.model, 'sync', this.render);
+    this.listenTo(this.model, 'remove', this.remove);
     // this.listenTo(this.model, 'change', this.render);
   },
 
@@ -232,6 +233,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
   },
 
   render: function () {
+    // debugger
     var content = this.template({
       task: this.model,
       due_date: this.parsedDate(),
