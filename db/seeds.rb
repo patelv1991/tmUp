@@ -391,10 +391,10 @@ Task.create({
 })
 
 Task.create({
-  title: "Take care of Hulk's laundry",
+  title: "Do my laundry",
   project_id: Project.find_by_title("Avengers Tower").id,
   creator_id: 1,
-  assignee_id: User.find_by_fname("Jarvis").id,
+  assignee_id: User.find_by_fname("Bruce").id,
   due_date: 2.days.ago
 })
 
