@@ -163,6 +163,10 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
     var member = this.workspace.workTeam().findWhere({
       id: userId
     });
+
+    // checks who is removed from the workspace. If it's the current user, then
+    // sets route to true, which triggers navigation to workspace index page in
+    // success callback of membership.destroy.
     var route;
     if (this.checkUser(userId)) {
       route = true;

@@ -11,6 +11,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     this.renderingAllTasks = options.renderingAllTasks;
     this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.model, 'remove', this.remove);
+    this.listenTo(this.workspace.workTeam(), 'add remove', this.render);
     // this.listenTo(this.model, 'change', this.render);
   },
 

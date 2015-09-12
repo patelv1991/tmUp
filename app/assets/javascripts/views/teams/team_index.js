@@ -7,7 +7,7 @@ TmUp.Views.TeamIndex = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.workspace = options.workspace;
-    this.listenTo(this.collection, 'sync add', this.render);
+    this.listenTo(this.collection, 'sync', this.render);
     this.listenTo(this.collection, 'add', this.addMemberSubView);
     // this.listenTo(this.workspace, 'sync', this.render);
     this.collection.each(function (member) {
