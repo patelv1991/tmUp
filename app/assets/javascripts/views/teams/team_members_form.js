@@ -167,9 +167,9 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
     // checks who is removed from the workspace. If it's the current user, then
     // sets route to true, which triggers navigation to workspace index page in
     // success callback of membership.destroy.
-    var route;
+    var currentUser;
     if (this.checkUser(userId)) {
-      route = true;
+      currentUser = true;
     }
 
     membership.destroy({
@@ -177,19 +177,24 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
         this.workspace.workTeam().remove(member);
         this.workspace.allMemberships().remove(membership);
         this.$el.find('tr#' + userId).remove();
-        if (route) {
-          Backbone.history.navigate('', { trigger: true });
-          this.remove();
-        }
-        // if (this.workspace.allMemberships().length === 0) {
-        //   // Cookies.remove('current-workspace-id');
-        // }
+        this.navigateAwayFromThisPage(currentUser, member);
       }.bind(this)
     });
+  },
 
+  navigateAwayFromThisPage: function (currentUser, member) {
+    currentRoute = Backbone.history.getFragment();
+    routeUserId = currentRoute.match(/user\/(\d+)/);
 
-    // works/pace.
-    // this.renderTeamMembers();
+    if (currentUser) {
+      Backbone.history.navigate('', { trigger: true });
+      this.remove();
+    }
+
+    if (routeUserId && routeUserId[1] == member.id) {
+      var newRoute = currentRoute.split('/').splice(0,2).join('/');
+      Backbone.history.navigate(newRoute, { trigger: true });
+    }
   },
 
   checkUser: function (userId) {

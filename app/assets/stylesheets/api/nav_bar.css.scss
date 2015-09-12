@@ -99,3 +99,15 @@ div.navbar-collapse ul li > a#tmup-tour {
 a#about-me {
   cursor: pointer;
 }
+
+ul.navbar-right > li > form.search-field {
+  width: 400px;
+}
+
+ul.navbar-right > li > form.search-field > div {
+  width: 100%;
+}
+
+ul.navbar-right > li > form.search-field > div span.input-group-btn {
+  width: 1%
+}
