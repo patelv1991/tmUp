@@ -28,11 +28,19 @@ class Api::WorkspaceMembershipsController < ApplicationController
   end
 
   def destroy
-    @membership = UserWorkspace.includes(workspace: :users).find(params[:id])
+    @membership = UserWorkspace.includes(workspace: :users,
+                                         workspace: :projects,
+                                         workspace: :tasks).find(params[:id])
+
     if @membership
       @membership.destroy
-      workspace_members = @membership.workspace.users
 
+      # if member being removed from workspace had tasks assigned to him, then
+      # following code snippet removes the assignment.
+      tasks = @membership.workspace.tasks.where(assignee_id: @membership.user_id).
+              update_all(assignee_id: nil)
+
+      workspace_members = @membership.workspace.users
       # if there is only one user in the workspace, it destroys the workspace as well
       if (workspace_members.length == 1) &&
               workspace_members[0].id == current_user.id
