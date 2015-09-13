@@ -24,7 +24,8 @@ class User < ActiveRecord::Base
 
   has_many :projects, through: :workspaces, source: :projects
   has_many :workspaces, through: :user_workspaces, dependent: :destroy
-
+  has_many :associates, through: :workspaces, source: :users
+  
   has_many(
     :team_assignments,
     class_name: "TeamAssignment",

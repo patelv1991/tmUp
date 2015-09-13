@@ -25,8 +25,13 @@ class Api::WorkspacesController < ApplicationController
   end
 
   def index
-    @workspaces = current_user.workspaces
-    render json: @workspaces
+    if params[:search]
+      @searchData = Workspace.search(params[:search], current_user)
+      render :index
+    else
+      @workspaces = current_user.workspaces
+      render json: @workspaces
+    end
   end
 
   def show

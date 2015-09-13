@@ -1,0 +1,1 @@
+json.extract! @searchData, :name

@@ -20,4 +20,9 @@ class Workspace < ActiveRecord::Base
     return true if u.id == self.user_id
     user_workspaces.where(user_id: u.id).exists?
   end
+
+  def self.search(searchData, current_user)
+    {name: "varun"}
+  end
+
 end
