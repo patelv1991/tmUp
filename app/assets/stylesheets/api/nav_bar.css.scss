@@ -101,13 +101,15 @@ a#about-me {
 }
 
 ul.navbar-right > li > form.search-field {
-  width: 400px;
+  width: 500px;
+  margin-right: 100px;
 }
 
 ul.navbar-right > li > form.search-field > div {
   width: 100%;
 }
 
-ul.navbar-right > li > form.search-field > div span.input-group-btn {
-  width: 1%
+ul.navbar-right > li > form.search-field > div > input {
+  width: 100%;
+  border-radius: 20px;
 }

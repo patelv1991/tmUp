@@ -24,12 +24,14 @@ class Workspace < ActiveRecord::Base
   def self.search(searchData, current_user)
     return {} if searchData == ""
     sd = searchData.downcase
-    for_names = sd.split(" ")
+
+    names = sd.split(" ")
     regexp = []
     for_names.each do |el|
       regexp << el
     end
     regexp = regexp.join("|")
+    
     data =  User.includes(:associates,
                           :workspaces, :projects, :tasks).find(current_user)
 
