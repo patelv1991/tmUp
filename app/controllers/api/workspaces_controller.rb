@@ -26,7 +26,7 @@ class Api::WorkspacesController < ApplicationController
 
   def index
     if params[:search]
-      @searchData = Workspace.search(params[:search], current_user)
+      @resultData = Workspace.search(params[:search], current_user)
       render :index
     else
       @workspaces = current_user.workspaces
