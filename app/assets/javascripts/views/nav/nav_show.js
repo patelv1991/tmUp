@@ -161,15 +161,29 @@ TmUp.Views.NavShow = Backbone.View.extend({
     event.preventDefault();
     var searchData = $(event.target).val();
 
-    var searchResults = new TmUp.Collections.Workspaces();
-    searchResults.fetch({ data: { search: searchData } });
-
-    var searchResultView = new TmUp.Views.SearchIndex({
-      data: searchResults
+    $.ajax({
+      url: "api/workspaces",
+      dataType: "json",
+      method: "GET",
+      data: { search: searchData },
+      success: this.renderResults.bind(this)
     });
+  },
+
+  renderResults: function (results) {
+    w = new TmUp.Collections.Workspaces(results.workspaces);
+    u = new TmUp.Collections.WorkTeam(results.users);
+    p = new TmUp.Collections.Projects(results.projects);
+    t = new TmUp.Collections.Tasks(results.tasks);
+    var searchResultView = new TmUp.Views.SearchIndex({
+      workspaces: w,
+      users: u,
+      projects: p,
+      tasks: t
+    });
+
     $('body').append(searchResultView.$el);
     searchResultView.render();
-    // debugger
   },
 
   render: function () {
