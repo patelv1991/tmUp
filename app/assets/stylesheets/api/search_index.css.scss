@@ -8,3 +8,7 @@ ul.navbar-right > li > div.search-field > input {
   width: 100%;
   border-radius: 20px;
 }
+
+div.search-results-list {
+  z-index: 10000;
+}

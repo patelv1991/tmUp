@@ -16,7 +16,8 @@ TmUp.Views.NavShow = Backbone.View.extend({
     'click .menu-toggle': 'handleToggle',
     'click #tmup-tour': 'startTour',
     'click #about-me': 'showAboutMePage',
-    'input .search-field > input': 'search'
+    'input .search-field > input': 'search',
+    // 'focus .search-field > input': 'removeSearchResults'
   },
 
   startTour: function () {
@@ -158,20 +159,22 @@ TmUp.Views.NavShow = Backbone.View.extend({
   },
 
   search: function (event) {
-    if ($('.search-results-list')) {
+    if ($('.search-results-list') || $(event.target).val() === "") {
       $('.search-results-list').parent().remove();
     }
 
     event.preventDefault();
     var searchData = $(event.target).val();
 
-    $.ajax({
-      url: "api/workspaces",
-      dataType: "json",
-      method: "GET",
-      data: { search: searchData },
-      success: this.renderResults.bind(this)
-    });
+    if (searchData !== "") {
+      $.ajax({
+        url: "api/workspaces",
+        dataType: "json",
+        method: "GET",
+        data: { search: searchData },
+        success: this.renderResults.bind(this)
+      });
+    }
   },
 
   renderResults: function (results) {
@@ -188,6 +191,14 @@ TmUp.Views.NavShow = Backbone.View.extend({
     $('body').append(searchResultView.$el);
     searchResultView.render();
   },
+
+  // removeSearchResults: function (event) {
+  //   event.preventDefault();
+  //   if ($(event.target).val() === "") {
+  //     debugger
+  //     $('.search-results-list').parent().remove();
+  //   }
+  // },
 
   render: function () {
     var content = this.template({

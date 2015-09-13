@@ -18,7 +18,7 @@ TmUp.Views.SearchIndex = Backbone.View.extend({
 
     this.$el.html(content);
     $searchBar = $('.navbar-right > li > div.search-field');
-    this.$el.offset({ left: $searchBar.offset().left });
+    this.$el.offset({ top: 51, left: $searchBar.offset().left });
     this.$el.css("width", $searchBar.width());
     return this;
   }
