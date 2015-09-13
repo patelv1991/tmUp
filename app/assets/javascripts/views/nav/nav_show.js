@@ -16,7 +16,7 @@ TmUp.Views.NavShow = Backbone.View.extend({
     'click .menu-toggle': 'handleToggle',
     'click #tmup-tour': 'startTour',
     'click #about-me': 'showAboutMePage',
-    'input .search-field': 'search'
+    'input .search-field > input': 'search'
   },
 
   startTour: function () {
@@ -158,6 +158,10 @@ TmUp.Views.NavShow = Backbone.View.extend({
   },
 
   search: function (event) {
+    if ($('.search-results-list')) {
+      $('.search-results-list').parent().remove();
+    }
+
     event.preventDefault();
     var searchData = $(event.target).val();
 
@@ -181,7 +185,6 @@ TmUp.Views.NavShow = Backbone.View.extend({
       projects: p,
       tasks: t
     });
-
     $('body').append(searchResultView.$el);
     searchResultView.render();
   },

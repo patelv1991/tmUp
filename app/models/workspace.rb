@@ -27,11 +27,11 @@ class Workspace < ActiveRecord::Base
 
     names = sd.split(" ")
     regexp = []
-    for_names.each do |el|
+    names.each do |el|
       regexp << el
     end
     regexp = regexp.join("|")
-    
+
     data =  User.includes(:associates,
                           :workspaces, :projects, :tasks).find(current_user)
 

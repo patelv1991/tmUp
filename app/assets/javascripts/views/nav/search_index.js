@@ -9,7 +9,6 @@ TmUp.Views.SearchIndex = Backbone.View.extend({
   },
 
   render: function () {
-    debugger
     var content = this.template({
       workspaces: this.workspaces,
       users: this.users,
@@ -18,6 +17,9 @@ TmUp.Views.SearchIndex = Backbone.View.extend({
     });
 
     this.$el.html(content);
+    $searchBar = $('.navbar-right > li > div.search-field');
+    this.$el.offset({ left: $searchBar.offset().left });
+    this.$el.css("width", $searchBar.width());
     return this;
   }
 });
