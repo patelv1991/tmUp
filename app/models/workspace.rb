@@ -24,14 +24,18 @@ class Workspace < ActiveRecord::Base
   def self.search(searchData, current_user)
     return {} if searchData == ""
     sd = searchData.downcase
-
+    for_names = sd.split(" ")
+    regexp = []
+    for_names.each do |el|
+      regexp << el
+    end
+    regexp = regexp.join("|")
     data =  User.includes(:associates,
                           :workspaces, :projects, :tasks).find(current_user)
 
     resultData = {}
-    resultData['users'] = data.associates.where('LOWER(fname) LIKE ? OR
-                                                 LOWER(lname) LIKE ?',
-                                                 "%#{sd}%", "%#{sd}%").uniq
+    resultData['users'] = data.associates.where('fname ~* ? OR lname ~* ?',
+                                                 "(#{regexp})", "(#{regexp})").uniq
     resultData['workspaces'] = data.workspaces.where('LOWER(title) LIKE ?',
                                                      "%#{sd}%").uniq
     resultData['projects'] = data.projects.where('LOWER(projects.title) LIKE ? OR
