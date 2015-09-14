@@ -39,8 +39,7 @@
       <ul>
         <% projects.forEach(function(project) { %>
           <li>
-            <a href="#/<%= project.escape('link') %>"
-               data-link="#/<%= project.escape('link') %>">
+            <a data-link="#/<%= project.escape('link') %>">
               <%= project.escape('title') %>
             </a>
           </li>

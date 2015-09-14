@@ -17,22 +17,28 @@ TmUp.Views.SearchIndex = Backbone.View.extend({
 
   removeBtn: function (event) {
     // debugger
-    event.preventDefault();
     this.remove();
-    $('body :not(.search-results-list)').off('click');
   },
-  // only hard refreshes the page when going to different workspace
+
   visitSelectedPage: function (event) {
     this.remove();
     var link = $(event.currentTarget).data('link').split('/').slice(1,3).join('/');
     var currentLink = window.location.hash.split('/').slice(1,3).join('/');
+
+    if ($(event.currentTarget).data('link').split('/').length == 3) {
+      return;
+    }
+
+    // This makes sures that page is never hard refreshed
     if (link !== currentLink) {
-      window.location.reload();
+      var route1 = $(event.currentTarget).data('link').split('/').slice(0,3).join('/');
+      var route2 = $(event.currentTarget).data('link').split('/').slice(3,5).join('/');
+      Backbone.history.navigate(route1, { trigger: true });
+      Backbone.history.navigate(route1 + "/" + route2, { trigger: true });
     }
   },
 
   render: function () {
-    debugger
     var content = this.template({
       workspaces: this.workspaces,
       users: this.users,
