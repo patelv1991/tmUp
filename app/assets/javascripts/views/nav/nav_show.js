@@ -8,6 +8,7 @@ TmUp.Views.NavShow = Backbone.View.extend({
     this.listenTo(this.collection, 'sync', this.addRandomColorToInitials);
     // this.listenTo(this.collection, 'sync', this.renderActiveWorkspaceTitle);
     this.listenTo(this.router, "route", this.getRouteNameAndParams);
+    $(document).on('keyup', this.removeSearchResults.bind(this));
   },
 
   events: {
@@ -159,12 +160,12 @@ TmUp.Views.NavShow = Backbone.View.extend({
   },
 
   search: function (event) {
-    if ($('.search-results-list') || $(event.target).val() === "") {
+    if ($(event.target).val() === "") {
       $('.search-results-list').parent().remove();
     }
 
     event.preventDefault();
-    var searchData = $(event.target).val();
+    var searchData = $(event.target).val().trim();
 
     if (searchData !== "") {
       $.ajax({
@@ -188,17 +189,19 @@ TmUp.Views.NavShow = Backbone.View.extend({
       projects: p,
       tasks: t
     });
-    $('body').append(searchResultView.$el);
-    searchResultView.render();
+
+    if ($('.search-results-list')) {
+      $('.search-results-list').parent().remove();
+      $('body').append(searchResultView.$el);
+      searchResultView.render();
+    }
   },
 
-  // removeSearchResults: function (event) {
-  //   event.preventDefault();
-  //   if ($(event.target).val() === "") {
-  //     debugger
-  //     $('.search-results-list').parent().remove();
-  //   }
-  // },
+  removeSearchResults: function (e) {
+    if (e.keyCode == 8 && $('div.search-field > input').val() === "") {
+      $('.search-results-list').parent().remove();
+    }
+  },
 
   render: function () {
     var content = this.template({

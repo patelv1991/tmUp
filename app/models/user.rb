@@ -13,6 +13,8 @@
 #
 
 class User < ActiveRecord::Base
+  attr_accessor :link
+
   validates :fname, :lname, :email, :session_token, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :email, :session_token, uniqueness: true
@@ -25,7 +27,7 @@ class User < ActiveRecord::Base
   has_many :projects, through: :workspaces, source: :projects
   has_many :workspaces, through: :user_workspaces, dependent: :destroy
   has_many :associates, through: :workspaces, source: :users
-  
+
   has_many(
     :team_assignments,
     class_name: "TeamAssignment",
@@ -39,10 +41,6 @@ class User < ActiveRecord::Base
     foreign_key: :assignee_id,
     primary_key: :id
   )
-
-  def gravatar_url
-    "http://www.gravatar.com/avatar/#{ Digest::MD5.hexdigest(email) }"
-  end
 
   def self.find_by_credentials(user_params)
     user = User.find_by_email(user_params[:email])

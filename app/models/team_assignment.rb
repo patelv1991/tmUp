@@ -14,12 +14,11 @@ class TeamAssignment < ActiveRecord::Base
   validates :project_id, uniqueness: { scope: :member_id }
 
   belongs_to :project
-  
+
   belongs_to(
     :member,
     class_name: "User",
     foreign_key: :member_id,
     primary_key: :id
   )
-
 end

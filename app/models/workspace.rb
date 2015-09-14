@@ -9,6 +9,7 @@
 #
 
 class Workspace < ActiveRecord::Base
+  attr_accessor :link
   validates :title, presence: true
 
   has_many :user_workspaces, dependent: :destroy
@@ -36,16 +37,30 @@ class Workspace < ActiveRecord::Base
                           :workspaces, :projects, :tasks).find(current_user)
 
     resultData = {}
-    resultData['users'] = data.associates.where('fname ~* ? OR lname ~* ?',
-                                                 "(#{regexp})", "(#{regexp})").uniq
-    resultData['workspaces'] = data.workspaces.where('LOWER(title) LIKE ?',
-                                                     "%#{sd}%").uniq
-    resultData['projects'] = data.projects.where('LOWER(projects.title) LIKE ? OR
-                                                 LOWER(projects.description) LIKE ?',
-                                                 "%#{sd}%", "%#{sd}%").uniq
-    resultData['tasks'] = data.tasks.where('LOWER(title) LIKE ?',
-                                           "%#{sd}%").uniq
+    resultData['users'] = find_users(resultData, data, regexp)
+    resultData['workspaces'] = find_workspaces(resultData, data, sd)
+    resultData['projects'] = find_projects(resultData, data, sd)
+    resultData['tasks'] = find_tasks(resultData, data, sd)
     resultData
+  end
+
+  def self.find_users(resultData, data, regexp)
+    data.associates.where('fname ~* ? OR lname ~* ?',
+                          "(#{regexp})", "(#{regexp})").uniq
+  end
+
+  def self.find_workspaces(resultData, data, sd)
+    data.workspaces.where('LOWER(title) LIKE ?', "%#{sd}%").uniq
+  end
+
+  def self.find_projects(resultData, data, sd)
+    data.projects.where('LOWER(projects.title) LIKE ? OR
+                        LOWER(projects.description) LIKE ?',
+                        "%#{sd}%", "%#{sd}%").uniq
+  end
+
+  def self.find_tasks(resultData, data, sd)
+    data.tasks.where('LOWER(title) LIKE ?', "%#{sd}%").uniq
   end
 
 end

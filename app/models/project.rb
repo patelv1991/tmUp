@@ -13,6 +13,7 @@
 #
 
 class Project < ActiveRecord::Base
+  attr_accessor :link
   validates :title, :workspace, presence: true
   validates :title, uniqueness: { scope: :workspace_id }
 

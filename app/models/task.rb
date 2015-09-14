@@ -17,6 +17,7 @@
 #
 
 class Task < ActiveRecord::Base
+  attr_accessor :link
   validates :title, :creator_id, presence: true
 
   belongs_to :project
@@ -26,7 +27,7 @@ class Task < ActiveRecord::Base
     foreign_key: :assignee_id,
     primary_key: :id
   )
-  
+
   belongs_to(
     :assignor,
     class_name: "User",

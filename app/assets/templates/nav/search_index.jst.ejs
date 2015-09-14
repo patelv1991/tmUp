@@ -1,25 +1,41 @@
 <div class="search-results-list">
   <% if (users) { %>
     <div class="users">
-      varun
+      <ul>
+        <% users.forEach(function(user) { %>
+          <li><%= user.escape('fname') + " " + user.escape('lname') %></li>
+        <% }) %>
+      </ul>
     </div>
   <% } %>
 
   <% if (workspaces) { %>
     <div class="workspaces">
-
+      <ul>
+        <% workspaces.forEach(function(workspace) { %>
+          <li><%= workspace.escape('title') %></li>
+        <% }) %>
+      </ul>
     </div>
   <% } %>
 
   <% if (projects) { %>
     <div class="projects">
-
+      <ul>
+        <% projects.forEach(function(project) { %>
+          <li><%= project.escape('title') %></li>
+        <% }) %>
+      </ul>
     </div>
   <% } %>
 
   <% if (tasks) { %>
     <div class="tasks">
-
+      <ul>
+        <% tasks.forEach(function(task) { %>
+          <li><%= task.escape('title') %></li>
+        <% }) %>
+      </ul>
     </div>
   <% } %>
 
