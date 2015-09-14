@@ -54,8 +54,7 @@
       <ul>
         <% tasks.forEach(function(task) { %>
           <li>
-            <a href="#/<%= task.escape('link') %>"
-               data-link="#/<%= task.escape('link') %>">
+            <a data-link="#/<%= task.escape('link') %>">
               <%= task.escape('title') %>
             </a>
           </li>
