@@ -2,10 +2,7 @@ TmUp.Routers.Router = Backbone.Router.extend({
   initialize: function (options) {
     this.$landingEl = options.$landingEl;
     this.$mainEl = options.$mainEl;
-    // this.$leftMainEl = options.$leftMainEl;
-    // this.$rightMainEl = options.$rightMainEl;
     this.workspaces = options.workspaces;
-    // window.testingSpace = this.workspaces;
   },
 
   routes: {
@@ -13,7 +10,6 @@ TmUp.Routers.Router = Backbone.Router.extend({
     "workspaces/:id": "show",
     "workspaces/:workspaceId/user/:userId": "userTaskIndex",
     "workspaces/:workspaceId/project/:projectId": "projectTaskIndex"
-    // "workspaces": "index"
   },
 
   index: function () {
@@ -22,36 +18,8 @@ TmUp.Routers.Router = Backbone.Router.extend({
       collection: this.workspaces
     });
     this.currentMainView && this.currentMainView.remove();
-    // this.currentLeftMainView && this.currentLeftMainView.remove();
-    // this.currentRightMainView && this.currentRightMainView.remove();
     this._swapLandingView(view);
   },
-
-  // createNewWorkspace: function () {
-  //   modal = new TmUp.Views.NewWorkspaceForm({
-  //     collection: this.workspaces,
-  //     model: new TmUp.Models.Workspace()
-  //   });
-  //   $('body').append(modal.$el);
-  //   modal.render();
-  // },
-
-  // root: function () {
-  //   if (TmUp.checkCurrentUser()) {
-  //     this.show(Cookies.get('current-workspace-id'));
-  //   } else {
-  //     this.workspaces.fetch({
-  //       success: function (collection) {
-  //         if (collection.length > 0) {
-  //           this.show(collection.first().id);
-  //           // $('.nav-current-workspace-title').html(collection.first().escape('title'));
-  //         } else {
-  //           this.createNewWorkspace();
-  //         }
-  //       }.bind(this)
-  //     });
-  //   }
-  // },
 
   show: function (id) {
     var workspace = this.workspaces.getOrFetch(id);
@@ -110,17 +78,10 @@ TmUp.Routers.Router = Backbone.Router.extend({
           workspace: workspace,
           project: project
         });
-        // debugger
         $('#tasks-index-container').html(view.$el);
-        // this.$el.find('.delete-project').remove();
         view.render();
-        // var $buttons = $('<button type="button" class="btn btn-default btn-xs show-completed-tasks">Show Completed Tasks</button>' +
-        // '<button type="button" class="btn btn-default btn-xs update-project">Edit Project</button>' +
-        // '<button type="button" class="btn btn-danger btn-xs delete-project">Delete Project</button>');
-        // view.$el.find('.button-space').html($buttons);
       }
     });
-    // debugger
     this.currentLandingView && this.currentLandingView.remove();
     this.highlightActivePageOnSidebar(workspaceId, projectId);
   },
@@ -162,20 +123,5 @@ TmUp.Routers.Router = Backbone.Router.extend({
     this.currentMainView = view;
     this.$mainEl.html(view.$el);
     view.render();
-  },
-
-  // _swapLeftMainView: function (view) {
-  //   this.currentLeftMainView && this.currentLeftMainView.remove();
-  //   this.currentLeftMainView = view;
-  //   this.$leftMainEl.html(view.$el);
-  //   view.render();
-  // },
-  //
-  // _swapRightMainView: function (view) {
-  //   this.currentRightMainView && this.currentRightMainView.remove();
-  //   this.currentRightMainView = view;
-  //   this.$rightMainEl.html(view.$el);
-  //   view.render();
-  // }
-
+  }
 });

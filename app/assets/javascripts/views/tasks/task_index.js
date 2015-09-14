@@ -6,8 +6,8 @@ TmUp.Views.TaskIndex = Backbone.CompositeView.extend({
     this.workspace = options.workspace;
     this.project = options.project;
     this.renderingAllTasks = options.renderingAllTasks;
-    // this.listenTo(this.user, 'sync', this.render);
     this.listenTo(this.collection, 'add', this.addTask);
+    // this.listenTo(this.user, 'sync', this.render);
     // this.listenTo(this.collection, 'sync', this.render);
 
     // This makes sure that project title is updated when project is updated

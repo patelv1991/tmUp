@@ -12,7 +12,6 @@ TmUp.Views.WorkspacesIndex = Backbone.View.extend({
   render: function () {
     var content = this.template({ workspaces: this.collection });
     this.removeWorkspaceTitle();
-    // this.removeSBHideButton();
     this.$el.html(content);
     return this;
   },
@@ -29,14 +28,4 @@ TmUp.Views.WorkspacesIndex = Backbone.View.extend({
   removeWorkspaceTitle: function () {
     $('.nav-current-workspace-title').empty();
   },
-
-  // removeSBHideButton: function () {
-  //   $('.toggle-close').remove();
-  // }
-
-  // fetchWorkspaces: function (callback) {
-  //   this.collection.fetch({ success: function () {
-  //     callback && callback();
-  //   }});
-  // }
 });

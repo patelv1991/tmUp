@@ -6,12 +6,12 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
     'input #workspace-title': 'checkForTitle',
     'click .m-background': 'removeBtn',
     'click .close': 'removeBtn',
-    // 'focus button.btn-default': 'validateEmails',
     'focusout #work-team': 'validateEmails',
     'input #work-team': 'validateEmails',
     'mouseleave #work-team': 'validateEmails',
     'focus #work-team': 'removeEmailError',
     'mouseenter #work-team': 'removeEmailError'
+    // 'focus button.btn-default': 'validateEmails',
   },
 
   initialize: function () {
@@ -35,13 +35,9 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
     if (inputLength > 0) {
       this.enableButton('button.btn-default');
       this.$el.find('form div.form-group:first-child').removeClass('has-error');
-      // this.removeEmailError();
-      // this.$el.find('button.btn-default').prop('disabled', false);
     } else {
       this.disableButton('button.btn-default');
       this.$el.find('form div.form-group:first-child').addClass('has-error');
-
-      // this.$el.find('button.btn-default').prop('disabled', true);
     }
   },
 
@@ -129,14 +125,12 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
     emails.forEach(function (email) {
       email = email.trim();
       if (regex.test(email)) {
-        // this.checkForSelfEmail(email);
         this.parsedEmails.push(email.trim());
         this.checkForTitle();
         this.removeEmailError();
       } else {
         this.$el.find('form div.form-group:nth-child(2)').addClass('has-error');
         this.disableButton('button.btn-default');
-        // this.$el.find('button.btn-default').prop('disabled', true);
         return;
       }
     }.bind(this));
@@ -155,7 +149,6 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
     var $errorDiv = $('<div class="alert alert-warning" role="alert">');
     $errorDiv.append("<p> You don't need to include your own email.</p>");
     this.$el.find('form').prepend($errorDiv);
-    // this.parsedEmails = [];
   },
 
   removeEmailError: function () {
@@ -163,8 +156,6 @@ TmUp.Views.NewWorkspaceForm = Backbone.View.extend({
   },
 
   render: function () {
-
-    // this.enableButton('button.btn-default');
     this.$el.html(this.template());
     this.onRender();
     return this;

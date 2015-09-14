@@ -4,8 +4,6 @@ window.TmUp = {
   Views: {},
   Routers: {},
   initialize: function() {
-    // Cookies.remove('current-workspace-id');
-    // Cookies.remove('current-workspace-title');
     Cookies.set('current-logged-in-user', TmUp.CURRENT_USER.id);
 
     var workspaces = new TmUp.Collections.Workspaces();
@@ -13,8 +11,6 @@ window.TmUp = {
     var router = new TmUp.Routers.Router({
       $landingEl: $("#landing-page"),
       $mainEl: $("#main"),
-      // $leftMainEl: $("#left-main"),
-      // $rightMainEl: $("#right-main"),
       workspaces: workspaces
     });
 

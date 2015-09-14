@@ -22,10 +22,6 @@ TmUp.Views.TeamIndex = Backbone.CompositeView.extend({
     });
     this.addSubview('.team-members', view);
   },
-  //
-  // removeMemberSubView: function (member) {
-  //   var view
-  // },
 
   render: function () {
     this.$el.html(this.template());

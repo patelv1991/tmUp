@@ -3,7 +3,7 @@
 # Table name: workspaces
 #
 #  id         :integer          not null, primary key
-#  title      :string
+#  title      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -33,7 +33,10 @@ class Workspace < ActiveRecord::Base
     end
     regexp = regexp.join("|")
 
-    data =  User.includes(:workspaces, associates: :user_workspaces, projects: :tasks).find(current_user)
+    data =  User.includes(:workspaces,
+                          associates: :user_workspaces,
+                          projects: :tasks)
+                          .find(current_user)
 
     resultData = {}
     resultData['users'] = find_users(data, regexp)

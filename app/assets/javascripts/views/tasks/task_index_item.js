@@ -1,6 +1,5 @@
 TmUp.Views.TaskIndexItem = Backbone.View.extend({
   template: JST['tasks/index_item'],
-  // tagName: 'tr',
 
   initialize: function (options) {
     this.$el = $('<tr data-index=' + this.model.id + '></tr>');
@@ -85,8 +84,6 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
       if (selectedAssigneeId != this.model.escape('assignee_id')) {
         this.model.save({ assignee_id: selectedAssigneeId }, {
           success: function (task) {
-            // this.newTask = false;
-            // debugger
             if (this.project === undefined) {
               this.collection.remove(this.model, { merge: true });
               this.remove();
@@ -111,7 +108,6 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
   },
 
   findProject: function () {
-    // debugger
     if (!this.renderingAllTasks) {
       return "";
     } else {
@@ -121,25 +117,7 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     }
   },
 
-  // editTask: function (event) {
-  //   event.preventDefault();
-  //   var title = $(event.currentTarget).text().trim();
-  //   var taskIndex = $(event.currentTarget).data('index');
-  //   var due_date = $('.input-group.date[data-index="' + taskIndex + '"]').datepicker('getDate');
-  //   var project_id = $('tr td.project[data-index="' + taskIndex + '"]').data('project-id');
-  //   var assignee_id = $('td.task-dropdown div button[data-index="' + taskIndex + '"]').data('assignee-id');
-  //   var creator_id = TmUp.CURRENT_USER.id; // don't need this for editing a task
-  //   debugger
-  //
-  //
-  //   var view = new TmUp.Views.TaskIndexItem({
-  //     workspace: this.workspace,
-  //
-  //   });
-  // },
-
   getProjectId: function () {
-    // debugger
     if (this.newTask) {
       return this.project.id;
     } else {
@@ -209,7 +187,6 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
     var taskId = $(event.currentTarget).data('index');
     this.model.destroy({
       success: function (task) {
-        // this.collection.remove(task);
         this.remove();
       }.bind(this)
     });
@@ -225,7 +202,6 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
   },
 
   isPastDue: function (dueDate) {
-    // dueDate = this.model.get('due_date');
     currentDay = new Date().getDate().toString();
     currentDay = currentDay.length === 1 ? '0' + currentDay : currentDay;
     currentMonth = (new Date().getMonth() + 1).toString();
@@ -238,7 +214,6 @@ TmUp.Views.TaskIndexItem = Backbone.View.extend({
   },
 
   render: function () {
-    // debugger
     var content = this.template({
       task: this.model,
       due_date: this.parsedDate(),

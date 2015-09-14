@@ -6,9 +6,9 @@ TmUp.Views.NavShow = Backbone.View.extend({
     this.router = options.router;
     this.listenTo(this.collection, 'sync', this.render);
     this.listenTo(this.collection, 'sync', this.addRandomColorToInitials);
-    // this.listenTo(this.collection, 'sync', this.renderActiveWorkspaceTitle);
     this.listenTo(this.router, "route", this.getRouteNameAndParams);
     $(document).on('keyup', this.removeSearchResults.bind(this));
+    // this.listenTo(this.collection, 'sync', this.renderActiveWorkspaceTitle);
   },
 
   events: {
@@ -22,7 +22,6 @@ TmUp.Views.NavShow = Backbone.View.extend({
   },
 
   startTour: function () {
-    // e.preventDefault();
     var tour;
     if (this._routeName === undefined || this._routeName === 'index') {
       tour = introJs().setOptions({
@@ -99,14 +98,15 @@ TmUp.Views.NavShow = Backbone.View.extend({
   removeSidebarButton: function () {
     this.$el.find('#toggle-close').addClass('hidden');
     this.$el.find('#toggle-open').addClass('hidden');
-    // $('.navbar').removeClass('toggled-sidebar');
   },
 
   renderSbButtonToOpen: function () {
     this.$el.find('#toggle-close').addClass('hidden');
     this.$el.find('#toggle-open').removeClass('hidden');
+
     // this handles box-shadow for navbar when sidebar is hidden
     $('.navbar').removeClass('toggled-sidebar');
+
     // this handles size of task index container when sidebar is hidden
     $('#page-content-wrapper').removeClass('sidebar-toggled');
   },
@@ -115,8 +115,10 @@ TmUp.Views.NavShow = Backbone.View.extend({
     if (this._routeName !== "index" && this._routeName !== undefined) {
       this.$el.find('#toggle-close').removeClass('hidden');
       this.$el.find('#toggle-open').addClass('hidden');
+
       // this handles box-shadow for navbar when sidebar is toggled
       $('.navbar').addClass('toggled-sidebar');
+
       // this handles size of task index container when sidebar is toggled
       $('#page-content-wrapper').addClass('sidebar-toggled');
     }
@@ -129,14 +131,6 @@ TmUp.Views.NavShow = Backbone.View.extend({
     var dataTag = this.$el.find('.hidden').data('toggle');
     (dataTag === "closed") ? this.renderSbButtonToOpen() : this.renderSbButtonToClose();
   },
-  // handleRoute: function (routeName, params) {
-  //   debugger
-  //   if (params[0] !== null) {
-  //     this.workspaceId = parseInt(params[0]);
-  //   }
-  //   this.$el.find(".active").removeClass("active");
-  //   this.$el.find("." + routeName).addClass("active");
-  // },
 
   logOut: function (event) {
     $.ajax({
@@ -210,7 +204,6 @@ TmUp.Views.NavShow = Backbone.View.extend({
     this.$el.html(content);
     this.renderSbButtonToClose();
     this.renderActiveWorkspaceTitle();
-    // this.addRandomColorToInitials();
     return this;
   },
 
@@ -230,12 +223,5 @@ TmUp.Views.NavShow = Backbone.View.extend({
     } else {
       this.$('.user-initials').css({"background-color": "#E18303" });
     }
-
   }
-  // renderActiveWorkspaceTitle: function () {
-  //   if (this.collection.length > 0) {
-  //     this.$('.nav-current-workspace-title').html(Cookies.get('current-workspace-title'));
-  //   }
-  // }
-
 });

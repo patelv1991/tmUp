@@ -103,7 +103,6 @@ TmUp.Views.TeamMemberForm = Backbone.View.extend({
         users.forEach(function (user) {
           this.workspace.workTeam().add(user);
           this.workspace.fetch();
-          // that.collection.add(user);
         }.bind(this));
         this.remove();
       }.bind(this),

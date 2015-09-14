@@ -41,7 +41,7 @@ class Api::WorkspaceMembershipsController < ApplicationController
               update_all(assignee_id: nil)
 
       workspace_members = @membership.workspace.users
-      # if there is only one user in the workspace, it destroys the workspace as well
+      # if there was only one user in the workspace, it destroys the workspace as well
       if (workspace_members.length == 0)
         @membership.workspace.destroy
       end
