@@ -1,5 +1,5 @@
 json.workspaces @resultData['workspaces'] do |workspace|
-  json.extract! workspace, :id, :title, :created_at, :updated_at
+  json.extract! workspace, :id, :title, :link, :created_at, :updated_at
 end
 
 json.users @resultData['users'] do |member|

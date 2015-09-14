@@ -33,34 +33,54 @@ class Workspace < ActiveRecord::Base
     end
     regexp = regexp.join("|")
 
-    data =  User.includes(:associates,
-                          :workspaces, :projects, :tasks).find(current_user)
+    data =  User.includes(:workspaces, associates: :user_workspaces, projects: :tasks).find(current_user)
 
     resultData = {}
-    resultData['users'] = find_users(resultData, data, regexp)
-    resultData['workspaces'] = find_workspaces(resultData, data, sd)
-    resultData['projects'] = find_projects(resultData, data, sd)
-    resultData['tasks'] = find_tasks(resultData, data, sd)
+    resultData['users'] = find_users(data, regexp)
+    resultData['workspaces'] = find_workspaces(data, sd)
+    resultData['projects'] = find_projects(data, sd)
+    resultData['tasks'] = find_tasks(data, sd)
     resultData
   end
 
-  def self.find_users(resultData, data, regexp)
-    data.associates.where('fname ~* ? OR lname ~* ?',
-                          "(#{regexp})", "(#{regexp})").uniq
+  def self.find_users(data, regexp)
+    users = data.associates.where('fname ~* ? OR lname ~* ?',
+                                  "(#{regexp})", "(#{regexp})").uniq
+    workspaces = data.workspaces.pluck(:id)
+    users.each_with_index do |user, idx|
+      workspace_id = user.user_workspaces.first.workspace_id
+      user.link = "workspaces/#{workspace_id}/user/#{user.id}"
+    end
   end
 
-  def self.find_workspaces(resultData, data, sd)
-    data.workspaces.where('LOWER(title) LIKE ?', "%#{sd}%").uniq
+  def self.find_workspaces(data, sd)
+    workspaces = data.workspaces.where('LOWER(title) LIKE ?', "%#{sd}%").uniq
+    workspaces.each do |workspace|
+      workspace.link = "workspaces/#{workspace.id}"
+    end
   end
 
-  def self.find_projects(resultData, data, sd)
-    data.projects.where('LOWER(projects.title) LIKE ? OR
-                        LOWER(projects.description) LIKE ?',
-                        "%#{sd}%", "%#{sd}%").uniq
+  def self.find_projects(data, sd)
+    projects = data.projects.where('LOWER(projects.title) LIKE ? OR
+                                   LOWER(projects.description) LIKE ?',
+                                   "%#{sd}%", "%#{sd}%").uniq
+    projects.each do |project|
+      project.link = "workspaces/#{project.workspace_id}/project/#{project.id}"
+    end
   end
 
-  def self.find_tasks(resultData, data, sd)
-    data.tasks.where('LOWER(title) LIKE ?', "%#{sd}%").uniq
+  def self.find_tasks(data, sd)
+    tasks = []
+    data.projects.each do |project|
+      t = project.tasks.where('LOWER(title) LIKE ?', "%#{sd}%").uniq
+      tasks += t unless t.empty?
+    end
+
+    tasks.each do |task|
+      project_id = task.project_id
+      workspace_id = data.projects.where(id: project_id)[0].workspace_id
+      task.link = "workspaces/#{workspace_id}/project/#{project_id}"
+    end
   end
 
 end
