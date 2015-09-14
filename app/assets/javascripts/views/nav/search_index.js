@@ -25,17 +25,15 @@ TmUp.Views.SearchIndex = Backbone.View.extend({
     var link = $(event.currentTarget).data('link').split('/').slice(1,3).join('/');
     var currentLink = window.location.hash.split('/').slice(1,3).join('/');
 
-    if ($(event.currentTarget).data('link').split('/').length == 3) {
-      return;
-    }
+    // if ($(event.currentTarget).data('link').split('/').length == 3) {
+    //   return;
+    // }
 
     // This makes sures that page is never hard refreshed
-    if (link !== currentLink) {
       var route1 = $(event.currentTarget).data('link').split('/').slice(0,3).join('/');
       var route2 = $(event.currentTarget).data('link').split('/').slice(3,5).join('/');
       Backbone.history.navigate(route1, { trigger: true });
-      Backbone.history.navigate(route1 + "/" + route2, { trigger: true });
-    }
+      route2 && Backbone.history.navigate(route1 + "/" + route2, { trigger: true });
   },
 
   render: function () {
