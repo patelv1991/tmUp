@@ -59,6 +59,8 @@ class Workspace < ActiveRecord::Base
               select! { |id, title| selected_users_workspaces[id] }
 
       user.ws = current_users_workspaces
+      workspace_id = current_users_workspaces.first[0]
+      user.link = "workspaces/#{workspace_id}/user/#{user.id}"
     end
   end
 
