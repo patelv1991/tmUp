@@ -32,6 +32,7 @@ TmUp.Views.SearchIndex = Backbone.View.extend({
   },
 
   render: function () {
+    debugger
     var content = this.template({
       workspaces: this.workspaces,
       users: this.users,

@@ -46,10 +46,19 @@ class Workspace < ActiveRecord::Base
   def self.find_users(data, regexp)
     users = data.associates.where('fname ~* ? OR lname ~* ?',
                                   "(#{regexp})", "(#{regexp})").uniq
-    workspaces = data.workspaces.pluck(:id)
     users.each_with_index do |user, idx|
-      workspace_id = user.user_workspaces.first.workspace_id
-      user.link = "workspaces/#{workspace_id}/user/#{user.id}"
+      current_users_workspaces = {}
+      data.workspaces.pluck(:id, :title).
+              each { |id, title| current_users_workspaces[id] = title }
+
+      selected_users_workspaces = {}
+      user.user_workspaces.pluck(:workspace_id).
+              each { |id| selected_users_workspaces[id] = true }
+
+      current_users_workspaces.
+              select! { |id, title| selected_users_workspaces[id] }
+
+      user.ws = current_users_workspaces
     end
   end
 
