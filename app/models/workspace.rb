@@ -23,20 +23,18 @@ class Workspace < ActiveRecord::Base
   end
 
   def self.search(searchData, current_user)
+    return {} if searchData == ""
+    sd = searchData.downcase
+    name_regexp = "(#{sd.split(" ").join("|")})"
+
+    # sets initial time and fetches data if it doesn't exists in cache
     @time ||= Time.new
     @data ||= User.includes(:workspaces,
                             associates: :user_workspaces,
                             projects: :tasks)
                             .find(current_user)
-    return {} if searchData == ""
-    sd = searchData.downcase
 
-    names = sd.split(" ")
-    regexp = []
-    names.each do |el|
-      regexp << el
-    end
-    regexp = regexp.join("|")
+    # uses same cache for 60 seconds
     if Time.new - @time > 60
       @data = User.includes(:workspaces,
                             associates: :user_workspaces,
@@ -48,24 +46,29 @@ class Workspace < ActiveRecord::Base
     end
 
     resultData = {}
-    resultData['users'] = find_users(regexp)
+    resultData['users'] = find_users(name_regexp)
     resultData['workspaces'] = find_workspaces(sd)
     resultData['projects'] = find_projects(sd)
     resultData['tasks'] = find_tasks(sd)
     resultData
   end
 
-  def self.find_users(regexp)
-    users = @data.associates.where('fname ~* ? OR lname ~* ?',
-                                  "(#{regexp})", "(#{regexp})").uniq
+  def self.find_users(name_regexp)
+    users = @data.associates.select do |user|
+      user.fname.match(/#{name_regexp}/i) || user.lname.match(/#{name_regexp}/i)
+    end
+    users.uniq!
+
     users.each_with_index do |user, idx|
       current_users_workspaces = {}
-      @data.workspaces.pluck(:id, :title).
-              each { |id, title| current_users_workspaces[id] = title }
+      @data.workspaces.each do |w|
+        current_users_workspaces[w.id] = w.title
+      end
 
       selected_users_workspaces = {}
-      user.user_workspaces.pluck(:workspace_id).
-              each { |id| selected_users_workspaces[id] = true }
+      user.user_workspaces.each do |m|
+        selected_users_workspaces[m.workspace_id] = true
+      end
 
       current_users_workspaces.
               select! { |id, title| selected_users_workspaces[id] }
@@ -77,16 +80,23 @@ class Workspace < ActiveRecord::Base
   end
 
   def self.find_workspaces(sd)
-    workspaces = @data.workspaces.where('LOWER(title) LIKE ?', "%#{sd}%").uniq
+    workspaces = @data.workspaces.select do |w|
+      w.title.match(/#{sd}/i)
+    end
+    workspaces.uniq!
+
     workspaces.each do |workspace|
       workspace.link = "workspaces/#{workspace.id}"
     end
   end
 
   def self.find_projects(sd)
-    projects = @data.projects.where('LOWER(projects.title) LIKE ? OR
-                                   LOWER(projects.description) LIKE ?',
-                                   "%#{sd}%", "%#{sd}%").uniq
+    projects = @data.projects.select do |project|
+      project.title.match(/#{sd}/i) ||
+          (project.description && project.description.match(/#{sd}/i))
+    end
+    projects.uniq!
+
     projects.each do |project|
       project.link = "workspaces/#{project.workspace_id}/project/#{project.id}"
     end
@@ -94,14 +104,19 @@ class Workspace < ActiveRecord::Base
 
   def self.find_tasks(sd)
     tasks = []
+    project_workspace_id = {}
     @data.projects.each do |project|
-      t = project.tasks.where('LOWER(title) LIKE ?', "%#{sd}%").uniq
+      project_workspace_id[project.id] = project.workspace_id
+      t = project.tasks.select do |t|
+        t.title.match(/#{sd}/i)
+      end
       tasks += t unless t.empty?
     end
+    tasks.uniq!
 
     tasks.each do |task|
       project_id = task.project_id
-      workspace_id = @data.projects.where(id: project_id)[0].workspace_id
+      workspace_id = project_workspace_id[project_id]
       task.link = "workspaces/#{workspace_id}/project/#{project_id}"
     end
   end
